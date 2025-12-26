@@ -1,0 +1,407 @@
+#!/usr/bin/env python3
+"""
+Lyco.ai Bot v6 - Simple Redis Memory Implementation
+"""
+
+import os
+import asyncio
+import logging
+import json
+from datetime import datetime
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
+import aiohttp
+
+# Enhanced logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+logger = logging.getLogger(__name__)
+
+# Configuration
+BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+NOTION_TOKEN = os.environ.get('NOTION_TOKEN', '')
+NOTION_DATABASE_ID = os.environ.get('NOTION_DATABASE_ID', '')
+NOTION_VERSION = '2022-06-28'
+
+# Simple memory storage (in production this would be Redis)
+memory_store = {}
+
+# User session storage
+user_sessions = {}
+
+def store_message(chat_id: int, message: str, user_name: str = "User") -> bool:
+    """Store message in simple memory (fallback implementation)"""
+    try:
+        if chat_id not in memory_store:
+            memory_store[chat_id] = []
+        
+        message_obj = {
+            "timestamp": datetime.now().isoformat(),
+            "user": user_name,
+            "content": message[:500]
+        }
+        
+        memory_store[chat_id].append(message_obj)
+        
+        # Keep only last 10 messages
+        if len(memory_store[chat_id]) > 10:
+            memory_store[chat_id] = memory_store[chat_id][-10:]
+        
+        return True
+    except Exception as e:
+        logger.error(f"Failed to store message: {e}")
+        return False
+
+def get_context(chat_id: int) -> list:
+    """Retrieve conversation context"""
+    return memory_store.get(chat_id, [])
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Enhanced start with family context"""
+    user = update.effective_user
+    chat_id = update.effective_chat.id
+    
+    # Clear conversation context for fresh start
+    if chat_id in memory_store:
+        memory_store[chat_id] = []
+    
+    # Initialize user session
+    user_sessions[user.id] = {
+        'name': user.first_name,
+        'tasks_today': 0,
+    }
+    
+    keyboard = [
+        [InlineKeyboardButton("📝 Quick Task", callback_data='quick_task')],
+        [InlineKeyboardButton("📊 Today's Tasks", callback_data='today_tasks')]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    welcome_message = f'''🧠 **Welcome to Lyco v6, {user.first_name}!**
+    
+I'm your ADHD-optimized task assistant with conversation memory.
+
+**🎯 Core Features:**
+• Natural language task capture
+• Conversation context memory (10 messages)
+• Auto-categorization (Eisenhower Matrix)
+• Family member delegation
+
+**👨‍👩‍👧‍👦 Family Members:**
+• **Cindy** - Wife, physician
+• **Viola** - Au pair (childcare/transport)
+• **Persy** (11) - Oldest
+• **Stelios** (8) - Middle
+• **Franci** (5) - Youngest
+
+**💬 Just send me any task!**
+
+**🧠 Memory**: I'll remember our conversation to understand context!'''
+    
+    await update.message.reply_text(
+        welcome_message,
+        parse_mode='Markdown',
+        reply_markup=reply_markup
+    )
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Enhanced message handler with conversation context"""
+    message = update.message
+    chat_id = message.chat_id
+    user = message.from_user
+    user_id = user.id
+    user_name = user.first_name or "User"
+    text = message.text or ""
+    
+    logger.info(f"📝 Message from {user_name} (ID: {chat_id}): {text[:50]}...")
+    
+    # Update session
+    if user_id not in user_sessions:
+        user_sessions[user_id] = {'name': user_name, 'tasks_today': 0}
+    
+    user_sessions[user_id]['tasks_today'] += 1
+    
+    # Send typing indicator
+    await context.bot.send_chat_action(chat_id=chat_id, action='typing')
+    
+    try:
+        # Store incoming message in memory
+        store_message(chat_id, text, user_name)
+        conversation_context = get_context(chat_id)
+        
+        # Build context for AI if we have conversation history
+        context_text = ""
+        if conversation_context and len(conversation_context) > 1:
+            context_text = "Recent conversation:\n"
+            # Include last 3 messages for context (excluding current)
+            for msg in conversation_context[-4:-1]:  
+                context_text += f"{msg['user']}: {msg['content']}\n"
+            context_text += f"\nCurrent message from {user_name}:\n"
+        
+        # Send immediate acknowledgment with context awareness
+        if context_text:
+            thinking = await message.reply_text(
+                f'🧠 Understanding: "{text[:50]}{"..." if len(text) > 50 else ""}" (with context)'
+            )
+        else:
+            thinking = await message.reply_text(
+                f'🧠 Processing: "{text[:50]}{"..." if len(text) > 50 else ""}"'
+            )
+        
+        # Simple task parsing (enhanced version would use AI)
+        analysis = {
+            'parsed_task': text,
+            'eisenhower': '🧠 Brain Dump',
+            'energy': 'Medium',
+            'time_estimate': '📝 Short (15-30m)',
+            'context': ['Quick Win'],
+            'assigned_to': None,
+            'due_date': None,
+            'adhd_notes': 'Processed with conversation memory',
+            'record_type': 'Task'
+        }
+        
+        # Enhance with context awareness
+        if context_text and any(word in text.lower() for word in ['also', 'and', 'too', 'plus']):
+            analysis['adhd_notes'] = 'Context-aware: Referenced previous conversation'
+        
+        # Save to Notion
+        saved, save_message = await save_to_notion_enhanced(analysis, user_name)
+        
+        # Format response
+        response = format_task_response(analysis, saved, save_message)
+        
+        # Store bot response in memory
+        store_message(chat_id, response[:200], "Lyco")
+        
+        # Add quick actions keyboard
+        keyboard = []
+        keyboard.append([InlineKeyboardButton("✅ Mark Complete", callback_data=f"complete_{thinking.message_id}")])
+        
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        # Update message with full response
+        await thinking.edit_text(
+            response, 
+            parse_mode='Markdown',
+            reply_markup=reply_markup,
+            disable_web_page_preview=True
+        )
+        
+        # Log for monitoring
+        logger.info(f"Task from {user_name} ({user_id}): {text[:50]} -> {analysis['eisenhower']}")
+        
+    except Exception as e:
+        logger.error(f"❌ Error in handle_message: {e}")
+        await message.reply_text("Sorry, I encountered an error. Please try again.")
+
+def format_task_response(analysis: dict, saved: bool, save_message: str) -> str:
+    """Format the task response"""
+    
+    response = f'''✅ **Task Captured!**
+
+📝 **Task:** {analysis['parsed_task']}
+📊 **Priority:** {analysis['eisenhower']}
+⚡ **Energy:** {analysis['energy']}
+⏱️ **Time:** {analysis['time_estimate']}
+🏷️ **Context:** {', '.join(analysis['context'])}'''
+    
+    if analysis.get('due_date'):
+        response += f"\n📅 **Due:** {analysis['due_date']}"
+    
+    # Add ADHD notes
+    if analysis.get('adhd_notes'):
+        response += f"\n\n💡 **Note:** {analysis['adhd_notes']}"
+    
+    # Save status
+    response += "\n\n"
+    if saved:
+        response += "✨ **Saved to Notion!**"
+    else:
+        response += f"⚠️ **Save failed:** {save_message}"
+    
+    return response
+
+async def save_to_notion_enhanced(task_data: dict, user_name: str) -> tuple[bool, str]:
+    """Enhanced Notion save"""
+    headers = {
+        'Authorization': f'Bearer {NOTION_TOKEN}',
+        'Content-Type': 'application/json',
+        'Notion-Version': NOTION_VERSION
+    }
+    
+    # Build properties
+    properties = {
+        'Name': {
+            'title': [{
+                'text': {'content': task_data['parsed_task']}
+            }]
+        },
+        'Source': {
+            'select': {'name': 'Telegram'}
+        },
+        'Notes': {
+            'rich_text': [{
+                'text': {
+                    'content': f"Added by {user_name} via Lyco v6 (with memory)\n"
+                              f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n"
+                              f"{task_data.get('adhd_notes', '')}"
+                }
+            }]
+        },
+        'Eisenhower': {
+            'select': {'name': task_data['eisenhower']}
+        },
+        'Energy Level Required': {
+            'select': {'name': task_data['energy']}
+        },
+        'Time Estimate': {
+            'select': {'name': task_data['time_estimate']}
+        },
+        'Context/Tags': {
+            'multi_select': [{'name': tag} for tag in task_data['context']]
+        }
+    }
+    
+    # Prepare request
+    notion_data = {
+        'parent': {'database_id': NOTION_DATABASE_ID},
+        'properties': properties
+    }
+    
+    logger.info(f"Saving to Notion: {task_data['parsed_task'][:50]}")
+    
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                'https://api.notion.com/v1/pages',
+                headers=headers,
+                json=notion_data,
+                timeout=10
+            ) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    return True, f"ID: {result['id'][:8]}"
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Notion error: {error_text}")
+                    return False, f"API error {response.status}"
+                    
+    except asyncio.TimeoutError:
+        return False, "Timeout"
+    except Exception as e:
+        logger.error(f"Notion save error: {e}")
+        return False, str(e)[:50]
+
+async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle inline button callbacks"""
+    query = update.callback_query
+    await query.answer()
+    
+    data = query.data
+    
+    if data.startswith('complete_'):
+        await query.edit_message_text(
+            "✅ **Task marked complete!**\n\n"
+            "Great job! Remember to celebrate small wins! 🎉",
+            parse_mode='Markdown'
+        )
+    
+    elif data == 'today_tasks':
+        user_id = query.from_user.id
+        count = user_sessions.get(user_id, {}).get('tasks_today', 0)
+        
+        await query.edit_message_text(
+            f"📊 **Today's Progress**\n\n"
+            f"Tasks captured: {count}\n"
+            f"Memory: ✅ Active (in-memory storage)\n\n"
+            f"Remember: Progress > Perfection! 💪",
+            parse_mode='Markdown'
+        )
+
+async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Status check"""
+    status_msg = "**🔍 System Status v6**\n\n"
+    
+    status_msg += "🟢 **Bot:** Lyco v6 Online\n"
+    status_msg += "🟢 **Memory:** In-memory storage active\n"
+    
+    if ANTHROPIC_API_KEY:
+        status_msg += "🟢 **AI:** Claude Connected\n"
+    else:
+        status_msg += "🔴 **AI:** No API key\n"
+    
+    status_msg += "\n**🔧 Configuration**\n"
+    status_msg += f"Memory: 10-message window\n"
+    status_msg += f"Active chats: {len(memory_store)}"
+    
+    await update.message.reply_text(status_msg, parse_mode='Markdown')
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Help command"""
+    help_text = '''**📚 Lyco v6 Help Guide**
+
+**Basic Commands:**
+/start - Initialize bot (clears memory)
+/status - Check system status
+/help - This guide
+
+**🧠 Memory Features:**
+I remember our last 10 messages, so you can:
+• "Also get bread" (refers to previous shopping)
+• "Make that urgent" (changes priority)
+• "Add it to the list" (references previous tasks)
+
+**Task Examples:**
+• "Buy milk"
+• "Call dentist"  
+• "Email report to team"
+• "Buy milk" → "Also get bread and eggs"
+
+**🧠 ADHD Support:**
+• Context awareness reduces cognitive load
+• Conversation memory helps track thoughts
+• Automatic task categorization
+
+**Need more help?** Just ask!'''
+    
+    await update.message.reply_text(help_text, parse_mode='Markdown')
+
+def main():
+    """Main function"""
+    if not BOT_TOKEN:
+        logger.error('No TELEGRAM_BOT_TOKEN found!')
+        print("❌ ERROR: Set TELEGRAM_BOT_TOKEN environment variable")
+        return
+    
+    logger.info('Starting Lyco bot v6...')
+    print("🚀 Lyco Bot v6 Starting with Memory...")
+    print(f"✅ Notion Database: {NOTION_DATABASE_ID}")
+    print(f"✅ AI Parser: {'Enabled' if ANTHROPIC_API_KEY else 'Disabled'}")
+    print(f"✅ Memory: In-memory storage active")
+    
+    # Create application
+    application = Application.builder().token(BOT_TOKEN).build()
+    
+    # Command handlers
+    application.add_handler(CommandHandler('start', start))
+    application.add_handler(CommandHandler('status', status))
+    application.add_handler(CommandHandler('help', help_command))
+    
+    # Message handler for tasks
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    
+    # Button callback handler
+    application.add_handler(CallbackQueryHandler(button_callback))
+    
+    # Start bot
+    print("✅ Bot ready! Waiting for messages...")
+    logger.info('Bot v6 started successfully')
+    
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
+
+if __name__ == '__main__':
+    main()

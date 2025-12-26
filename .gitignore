@@ -40,3 +40,13 @@ client_secret.json
 # Python Pickle files
 *.pickle
 
+
+# Comprehensive Secret Blocking
+*credentials*.json
+*token*.json
+*service-account*.json
+*secret*.json
+client_secrets.json
+key.json
+*.p12
+*.pdf

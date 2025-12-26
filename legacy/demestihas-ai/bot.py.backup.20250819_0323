@@ -1,0 +1,599 @@
+#!/usr/bin/env python3
+"""
+Lyco.ai Bot v5 - Production Ready with Enhanced AI & Family Coordination
+"""
+
+import os
+import asyncio
+import logging
+import json
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
+from datetime import datetime, timedelta
+import aiohttp
+from ai_task_parser import EnhancedTaskParser
+
+# Enhanced logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s',
+    level=logging.INFO
+)
+logger = logging.getLogger(__name__)
+
+# Configuration
+BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+NOTION_TOKEN = os.environ.get('NOTION_TOKEN', '')
+NOTION_DATABASE_ID = os.environ.get('NOTION_DATABASE_ID', '')
+NOTION_VERSION = '2022-06-28'
+
+# Initialize enhanced parser
+
+# Eisenhower mapping function for enhanced parser integration
+def map_eisenhower_format(enhanced_analysis):
+    """Map enhanced parser output to bot-expected format"""
+    eisenhower_map = {
+        "DO_NOW": "🔥 Do Now",
+        "SCHEDULE": "📅 Schedule", 
+        "DELEGATE": "👥 Delegate",
+        "SOMEDAY": "🗄️ Someday/Maybe",
+        "BRAIN_DUMP": "🧠 Brain Dump"
+    }
+    energy_map = {"Low": "Low", "Medium": "Medium", "High": "High"}
+    time_map = {
+        "Quick": "⚡ Quick (<15m)",
+        "Short": "📝 Short (15-30m)",
+        "Deep": "🎯 Deep (>30m)",
+        "Multi-hour": "📅 Multi-hour"
+    }
+    
+    if "tasks" in enhanced_analysis and enhanced_analysis["tasks"]:
+        task = enhanced_analysis["tasks"][0]  # Take first task
+        return {
+            "parsed_task": task.get("name", "New Task"),
+            "eisenhower": eisenhower_map.get(task.get("eisenhower"), "🧠 Brain Dump"),
+            "energy": energy_map.get(task.get("energy"), "Medium"),
+            "time_estimate": time_map.get(task.get("time_estimate"), "📝 Short (15-30m)"),
+            "context": task.get("context", ["Quick Win"]),
+            "assigned_to": task.get("assigned_to"),
+            "due_date": task.get("due_date"),
+            "adhd_notes": enhanced_analysis.get("reasoning", ""),
+            "record_type": "Task"
+        }
+    else:
+        return {
+            "parsed_task": "Could not parse task",
+            "eisenhower": "🧠 Brain Dump",
+            "energy": "Medium",
+            "time_estimate": "📝 Short (15-30m)",
+            "context": ["Quick Win"],
+            "assigned_to": None,
+            "due_date": None,
+            "adhd_notes": "Parsing failed - please review",
+            "record_type": "Task"
+        }
+
+task_parser = EnhancedTaskParser() if ANTHROPIC_API_KEY else None
+
+# User session storage (in production, use Redis)
+user_sessions = {}
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Enhanced start with family context"""
+    user = update.effective_user
+    
+    # Initialize user session
+    user_sessions[user.id] = {
+        'name': user.first_name,
+        'tasks_today': 0,
+        'last_energy_check': datetime.now(),
+        'family_mode': False
+    }
+    
+    keyboard = [
+        [InlineKeyboardButton("📝 Quick Task", callback_data='quick_task')],
+        [InlineKeyboardButton("👨‍👩‍👧‍👦 Family Mode", callback_data='family_mode')],
+        [InlineKeyboardButton("⚡ Energy Check", callback_data='energy_check')],
+        [InlineKeyboardButton("📊 Today's Tasks", callback_data='today_tasks')]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    welcome_message = f'''🧠 **Welcome to Lyco, {user.first_name}!**
+    
+I'm your ADHD-optimized task assistant with family coordination.
+
+**🎯 Core Features:**
+• Natural language task capture
+• Auto-categorization (Eisenhower Matrix)
+• Family member delegation
+• Energy-based scheduling
+• ADHD-friendly breakdowns
+
+**👨‍👩‍👧‍👦 Family Members:**
+• **Cindy** - Wife, physician
+• **Viola** - Au pair (childcare/transport)
+• **Persy** (11) - Oldest
+• **Stelios** (8) - Middle
+• **Franci** (5) - Youngest
+
+**💬 Just send me any task or use the buttons below!**
+
+Examples:
+• "Buy groceries for dinner"
+• "Ask Viola to pick up kids at 3pm"
+• "Review budget report tomorrow"
+• "Emergency: Call pediatrician now"'''
+    
+    await update.message.reply_text(
+        welcome_message,
+        parse_mode='Markdown',
+        reply_markup=reply_markup
+    )
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Enhanced message handler with AI parsing"""
+    task_text = update.message.text
+    user = update.effective_user
+    user_id = user.id
+    
+    # Update session
+    if user_id not in user_sessions:
+        user_sessions[user_id] = {'name': user.first_name, 'tasks_today': 0}
+    
+    user_sessions[user_id]['tasks_today'] += 1
+    
+    # Send typing indicator
+    await context.bot.send_chat_action(chat_id=update.effective_chat.id, action='typing')
+    
+    # Send immediate acknowledgment
+    thinking = await update.message.reply_text(
+        f'🧠 Processing: "{task_text[:50]}{"..." if len(task_text) > 50 else ""}"'
+    )
+    
+    # Parse with enhanced AI
+    if task_parser:
+        raw_analysis = await task_parser.extract_tasks(task_text, {"user_name": user.first_name})
+        analysis = map_eisenhower_format(raw_analysis)
+    else:
+        # Fallback parsing
+        analysis = {
+            'parsed_task': task_text,
+            'eisenhower': '🧠 Brain Dump',
+            'energy': 'Medium',
+            'time_estimate': '📝 Short (15-30m)',
+            'context': ['Quick Win'],
+            'assigned_to': None,
+            'due_date': None,
+            'adhd_notes': '',
+            'record_type': 'Task'
+        }
+    
+    # Save to Notion with enhanced properties
+    saved, save_message = await save_to_notion_enhanced(analysis, user.first_name)
+    
+    # Format enhanced response
+    response = format_task_response(analysis, saved, save_message)
+    
+    # Add quick actions keyboard
+    keyboard = []
+    
+    # If task is complex, offer breakdown
+    if analysis['energy'] == 'High':
+        keyboard.append([InlineKeyboardButton("🔨 Break it down", callback_data=f"breakdown_{thinking.message_id}")])
+    
+    
+    keyboard.append([InlineKeyboardButton("✅ Mark Complete", callback_data=f"complete_{thinking.message_id}")])
+    
+    reply_markup = InlineKeyboardMarkup(keyboard) if keyboard else None
+    
+    # Update message with full response
+    await thinking.edit_text(
+        response, 
+        parse_mode='Markdown',
+        reply_markup=reply_markup,
+        disable_web_page_preview=True
+    )
+    
+    # Log for monitoring
+    logger.info(f"Task from {user.first_name} ({user_id}): {task_text[:50]} -> {analysis['eisenhower']}")
+    
+    # ADHD support: Remind about breaks after 5 tasks
+    if user_sessions[user_id]['tasks_today'] % 5 == 0:
+        await asyncio.sleep(2)
+        await update.message.reply_text(
+            "🧠 **ADHD Break Reminder**\n\n"
+            "You've captured 5 tasks! Time for a 5-minute break.\n"
+            "Stand up, stretch, or grab some water. 💧",
+            parse_mode='Markdown'
+        )
+
+def format_task_response(analysis: dict, saved: bool, save_message: str) -> str:
+    """Format the task/shopping analysis response"""
+    record_type = analysis.get('record_type', 'Task')
+    
+    if record_type == 'Shopping':
+        # Shopping item response
+        response = f'''🛒 **Shopping Item Captured!**
+
+📝 **Item:** {analysis['parsed_task']}
+🏪 **Store:** {analysis.get('store', 'Any')}'''
+        
+        if analysis.get('grocery_category'):
+            response += f"\n🏷️ **Category:** {analysis['grocery_category']}"
+        if analysis.get('quantity'):
+            response += f"\n📦 **Quantity:** {analysis['quantity']}"
+    else:
+        # Task response
+        response = f'''✅ **Task Captured!**
+
+📝 **Task:** {analysis['parsed_task']}
+📊 **Priority:** {analysis['eisenhower']}'''
+    
+    # Add assignment if delegated
+    if analysis.get('assigned_to'):
+        family_names = {
+            'cindy': 'Cindy (Wife)',
+            'viola': 'Viola (Au Pair)',
+            'persy': 'Persy (11yo)',
+            'stelios': 'Stelios (8yo)', 
+            'franci': 'Franci (5yo)',
+            'mene': 'You'
+        }
+        assignee = family_names.get(analysis['assigned_to'], analysis['assigned_to'].title())
+        response += f'\n👤 **Assigned:** {assignee}'
+    
+    response += f'''
+⚡ **Energy:** {analysis['energy']}
+⏱️ **Time:** {analysis['time_estimate']}
+🏷️ **Context:** {', '.join(analysis['context'])}'''
+    
+    if analysis.get('due_date'):
+        # Format date nicely
+        try:
+            due = datetime.strptime(analysis['due_date'], '%Y-%m-%d')
+            today = datetime.now().date()
+            due_date = due.date()
+            
+            if due_date == today:
+                due_str = "Today"
+            elif due_date == today + timedelta(days=1):
+                due_str = "Tomorrow"
+            else:
+                due_str = due.strftime('%B %d')
+            
+            response += f"\n📅 **Due:** {due_str}"
+        except:
+            response += f"\n📅 **Due:** {analysis['due_date']}"
+    
+    
+    # Save status
+    response += "\n\n"
+    if saved:
+        response += "✨ **Saved to Notion!**\n"
+    else:
+        response += f"⚠️ **Save failed:** {save_message}"
+    
+    return response
+
+async def save_to_notion_enhanced(task_data: dict, user_name: str) -> tuple[bool, str]:
+    """Enhanced Notion save with family fields and shopping support"""
+    headers = {
+        'Authorization': f'Bearer {NOTION_TOKEN}',
+        'Content-Type': 'application/json',
+        'Notion-Version': NOTION_VERSION
+    }
+    
+    # Build properties with all fields
+    properties = {
+        'Name': {
+            'title': [{
+                'text': {'content': task_data['parsed_task']}
+            }]
+        },
+        'Source': {
+            'select': {'name': 'Telegram'}
+        },
+        'Notes': {
+            'rich_text': [{
+                'text': {
+                    'content': f"Added by {user_name} via Lyco v5\n"
+                              f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n"
+                              f"{task_data.get('adhd_notes', '')}"
+                }
+            }]
+        }
+    }
+    
+    # Add RecordType
+    record_type = task_data.get('record_type', 'Task')
+    properties['RecordType'] = {
+        'select': {'name': record_type}
+    }
+    
+    # Handle Shopping-specific fields
+    if record_type == 'Shopping':
+        # Shopping items have different fields
+        if task_data.get('store'):
+            properties['Store'] = {
+                'select': {'name': task_data['store']}
+            }
+        if task_data.get('grocery_category'):
+            properties['GroceryCategory'] = {
+                'select': {'name': task_data['grocery_category']}
+            }
+        if task_data.get('quantity'):
+            properties['Quantity'] = {
+                'rich_text': [{'text': {'content': task_data['quantity']}}]
+            }
+        # Shopping items don't use Eisenhower
+    else:
+        # Task-specific fields
+        if task_data.get('eisenhower'):
+            properties['Eisenhower'] = {
+                'select': {'name': task_data['eisenhower']}
+            }
+        properties['Energy Level Required'] = {
+            'select': {'name': task_data['energy']}
+        }
+        properties['Time Estimate'] = {
+            'select': {'name': task_data['time_estimate']}
+        }
+    
+    # Add context tags
+    if task_data.get('context'):
+        properties['Context/Tags'] = {
+            'multi_select': [{'name': tag} for tag in task_data['context']]
+        }
+    
+    # Add due date
+    if task_data.get('due_date'):
+        properties['Due Date'] = {
+            'date': {'start': task_data['due_date']}
+        }
+    
+    # Add family member assignment (as text for now, until Notion user IDs are mapped)
+    if task_data.get('assigned_to'):
+        # Store in Notes field until we have proper People field mapping
+        existing_notes = properties['Notes']['rich_text'][0]['text']['content']
+        properties['Notes']['rich_text'][0]['text']['content'] = (
+            f"Assigned to: {task_data['assigned_to'].title()}\n{existing_notes}"
+        )
+    
+    # Prepare request
+    notion_data = {
+        'parent': {'database_id': NOTION_DATABASE_ID},
+        'properties': properties
+    }
+    
+    logger.info(f"Saving to Notion: {task_data['parsed_task'][:50]}")
+    
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                'https://api.notion.com/v1/pages',
+                headers=headers,
+                json=notion_data,
+                timeout=10
+            ) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    return True, f"ID: {result['id'][:8]}"
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Notion error: {error_text}")
+                    return False, f"API error {response.status}"
+                    
+    except asyncio.TimeoutError:
+        return False, "Timeout"
+    except Exception as e:
+        logger.error(f"Notion save error: {e}")
+        return False, str(e)[:50]
+
+async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle inline button callbacks"""
+    query = update.callback_query
+    await query.answer()
+    
+    data = query.data
+    
+    if data == 'family_mode':
+        await query.edit_message_text(
+            "👨‍👩‍👧‍👦 **Family Mode Active!**\n\n"
+            "I'll now suggest family member assignments for tasks.\n\n"
+            "Try: 'Ask Viola to take kids to soccer' or 'Wife needs to call pediatrician'",
+            parse_mode='Markdown'
+        )
+        
+    elif data == 'energy_check':
+        # Simple energy check
+        keyboard = [
+            [InlineKeyboardButton("🔋 High Energy", callback_data='energy_high')],
+            [InlineKeyboardButton("⚡ Medium Energy", callback_data='energy_medium')],
+            [InlineKeyboardButton("🪫 Low Energy", callback_data='energy_low')]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        await query.edit_message_text(
+            "⚡ **Energy Check**\n\nHow's your energy level right now?",
+            parse_mode='Markdown',
+            reply_markup=reply_markup
+        )
+        
+    elif data.startswith('energy_'):
+        level = data.split('_')[1]
+        suggestions = {
+            'high': "🔋 **High Energy!** Perfect for:\n• Deep work tasks\n• Complex projects\n• Important decisions\n• Creative work",
+            'medium': "⚡ **Medium Energy!** Good for:\n• Regular tasks\n• Email and calls\n• Planning\n• Household tasks",
+            'low': "🪫 **Low Energy** - Take it easy:\n• Quick wins only\n• Simple errands\n• Routine tasks\n• Or just rest!"
+        }
+        
+        await query.edit_message_text(
+            suggestions.get(level, "Energy logged!"),
+            parse_mode='Markdown'
+        )
+        
+    elif data.startswith('breakdown_'):
+        await query.edit_message_text(
+            "🔨 **Breaking down task...**\n\n"
+            "1. Start with the easiest part\n"
+            "2. Set a 15-minute timer\n"
+            "3. Do just one small step\n"
+            "4. Take a 5-minute break\n"
+            "5. Repeat if energy allows",
+            parse_mode='Markdown'
+        )
+        
+    elif data.startswith('notify_'):
+        member = data.split('_')[1]
+        await query.edit_message_text(
+            f"📱 **Notification sent to {member.title()}!**\n\n"
+            "(In production, this would send an actual message)",
+            parse_mode='Markdown'
+        )
+        
+    elif data.startswith('complete_'):
+        await query.edit_message_text(
+            "✅ **Task marked complete!**\n\n"
+            "Great job! Remember to celebrate small wins! 🎉",
+            parse_mode='Markdown'
+        )
+    
+    elif data == 'today_tasks':
+        user_id = query.from_user.id
+        count = user_sessions.get(user_id, {}).get('tasks_today', 0)
+        
+        await query.edit_message_text(
+            f"📊 **Today's Progress**\n\n"
+            f"Tasks captured: {count}\n"
+            f"Energy level: Last checked {user_sessions.get(user_id, {}).get('last_energy_check', 'Never')}\n\n"
+            f"Remember: Progress > Perfection! 💪",
+            parse_mode='Markdown'
+        )
+
+async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Enhanced status check"""
+    status_msg = "**🔍 System Status**\n\n"
+    
+    # Bot status
+    status_msg += "🟢 **Bot:** Lyco v5 Online\n"
+    
+    # AI status
+    if task_parser and task_parser.anthropic:
+        status_msg += "🟢 **AI:** Claude Connected\n"
+    else:
+        status_msg += "🔴 **AI:** No API key\n"
+    
+    # Notion status check
+    try:
+        headers = {
+            'Authorization': f'Bearer {NOTION_TOKEN}',
+            'Notion-Version': NOTION_VERSION
+        }
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f'https://api.notion.com/v1/databases/{NOTION_DATABASE_ID}',
+                headers=headers,
+                timeout=5
+            ) as resp:
+                if resp.status == 200:
+                    status_msg += "🟢 **Notion:** Connected\n"
+                else:
+                    status_msg += f"🔴 **Notion:** Error {resp.status}\n"
+    except Exception as e:
+        status_msg += f"🔴 **Notion:** {str(e)[:30]}\n"
+    
+    # Session stats
+    total_users = len(user_sessions)
+    total_tasks = sum(s.get('tasks_today', 0) for s in user_sessions.values())
+    
+    status_msg += f"\n**📊 Session Stats**\n"
+    status_msg += f"Active users: {total_users}\n"
+    status_msg += f"Tasks today: {total_tasks}\n"
+    
+    status_msg += "\n**🔧 Configuration**\n"
+    status_msg += f"Database: `...{NOTION_DATABASE_ID[-8:]}`\n"
+    status_msg += f"Model: Claude 3 Haiku\n"
+    status_msg += f"Parser: Enhanced v2"
+    
+    await update.message.reply_text(status_msg, parse_mode='Markdown')
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Help command with examples"""
+    help_text = '''**📚 Lyco Help Guide**
+
+**Basic Commands:**
+/start - Initialize bot
+/status - Check system status
+/help - This guide
+
+**Task Examples:**
+
+**Simple tasks:**
+• "Buy milk"
+• "Call dentist"
+• "Email report to team"
+
+**Family delegation:**
+• "Ask Viola to pick up kids"
+• "Cindy handle insurance forms"
+• "Persy clean room after school"
+
+**Time-sensitive:**
+• "Meeting tomorrow at 2pm"
+• "Urgent: Fix server issue"
+• "Review slides by Friday"
+
+**Energy-aware:**
+• "When I have energy: analyze data"
+• "Quick task: reply to John"
+• "Deep work: write proposal"
+
+**Tips for ADHD:**
+• Start with action verbs
+• Be specific, not vague
+• Include context/location
+• Break big tasks into small ones
+• Celebrate completing tasks!
+
+**Need more help?** Just ask!'''
+    
+    await update.message.reply_text(help_text, parse_mode='Markdown')
+
+def main():
+    """Main bot entry point"""
+    if not BOT_TOKEN:
+        logger.error('No TELEGRAM_BOT_TOKEN found!')
+        print("❌ ERROR: Set TELEGRAM_BOT_TOKEN environment variable")
+        return
+    
+    if not ANTHROPIC_API_KEY:
+        logger.warning('No ANTHROPIC_API_KEY - running with limited features')
+        print("⚠️  WARNING: Set ANTHROPIC_API_KEY for AI features")
+    
+    logger.info('Starting Lyco bot v5...')
+    print("🚀 Lyco Bot v5 Starting...")
+    print(f"✅ Notion Database: {NOTION_DATABASE_ID}")
+    print(f"✅ AI Parser: {'Enabled' if task_parser else 'Disabled'}")
+    
+    # Create application
+    application = Application.builder().token(BOT_TOKEN).build()
+    
+    # Command handlers
+    application.add_handler(CommandHandler('start', start))
+    application.add_handler(CommandHandler('status', status))
+    application.add_handler(CommandHandler('help', help_command))
+    
+    # Message handler for tasks
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    
+    # Button callback handler
+    application.add_handler(CallbackQueryHandler(button_callback))
+    
+    # Start bot
+    print("✅ Bot ready! Waiting for messages...")
+    logger.info('Bot started successfully')
+    
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
+
+if __name__ == '__main__':
+    main()

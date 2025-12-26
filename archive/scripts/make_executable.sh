@@ -1,0 +1,1 @@
+chmod +x ~/Projects/demestihas-ai/deploy_yanay_conversation.sh

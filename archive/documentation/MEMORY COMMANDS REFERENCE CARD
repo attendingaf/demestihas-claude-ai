@@ -1,0 +1,15 @@
+MEMORY COMMANDS REFERENCE CARD
+
+# Check status
+curl http://localhost:7777/health
+
+# Search memories
+curl "http://localhost:7777/context?q=your_search_term"
+
+# Store memory
+curl -X POST http://localhost:7777/store \
+  -H "Content-Type: application/json" \
+  -d '{"content": "...", "type": "note", "importance": "medium"}'
+
+# View logs
+tail -f ~/Projects/demestihas-ai/mcp-smart-memory/logs/api.log

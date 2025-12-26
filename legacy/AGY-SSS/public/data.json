@@ -1,0 +1,1795 @@
+{
+  "lastUpdated": "2025-11-25T13:22:16.413Z",
+  "events": [
+    {
+      "id": "4813486-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Tottenham Hotspur  (4-1)",
+      "start": "2025-11-23T16:30:00.000Z",
+      "end": "2025-11-23T18:15:00.000Z",
+      "location": "Emirates Stadium, Hornsey Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813486 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813486 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "4947104-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Bayern München",
+      "start": "2025-11-26T20:00:00.000Z",
+      "end": "2025-11-26T21:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4947104 \nChampions League",
+      "category": "Champions League",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4947104 ",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-0",
+      "title": "MLS 360",
+      "start": "2025-11-30T00:30:00.000Z",
+      "end": "2025-11-30T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813497-9825@fotmob.com",
+      "title": "⚽️ Chelsea vs Arsenal",
+      "start": "2025-11-30T16:30:00.000Z",
+      "end": "2025-11-30T18:15:00.000Z",
+      "location": "Stamford Bridge, Fulham Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813497 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813497 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-Goalazo-0",
+      "title": "Goalazo",
+      "start": "2025-12-02T19:00:00.000Z",
+      "end": "2025-12-02T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813506-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Brentford",
+      "start": "2025-12-03T19:30:00.000Z",
+      "end": "2025-12-03T21:15:00.000Z",
+      "location": "Emirates Stadium, Hornsey Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813506 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813506 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "4813516-9825@fotmob.com",
+      "title": "⚽️ Aston Villa vs Arsenal",
+      "start": "2025-12-06T12:30:00.000Z",
+      "end": "2025-12-06T14:15:00.000Z",
+      "location": "Villa Park, Trinity Road, Birmingham, ENG",
+      "description": "https://www.fotmob.com/match/4813516 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813516 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-1",
+      "title": "MLS 360",
+      "start": "2025-12-07T00:30:00.000Z",
+      "end": "2025-12-07T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-1",
+      "title": "Goalazo",
+      "start": "2025-12-09T19:00:00.000Z",
+      "end": "2025-12-09T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4947174-9825@fotmob.com",
+      "title": "⚽️ Club Brugge vs Arsenal",
+      "start": "2025-12-10T20:00:00.000Z",
+      "end": "2025-12-10T21:45:00.000Z",
+      "location": "Jan Breydelstadion, Olympialaan 74, Brugge, BEL",
+      "description": "https://www.fotmob.com/match/4947174 \nChampions League",
+      "category": "Champions League",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4947174 ",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "4813525-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Wolverhampton Wanderers",
+      "start": "2025-12-13T20:00:00.000Z",
+      "end": "2025-12-13T21:45:00.000Z",
+      "location": "Emirates Stadium, Hornsey Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813525 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813525 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-2",
+      "title": "MLS 360",
+      "start": "2025-12-14T00:30:00.000Z",
+      "end": "2025-12-14T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-2",
+      "title": "Goalazo",
+      "start": "2025-12-16T19:00:00.000Z",
+      "end": "2025-12-16T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813538-9825@fotmob.com",
+      "title": "⚽️ Everton vs Arsenal",
+      "start": "2025-12-20T20:00:00.000Z",
+      "end": "2025-12-20T21:45:00.000Z",
+      "location": "Hill Dickinson Stadium, 35 Regent Road, Bramley-Moore Dock, Vauxhall, Liverpool, Merseyside, ENG",
+      "description": "https://www.fotmob.com/match/4813538 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813538 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-3",
+      "title": "MLS 360",
+      "start": "2025-12-21T00:30:00.000Z",
+      "end": "2025-12-21T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-3",
+      "title": "Goalazo",
+      "start": "2025-12-23T19:00:00.000Z",
+      "end": "2025-12-23T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "5034192-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Crystal Palace",
+      "start": "2025-12-23T20:00:00.000Z",
+      "end": "2025-12-23T21:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/5034192 \nEFL Cup",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5034192 ",
+      "streaming": [
+        {
+          "name": "Check Listings",
+          "url": "#",
+          "icon": "search"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "4813545-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Brighton & Hove Albion",
+      "start": "2025-12-27T15:00:00.000Z",
+      "end": "2025-12-27T16:45:00.000Z",
+      "location": "Emirates Stadium, Hornsey Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813545 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813545 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-4",
+      "title": "MLS 360",
+      "start": "2025-12-28T00:30:00.000Z",
+      "end": "2025-12-28T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-4",
+      "title": "Goalazo",
+      "start": "2025-12-30T19:00:00.000Z",
+      "end": "2025-12-30T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813555-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Aston Villa",
+      "start": "2025-12-30T20:15:00.000Z",
+      "end": "2025-12-30T22:00:00.000Z",
+      "location": "Emirates Stadium, Hornsey Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813555 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813555 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "4813565-9825@fotmob.com",
+      "title": "⚽️ AFC Bournemouth vs Arsenal",
+      "start": "2026-01-03T17:30:00.000Z",
+      "end": "2026-01-03T19:15:00.000Z",
+      "location": "Vitality Stadium, Dean Court, Kings Park, Bournemouth, Dorset, ENG",
+      "description": "https://www.fotmob.com/match/4813565 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813565 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-5",
+      "title": "MLS 360",
+      "start": "2026-01-04T00:30:00.000Z",
+      "end": "2026-01-04T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-5",
+      "title": "Goalazo",
+      "start": "2026-01-06T19:00:00.000Z",
+      "end": "2026-01-06T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813576-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Liverpool",
+      "start": "2026-01-08T20:00:00.000Z",
+      "end": "2026-01-08T21:45:00.000Z",
+      "location": "Emirates Stadium, Hornsey Road, London, ENG",
+      "description": "https://www.fotmob.com/match/4813576 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813576 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-6",
+      "title": "MLS 360",
+      "start": "2026-01-11T00:30:00.000Z",
+      "end": "2026-01-11T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-6",
+      "title": "Goalazo",
+      "start": "2026-01-13T19:00:00.000Z",
+      "end": "2026-01-13T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813591-9825@fotmob.com",
+      "title": "⚽️ Nottingham Forest vs Arsenal",
+      "start": "2026-01-17T17:30:00.000Z",
+      "end": "2026-01-17T19:15:00.000Z",
+      "location": "The City Ground, Pavilion Road, Nottingham, Nottinghamshire, ENG",
+      "description": "https://www.fotmob.com/match/4813591 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813591 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-7",
+      "title": "MLS 360",
+      "start": "2026-01-18T00:30:00.000Z",
+      "end": "2026-01-18T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-7",
+      "title": "Goalazo",
+      "start": "2026-01-20T19:00:00.000Z",
+      "end": "2026-01-20T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4947126-9825@fotmob.com",
+      "title": "⚽️ Inter vs Arsenal",
+      "start": "2026-01-20T20:00:00.000Z",
+      "end": "2026-01-20T21:45:00.000Z",
+      "location": "Stadio Giuseppe Meazza, Via Piccolomini 5, Milano, ITA",
+      "description": "https://www.fotmob.com/match/4947126 \nChampions League",
+      "category": "Champions League",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4947126 ",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-8",
+      "title": "MLS 360",
+      "start": "2026-01-25T00:30:00.000Z",
+      "end": "2026-01-25T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813596-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Manchester United",
+      "start": "2026-01-25T16:30:00.000Z",
+      "end": "2026-01-25T18:15:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813596 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813596 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-Goalazo-8",
+      "title": "Goalazo",
+      "start": "2026-01-27T19:00:00.000Z",
+      "end": "2026-01-27T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4947177-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Kairat Almaty",
+      "start": "2026-01-28T20:00:00.000Z",
+      "end": "2026-01-28T21:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4947177 \nChampions League",
+      "category": "Champions League",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4947177 ",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "4813608-9825@fotmob.com",
+      "title": "⚽️ Leeds United vs Arsenal",
+      "start": "2026-01-31T15:00:00.000Z",
+      "end": "2026-01-31T16:45:00.000Z",
+      "location": "Elland Road",
+      "description": "https://www.fotmob.com/match/4813608 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813608 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-9",
+      "title": "MLS 360",
+      "start": "2026-02-01T00:30:00.000Z",
+      "end": "2026-02-01T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-9",
+      "title": "Goalazo",
+      "start": "2026-02-03T19:00:00.000Z",
+      "end": "2026-02-03T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813616-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Sunderland",
+      "start": "2026-02-07T15:00:00.000Z",
+      "end": "2026-02-07T16:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813616 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813616 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-10",
+      "title": "MLS 360",
+      "start": "2026-02-08T00:30:00.000Z",
+      "end": "2026-02-08T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-10",
+      "title": "Goalazo",
+      "start": "2026-02-10T19:00:00.000Z",
+      "end": "2026-02-10T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813626-9825@fotmob.com",
+      "title": "⚽️ Brentford vs Arsenal",
+      "start": "2026-02-11T20:00:00.000Z",
+      "end": "2026-02-11T21:45:00.000Z",
+      "location": "Gtech Community Stadium",
+      "description": "https://www.fotmob.com/match/4813626 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813626 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "show-MLS 360-11",
+      "title": "MLS 360",
+      "start": "2026-02-15T00:30:00.000Z",
+      "end": "2026-02-15T04:30:00.000Z",
+      "location": "Apple TV+",
+      "description": "Watch MLS 360 on Apple TV+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "show-Goalazo-11",
+      "title": "Goalazo",
+      "start": "2026-02-17T19:00:00.000Z",
+      "end": "2026-02-17T20:00:00.000Z",
+      "location": "Paramount+",
+      "description": "Watch Goalazo on Paramount+",
+      "category": "Soccer Shows",
+      "color": "#4CAF50",
+      "badge": "📺",
+      "league": "TV Show",
+      "streaming": [
+        {
+          "name": "Paramount+",
+          "url": "#",
+          "icon": "tv"
+        }
+      ],
+      "isShow": true
+    },
+    {
+      "id": "4813643-9825@fotmob.com",
+      "title": "⚽️ Tottenham Hotspur vs Arsenal",
+      "start": "2026-02-21T15:00:00.000Z",
+      "end": "2026-02-21T16:45:00.000Z",
+      "location": "Tottenham Hotspur Stadium",
+      "description": "https://www.fotmob.com/match/4813643 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813643 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5070990-773958@fotmob.com",
+      "title": "⚽️ FC Cincinnati vs Atlanta United",
+      "start": "2026-02-21T21:30:00.000Z",
+      "end": "2026-02-21T23:15:00.000Z",
+      "location": "TQL Stadium",
+      "description": "https://www.fotmob.com/match/5070990 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5070990 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071003-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs New York City FC",
+      "start": "2026-02-23T00:00:00.000Z",
+      "end": "2026-02-23T01:45:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071003 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071003 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813646-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Chelsea",
+      "start": "2026-02-28T15:00:00.000Z",
+      "end": "2026-02-28T16:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813646 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813646 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071015-773958@fotmob.com",
+      "title": "⚽️ San Jose Earthquakes vs Atlanta United",
+      "start": "2026-03-01T00:30:00.000Z",
+      "end": "2026-03-01T02:15:00.000Z",
+      "location": "PayPal Park",
+      "description": "https://www.fotmob.com/match/5071015 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071015 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071013-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs Charlotte FC",
+      "start": "2026-03-01T03:30:00.000Z",
+      "end": "2026-03-01T05:15:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071013 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071013 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813657-9825@fotmob.com",
+      "title": "⚽️ Brighton & Hove Albion vs Arsenal",
+      "start": "2026-03-04T20:00:00.000Z",
+      "end": "2026-03-04T21:45:00.000Z",
+      "location": "The American Express Community Stadium",
+      "description": "https://www.fotmob.com/match/4813657 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813657 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071023-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs Real Salt Lake",
+      "start": "2026-03-08T00:30:00.000Z",
+      "end": "2026-03-08T02:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071023 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071023 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071026-6637@fotmob.com",
+      "title": "⚽️ Colorado Rapids vs LA Galaxy",
+      "start": "2026-03-08T02:30:00.000Z",
+      "end": "2026-03-08T04:15:00.000Z",
+      "location": "Dick's Sporting Goods Park",
+      "description": "https://www.fotmob.com/match/5071026 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071026 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813665-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Everton",
+      "start": "2026-03-14T15:00:00.000Z",
+      "end": "2026-03-14T16:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813665 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813665 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071035-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs Philadelphia Union",
+      "start": "2026-03-14T19:00:00.000Z",
+      "end": "2026-03-14T20:45:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071035 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071035 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071044-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs Sporting Kansas City",
+      "start": "2026-03-15T01:30:00.000Z",
+      "end": "2026-03-15T03:15:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071044 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071044 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813684-9825@fotmob.com",
+      "title": "⚽️ Wolverhampton Wanderers vs Arsenal",
+      "start": "2026-03-21T15:00:00.000Z",
+      "end": "2026-03-21T16:45:00.000Z",
+      "location": "Molineux Stadium",
+      "description": "https://www.fotmob.com/match/4813684 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813684 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071050-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs DC United",
+      "start": "2026-03-21T23:30:00.000Z",
+      "end": "2026-03-22T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071050 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071050 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071063-6637@fotmob.com",
+      "title": "⚽️ Portland Timbers vs LA Galaxy",
+      "start": "2026-03-22T20:30:00.000Z",
+      "end": "2026-03-22T22:15:00.000Z",
+      "location": "Providence Park",
+      "description": "https://www.fotmob.com/match/5071063 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071063 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "5071065-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs Columbus Crew",
+      "start": "2026-04-04T23:30:00.000Z",
+      "end": "2026-04-05T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071065 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071065 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071076-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs Minnesota United",
+      "start": "2026-04-05T02:30:00.000Z",
+      "end": "2026-04-05T04:15:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071076 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071076 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813685-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs AFC Bournemouth",
+      "start": "2026-04-11T14:00:00.000Z",
+      "end": "2026-04-11T15:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813685 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813685 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071080-6637@fotmob.com",
+      "title": "⚽️ Austin FC vs LA Galaxy",
+      "start": "2026-04-11T18:30:00.000Z",
+      "end": "2026-04-11T20:15:00.000Z",
+      "location": "Q2 Stadium",
+      "description": "https://www.fotmob.com/match/5071080 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071080 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "5071088-773958@fotmob.com",
+      "title": "⚽️ Chicago Fire FC vs Atlanta United",
+      "start": "2026-04-12T00:30:00.000Z",
+      "end": "2026-04-12T02:15:00.000Z",
+      "location": "Soldier Field",
+      "description": "https://www.fotmob.com/match/5071088 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071088 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "4813701-9825@fotmob.com",
+      "title": "⚽️ Manchester City vs Arsenal",
+      "start": "2026-04-18T14:00:00.000Z",
+      "end": "2026-04-18T15:45:00.000Z",
+      "location": "Etihad Stadium",
+      "description": "https://www.fotmob.com/match/4813701 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813701 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071096-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs Nashville SC",
+      "start": "2026-04-18T23:30:00.000Z",
+      "end": "2026-04-19T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071096 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071096 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071105-6637@fotmob.com",
+      "title": "⚽️ FC Dallas vs LA Galaxy",
+      "start": "2026-04-19T00:30:00.000Z",
+      "end": "2026-04-19T02:15:00.000Z",
+      "location": "Toyota Stadium",
+      "description": "https://www.fotmob.com/match/5071105 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071105 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "5071110-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs New England Revolution",
+      "start": "2026-04-22T23:30:00.000Z",
+      "end": "2026-04-23T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071110 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071110 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071111-6637@fotmob.com",
+      "title": "⚽️ Columbus Crew vs LA Galaxy",
+      "start": "2026-04-22T23:30:00.000Z",
+      "end": "2026-04-23T01:15:00.000Z",
+      "location": "Lower.com Field",
+      "description": "https://www.fotmob.com/match/5071111 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071111 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813706-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Newcastle United",
+      "start": "2026-04-25T14:00:00.000Z",
+      "end": "2026-04-25T15:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813706 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813706 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071127-773958@fotmob.com",
+      "title": "⚽️ Toronto FC vs Atlanta United",
+      "start": "2026-04-25T20:30:00.000Z",
+      "end": "2026-04-25T22:15:00.000Z",
+      "location": "BMO Field",
+      "description": "https://www.fotmob.com/match/5071127 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071127 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071135-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs Real Salt Lake",
+      "start": "2026-04-26T23:00:00.000Z",
+      "end": "2026-04-27T00:45:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071135 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071135 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813716-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Fulham",
+      "start": "2026-05-02T14:00:00.000Z",
+      "end": "2026-05-02T15:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813716 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813716 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071136-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs CF Montreal",
+      "start": "2026-05-02T23:30:00.000Z",
+      "end": "2026-05-03T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071136 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071136 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071147-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs Vancouver Whitecaps",
+      "start": "2026-05-03T02:30:00.000Z",
+      "end": "2026-05-03T04:15:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071147 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071147 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813734-9825@fotmob.com",
+      "title": "⚽️ West Ham United vs Arsenal",
+      "start": "2026-05-09T14:00:00.000Z",
+      "end": "2026-05-09T15:45:00.000Z",
+      "location": "London Stadium",
+      "description": "https://www.fotmob.com/match/4813734 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813734 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071151-773958@fotmob.com",
+      "title": "⚽️ Atlanta United vs LA Galaxy",
+      "start": "2026-05-09T23:30:00.000Z",
+      "end": "2026-05-10T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071151 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071151 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071151-6637@fotmob.com",
+      "title": "⚽️ Atlanta United vs LA Galaxy",
+      "start": "2026-05-09T23:30:00.000Z",
+      "end": "2026-05-10T01:15:00.000Z",
+      "location": "Mercedes-Benz Stadium",
+      "description": "https://www.fotmob.com/match/5071151 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071151 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "5071174-6637@fotmob.com",
+      "title": "⚽️ Sporting Kansas City vs LA Galaxy",
+      "start": "2026-05-14T00:30:00.000Z",
+      "end": "2026-05-14T02:15:00.000Z",
+      "location": "Children's Mercy Park",
+      "description": "https://www.fotmob.com/match/5071174 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071174 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "5071185-773958@fotmob.com",
+      "title": "⚽️ Orlando City vs Atlanta United",
+      "start": "2026-05-16T23:30:00.000Z",
+      "end": "2026-05-17T01:15:00.000Z",
+      "location": "Inter&Co Stadium",
+      "description": "https://www.fotmob.com/match/5071185 \nMLS",
+      "category": "Atlanta United",
+      "color": "#80000A",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/5071185 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "134920"
+    },
+    {
+      "id": "5071193-6637@fotmob.com",
+      "title": "⚽️ Seattle Sounders FC vs LA Galaxy",
+      "start": "2026-05-17T01:00:00.000Z",
+      "end": "2026-05-17T02:45:00.000Z",
+      "location": "Lumen Field",
+      "description": "https://www.fotmob.com/match/5071193 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071193 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    },
+    {
+      "id": "4813736-9825@fotmob.com",
+      "title": "⚽️ Arsenal vs Burnley",
+      "start": "2026-05-17T14:00:00.000Z",
+      "end": "2026-05-17T15:45:00.000Z",
+      "location": "Emirates Stadium",
+      "description": "https://www.fotmob.com/match/4813736 \nPremier League",
+      "category": "Arsenal",
+      "color": "#EF0107",
+      "badge": "🔴",
+      "league": "https://www.fotmob.com/match/4813736 ",
+      "streaming": [
+        {
+          "name": "Peacock",
+          "url": "https://www.peacocktv.com/sports",
+          "icon": "tv"
+        },
+        {
+          "name": "Fubo",
+          "url": "https://www.fubo.tv",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "133604"
+    },
+    {
+      "id": "5071202-6637@fotmob.com",
+      "title": "⚽️ LA Galaxy vs Houston Dynamo FC",
+      "start": "2026-05-24T02:30:00.000Z",
+      "end": "2026-05-24T04:15:00.000Z",
+      "location": "Dignity Health Sports Park",
+      "description": "https://www.fotmob.com/match/5071202 \nMLS",
+      "category": "USMNT",
+      "color": "#002868",
+      "badge": "🇺🇸",
+      "league": "https://www.fotmob.com/match/5071202 ",
+      "streaming": [
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/sports",
+          "icon": "tv"
+        }
+      ],
+      "teamId": "135364"
+    }
+  ]
+}

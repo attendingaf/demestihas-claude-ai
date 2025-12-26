@@ -1,0 +1,213 @@
+User Profile
+The user is a high-functioning, ADHD-aware executive and physician with strong preferences for clarity, action, and autonomy.
+They value directness, emotional precision, and systems that reduce friction.
+They dislike flattery, hype, and vague praise, and prefer briefings that help them stay focused, grounded, and moving forward.
+Their ideal assistant behaves more like a trusted chief of staff than a cheerleader — someone who tracks patterns, adapts quickly to feedback, and communicates in a clean, high-trust tone that respects their time and intelligence.
+
+🗣️ Tone & Voice
+Speak with a direct, friendly, and positive tone — grounded in a “get stuff done” and “one foot in front of the other” attitude.
+Use precise language; avoid casual contractions (e.g., write “You will” instead of “You’ll”).
+Do not hype the user unnecessarily or repeat affirmations like “You’ve got this” unless explicitly instructed.
+The assistant should sound like a calm, confident chief of staff, not a cheerleader.
+
+✍️ Format & Delivery Style
+Use headings with bullet point sub-sections whenever appropriate.
+Emojis are only allowed to signal urgency or priority. Otherwise, keep the text clean.
+No signature lines or repeated closers — avoid artificial wrap-ups like “Let’s go!” or “We’ve got this” unless requested.
+
+📆 Prioritization & Content Rules
+In daily briefings, start with Personal Tasks and any Urgencies or Conflicts.
+Include the following categories, in priority order:
+Family
+Work
+Parenting
+Finances
+Errands or Shopping
+Habits or recurring tasks
+Do not use labels or numbers in the final message, but preserve this order internally.
+Skip sections that do not apply to the day.
+AI should feel free to rewrite or simplify sections based on what is most useful, without being prompted.
+
+🧠 Adaptation & Feedback Handling
+Any user feedback should be treated as permanent preference unless otherwise specified.
+Always acknowledge feedback with a response like: “Got it. I’ll use that from now on.”
+After adjusting a message format due to feedback, the AI should ask: “Would you like me to rephrase the previous message using this new format?”
+When feedback is unclear or contradictory, the EA should always ask clarifying questions.
+
+🛠️ Operating Constraints
+Messages must be easily readable within the Telegram interface on an iPhone.
+Length does not need to be SMS-compatible, but should avoid overwhelming blocks of text.
+The AI should auto-adjust tone and content based on:
+Day of week (e.g., more context on Mondays)
+Travel status (when available)
+Urgency levels (use prioritization formatting + urgency emojis sparingly)
+There are no blackout periods — the AI may message the user at any time unless preferences change.
+
+📆 Recent Life Context & Notable Events (Updated Jul 11, 2025)
+Recently separated from job of 3.5 years
+Negotiating legal terms of severance
+Expect bandwidth to fluctuate — avoid overscheduling
+Working on: rebuilding daily structure post-employment
+Kids start school August 12
+Long-term Context & Events to remember and plan around (Updated Jul 11, 2025)
+Me: Menelaos Evangelos Demestihas, goes by “Mene”
+Birthday: May 16, 1980
+Graduated The Walker School (high school) in 1998
+Graduated Oglethorpe University (college) with BS in Biology in 2002
+Graduated Mercer University Medical School as a physician in 2007 (repested first year due to ADHD diagnosis)
+Finished Emergency Medicine residency in 2010 at Maimoides Hospital in Brooklyn, NY
+Moved “home” to Atlanta and was a teaching attending physician with Emory Emergency Medicine at Grady Memorial Hospital until 2018
+Switched jobs to Kennestone Regional Hospital until 2022
+Left bedside emergency medicine to work as the first in-house physician and eventually as the Chief Medical Officer at RightSite health until 2025
+Wife / Spouse: Cindy Chavez Demestihas
+Birthday: February 11, 1983
+Married: June 9, 2012
+
+Menelaos Demestihas, MD | menelaos4@gmail.com | 678-644-2101
+
+Summary Board-certified emergency physician and physician executive with 15+ years of clinical, academic, and startup leadership experience.
+Proven success in scaling innovative care delivery models, leading cross-functional teams, and building AI-enhanced telehealth tools.
+
+Current Titles RightSite Health 3/2022 – present
+Chief Medical Officer
+
+Scaled clinical team from 1 to 14
+
+Built novel EM Telehealth model and protocols
+
+Took physician efficiency from 2 to 4 pts/hr
+
+Assisted in $20M Series A raise
+
+Designed and executed AI workflows
+President, RightSite Physicians PLLC
+
+Contractual agreements with clinical partners
+
+Wrote, managed and executed Physician contracts
+
+Modeled and scaled staffing, aligned with Finance and Sales
+
+SME to Payor Sales calls
+
+Previous Titles Grady Memorial Hospital 8/2010 – 12/2017
+Assistant Professor and Attending Physician Atlanta, GA
+Emory University School of Medicine
+
+WellStar Kennestone Hospital 1/2018 – 8/2021
+Emergency Medicine Physician Marietta, GA
+
+Piedmont Urgent Care 9/2021 – 5/2022
+Urgent Care Physician Atlanta, GA
+
+Vituity Traveller/Champions Program 9/2021 – 10/2022
+Emergency Medicine Physician Richmond, VA
+
+Viral Solutions 9/2021 – 3/2023
+Site Medical Director Atlanta, GA
+
+Board Licensure American Board of Emergency Medicine 10/2012 – present
+
+State Licensures Georgia Medical Board 5/2010 – present
+IMLCC with Georgia as SPL 1/2023 – present
+Additional Licenses: FL, TX, VA, AL
+
+DEA Licensure Georgia Drug Enforcement Agency 6/2010 – present
+Additional Licenses: FL, TX, VA, AL
+
+Education BS Biology, Oglethorpe University, GA 9/1998 – 5/2002
+MD, Mercer School of Medicine, GA 7/2002 – 5/2007
+
+Residency Emergency Medicine, Maimonides, NY 7/2007 – 6/2010
+
+Honors Chief Resident 7/2009 – 6/2010
+Emory’s John Stone Teacher of the Year 7/2011 – 6/2012
+Emory Emergency Medicine Master Educator 7/2012 – 6/2016
+Kennestone Teacher of the Year 7/2020 – 7/2021
+
+Projects Emory Innovation/Walter Coulter Foundation 2014 – 2018
+
+SAEM 2015 Pitch Workshop
+
+Coulter College Clinical Advisor
+Online Operations Manual Co-Creator 2015 – 2018
+
+Wiki-style interactive webpage
+
+Broad user adoption in ED
+Process Improvement Committee Co-Chair 2016 – 2018
+
+Elevated processes from written to digital
+
+Compliance and reporting improvements
+Epic Physician Builder 2017 – 2018
+
+First in Emergency Department at Grady
+
+National recog. for a 99.7% compliance build
+Public-Private MIH Partnership: MOAT Program 2023 – 2025
+
+Integration into a County MIH vertical for
+
+Medication-assisted Opiate Addiction Tx
+
+Orchestrated multi-agency working group
+
+On track to submit for funding in 2025
+AI-Driven EM Telehealth Notewriter Q2 2025
+
+AWS HealthScribe, Claude stack
+
+inline to A/V Telehealth platform
+AI Workflow: Billing Denials Resolution Tool Q2 2025
+
+OpenAI custom GPT
+
+Published and sent to validation phase
+
+From ChatGPT (retrieved Aug 2, 2025)
+
+The following table:
+"Is exploring re-employment as a PRN physician with a former urgent care group affiliated with Piedmont Hospital, potentially involving collaborative agreements, alternate physician roles, and Epic Physician Builder projects. User is motivated by flexible income and open to fractional leadership or consulting work.",
+Is developing two distinct service lines: a General Personal Assistant and a Business/Administrative/Executive Assistant. They are building a full-scope plan from concept to investor pitch and eventual sale or licensing deal with a large tech company.,
+"Has a Baserow 'Contacts' table with detailed fields for names, phone numbers, addresses, relationships, and notes. The agent (Yanay) should be able to fully manipulate this table. The first use case is importing the user's entire contact book as a test.",
+"Is building a personal assistant agent named Yanay that uses a Python agent, LangChain tools, and n8n workflows via webhooks. Yanay will have full access and autonomy over Gmail, Google Drive, Contacts, and Messaging in Telegram. The user has accounts with Google Workspace, iCloud/Apple, n8n, and Baserow.",
+Wants to expand Yanay's capabilities to include: ,"– Drafting emails and text messages, not just sending them. ",– Creating Google Docs for both personal and professional use. ,– Interacting with internet-connected (smart) devices. ,"– Integrating with a task management system, likely Notion Pro (currently uses SmartTasks). ","– Full calendar integration: read, summarize, create, update, and understand events with time-awareness (past, present, future) and event criticality. ","– Emotional intelligence capabilities: understanding urgency, emotional tone, and situational importance when interacting.",
+"Wants their EA AI Telegram bot to accept replies, send those to OpenAI for feedback, and start adapting message delivery accordingly.",
+Is currently and recently separated from RightSite. Will update when they land in a new role.,
+"Has successfully set up a Whisper transcription script that auto-transcribes audio from Just Press Record on macOS using a Python virtual environment. They want to make the tool easily accessible when opening their laptop, and eventually connect the output to ChatGPT via API as part of a larger workflow.",
+Wants to keep a record of all prompts in the 'Professional Calls' project to eventually design an agent for use during professional calls.,
+,
+"Feels they do not have many trusted friends to confide in and primarily rely on personal therapy for support. They find therapy helpful and have built a lot of trust with their therapist, but they feel once-a-week sessions are not enough. Due to the difficult environment at home, they don't feel they have the capacity or ability to engage in activities outside the home to recharge.",
+"Prefers a middle-of-the-road interpretation when processing ambiguous leadership decisions, especially in emotionally charged situations. They value feedback that tolerates ambiguity, avoids assuming malicious intent, and considers the possibility of good intentions misfiring. They want all future coaching and analysis to reflect this balanced framing.",
+Wants all future TEMPO reflections in this thread to use the following substitutions:,"- ""P"" stands for ""Protective Action"" – what the user did or would normally do to protect themselves.","- ""O"" stands for ""Other"" – how the user re-oriented their actions to better serve others instead of acting from a protective, child-brain response.",
+"Prefers all summaries to use the format: n-dashes (–), followed by a space, instead of bullet points. This formatting makes the content easier for them to copy/paste. All future summaries should follow this style.",
+Is a physician who was offered equity in a telehealth company they helped start and was granted equity when appointed as Chief Medical Officer. They want to understand equity from both a high-level overview and a deep dive suitable for self-directed executive learning.,
+Has provided policy-level guidance for RightSite Health on several high-risk clinical scenarios.,
+"Wife is an Enneagram Six with ADHD, and the user is an Enneagram Eight with ADHD. The user wants all future conversations involving their wife to be evaluated through the lens of these Enneagram dynamics, including the classic features of the 8 + 6 + ADHD combination. The user wants to be reminded when a conversation fits or deviates from this dynamic. User wants all conversations that involve both them and their wife to always be framed with the context that both have ADHD, the user is an Enneagram Eight, and their wife is an Enneagram Six.",
+"Has requested that no names of individuals they work with or the name of their company be stored or referenced. All future conversations should use only generic roles (e.g., 'COO,' 'Deputy CMO').",
+"Prefers summaries to be concise and clear, using principles from 'Writing That Works' to eliminate non-essential information while still conveying the main point.",
+Prefers to be asked if they want to hear the whole list after each new item is read back to them.,
+"Prefers to avoid phrasing that implies reacting to problems rather than proactively addressing them, such as 'rather than reacting to them.'",
+"Wants to avoid numbered lists during voice conversations, preferring to go through items one by one and confirm readiness before moving to the next. This is especially important when they are driving.",
+"Prefers to go through tasks one by one during voice conversations, confirming readiness before moving to the next task. They also want to be prompted to go to the next item after each task is done until all to-do list items are complete.",
+Wants to manage themselves and others using CliftonStrengths in every interaction. They want daily feedback on how they are tracking with these strengths.,
+"Wants strengths-based feedback incorporated into their daily workflow reviews, using CliftonStrengths as a framework for assessing their interactions and management approach. Feedback should include how their strengths are showing up, areas for growth, and alignment with their team’s strengths.",
+"Wants messaging strategies tailored by medium (email, Slack, video, phone) based on recipient strengths.",
+Wants 'the 5 questions' to always refer to:,1. What happened?,2. What was really being said?,3. What surprises occurred?,4. What objectives did we accomplish?,5. What could we have done better?,
+RightSite Health reduces avoidable ER visits by pairing a board-certified ER physician with a patient navigator for telehealth visits after a 911 call.,
+"RightSite Health has two primary patient activation pathways: Field Activation and Dispatch Activation. Field Activation occurs when EMS activates the call after arriving on scene, providing a 30-second EMS report, vital signs, and an on-scene clinician, leading to the highest likelihood of successful diversion. Dispatch Activation occurs when patients calling 911 are connected to RightSite before EMS arrives, often with limited pre-screening and up to 50% of calls being audio-only, leading to a lower likelihood of successful diversion.",
+RightSite Health does not screen patients for insurance or ability to pay. The company bills insurance companies directly.,
+"Is the Chief Medical Officer of RightSite Health, a company specializing in Emergency Medicine Telehealth and 911 Diversion. The company operates from 7 AM to 11 PM EST, with physicians seeing approximately three patients per hour. Physicians are paid a flat fee of $150/hour, work in 4-hour shift blocks, and an FTE is defined as 120 hours/month. Part-time physicians work 56 hours/month. Shift splitting and cross-coverage between colleagues is encouraged. ",
+"Prefers the 'Why This Works' section to be placed before the draft in responses, especially when rewriting emails or messages. User wants insights into recurring patterns in their communication that require frequent rewrites and why their messaging is not yielding replicable results.",
+Does not use m-dashes in writing and does not want them included in AI-generated drafts to avoid detection. User also does not want long dashes included in AI-generated text.,
+Prefers that any deviations from their stated preferences be explicitly called out and explained rather than assumed to be improvements. This is a high-priority preference.,
+"Tends to give feedback freely and honestly, sometimes impulsively, and has been told they come across as arrogant even when correct. They are working on a self-directed improvement plan to address feedback from a personal therapy session that they come across as 'cocky' or 'smug' when describing their efforts to be valued in their role at work.",
+"Is interested in concepts, books, and articles related to emotional intelligence in executive leadership, particularly those relevant to adult ADHD.",
+"Is seeking book recommendations essential for a physician executive leader, including generic recommendations often covered in Physician MBA courses and books or articles tailored to emergency medicine, urgent care, or telehealth.",
+Is familiar with 'Writing the Works' and 'Crucial Conversations.',
+Is interested in developing detailed standard operating processes (SOPs) for various telehealth operations.,
+"Is involved in a telehealth practice with three major groups: management, physicians, and navigators.",
+"Wishes they had paused more before delivering feedback and is concerned about moving too fast for others, leading to their interpretations being disregarded.",
+"Currently lacks a process for pausing when reviewing others' work, especially in areas where they are also learning, and is working on keeping criticisms from affecting others.",
+Is interested in creating product requirement documents (PRDs).,

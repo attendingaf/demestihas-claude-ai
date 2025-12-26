@@ -1,0 +1,22 @@
+{
+  "name": "ea-ai-mcp-server",
+  "version": "1.0.0",
+  "description": "EA-AI Enhanced Claude Desktop MCP Server",
+  "main": "mcp-server-simple.js",
+  "scripts": {
+    "start": "node mcp-server-simple.js",
+    "test": "node test-integration.js"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "ea-ai",
+    "assistant"
+  ],
+  "author": "Demestihas Family",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.0",
+    "axios": "^1.6.0"
+  }
+}

@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  lyco-bot:
+    build: .
+    container_name: lyco-telegram-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"  # For future web dashboard
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis for session management (future)
+  redis:
+    image: redis:7-alpine
+    container_name: lyco-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+
+  audio_workflow:
+    build: 
+      context: .
+      dockerfile: Dockerfile.audio
+    container_name: audio_workflow
+    restart: unless-stopped
+    volumes:
+      - ./audio_workflow:/app/audio_workflow
+      - ./logs:/app/logs
+      - ./credentials:/app/credentials
+      - /tmp/audio_work:/tmp/audio_work
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/google-service-account.json
+      - GOOGLE_DRIVE_FOLDER_ID=${GOOGLE_DRIVE_FOLDER_ID}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+    depends_on:
+      - redis
+
+  hermes_audio:
+    build:
+      context: .
+      dockerfile: Dockerfile.audio
+    container_name: hermes_audio
+    volumes:
+      - ./hermes_audio:/app
+      - ./audio_workflow:/app/shared
+      - ./credentials:/app/credentials
+      - /tmp/hermes_audio_work:/tmp/hermes_audio_work
+    environment:
+      - HERMES_EMAIL_ADDRESS=${HERMES_EMAIL_ADDRESS}
+      - HERMES_EMAIL_PASSWORD=${HERMES_EMAIL_PASSWORD}
+      - EMAIL_IMAP_SERVER=${EMAIL_IMAP_SERVER}
+      - EMAIL_IMAP_PORT=${EMAIL_IMAP_PORT}
+      - LYCO_API_URL=${LYCO_API_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/google-service-account.json
+      - GOOGLE_DRIVE_FOLDER_ID=${GOOGLE_DRIVE_FOLDER_ID}
+    working_dir: /app
+    command: python hermes_audio_processor.py
+    restart: unless-stopped
+    networks:
+      - lyco-network
+    depends_on:
+      - redis
+
+volumes:
+  redis_data:
+
+networks:
+  default:
+    name: lyco-network

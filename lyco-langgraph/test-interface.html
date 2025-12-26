@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyco Task Tester</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7f9fc;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .result h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        pre {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        .examples {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f4f8;
+            border-radius: 8px;
+        }
+        .example-btn {
+            background: #48bb78;
+            margin: 5px;
+            width: auto;
+            display: inline-block;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Lyco Task Tester</h1>
+        
+        <div class="input-group">
+            <label for="taskInput">Enter Task:</label>
+            <input type="text" id="taskInput" placeholder="e.g., Schedule meeting with team tomorrow at 2pm" />
+        </div>
+        
+        <div class="input-group">
+            <label for="sourceSelect">Source:</label>
+            <select id="sourceSelect">
+                <option value="terminal">Terminal</option>
+                <option value="email">Email</option>
+                <option value="calendar">Calendar</option>
+                <option value="api">API</option>
+            </select>
+        </div>
+        
+        <button onclick="processTask()">Process Task</button>
+        
+        <div class="examples">
+            <strong>Quick Examples:</strong><br>
+            <button class="example-btn" onclick="setExample('Prepare board presentation for Monday')">High Priority</button>
+            <button class="example-btn" onclick="setExample('File expense receipts')">Low Energy</button>
+            <button class="example-btn" onclick="setExample('Ask Cindy to review documents')">Delegate</button>
+            <button class="example-btn" onclick="setExample('Schedule dentist appointment')">Schedule</button>
+        </div>
+        
+        <div id="result" class="result" style="display: none;">
+            <h3>Result:</h3>
+            <pre id="resultContent"></pre>
+        </div>
+    </div>
+
+    <script>
+        function setExample(text) {
+            document.getElementById('taskInput').value = text;
+        }
+        
+        async function processTask() {
+            const taskInput = document.getElementById('taskInput');
+            const sourceSelect = document.getElementById('sourceSelect');
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+            
+            if (!taskInput.value.trim()) {
+                alert('Please enter a task');
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:8001/api/task/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: taskInput.value,
+                        source: sourceSelect.value
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Format the result nicely
+                const formatted = {
+                    '✅ Success': data.success,
+                    '🆔 Task ID': data.task_id,
+                    '📝 Title': data.title,
+                    '🎯 Action': data.action,
+                    '📊 Quadrant': data.quadrant,
+                    '⚡ Energy Level': data.energy_level,
+                    '👤 Assigned To': data.assigned_to || 'Self'
+                };
+                
+                resultContent.textContent = JSON.stringify(formatted, null, 2);
+                resultDiv.style.display = 'block';
+                
+                // Color code based on action
+                if (data.action === 'archive') {
+                    resultDiv.style.borderLeft = '4px solid #f56565';
+                } else if (data.action === 'delegate') {
+                    resultDiv.style.borderLeft = '4px solid #48bb78';
+                } else if (data.action === 'schedule') {
+                    resultDiv.style.borderLeft = '4px solid #4299e1';
+                } else {
+                    resultDiv.style.borderLeft = '4px solid #667eea';
+                }
+                
+            } catch (error) {
+                resultContent.textContent = 'Error: ' + error.message;
+                resultDiv.style.display = 'block';
+                resultDiv.style.borderLeft = '4px solid #f56565';
+            }
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('taskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processTask();
+            }
+        });
+    </script>
+</body>
+</html>

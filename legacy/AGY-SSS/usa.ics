@@ -1,0 +1,1709 @@
+BEGIN:VCALENDAR
+METHOD:PUBLISH
+PRODID:-//FOTMOB//FOTMOB 1.0//EN
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+VERSION:2.0
+X-PUBLISHED-TTL:PT6H
+X-WR-CALDESC:LA Galaxy fixtures
+X-WR-CALNAME:LA Galaxy
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694259 \nMLS
+DTEND:20250224T014500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250224T000000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - San Diego FC  (0-2)
+TRANSP:TRANSPARENT
+UID:4694259-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694259
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - San Diego FC starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - San Diego FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694273 \nMLS
+DTEND:20250302T234500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250302T220000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:BC Place\, 777 Pacific Boulevard\, False Creek\, Vancouver\, Brit
+ ish Columbia\, CAN
+SEQUENCE:0
+SUMMARY:⚽️ Vancouver Whitecaps - LA Galaxy  (2-1)
+TRANSP:TRANSPARENT
+UID:4694273-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694273
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Vancouver Whitecaps - LA Galaxy starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ Vancouver Whitecaps - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4689196 \nCONCACAF Champions Cup
+DTEND:20250306T031500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250306T013000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Estadio José Rafael Fello Meza\, Calle 8\, Avenida 11 y 13\, Barr
+ io Asís\, Cartago\, CRI
+SEQUENCE:0
+SUMMARY:⚽️ Club Sport Herediano - LA Galaxy  (1-0)
+TRANSP:TRANSPARENT
+UID:4689196-6637@fotmob.com
+URL:https://www.fotmob.com/match/4689196
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Club Sport Herediano - LA Galaxy starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ Club Sport Herediano - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694289 \nMLS
+DTEND:20250310T004500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250309T230000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - St. Louis City  (0-3)
+TRANSP:TRANSPARENT
+UID:4694289-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694289
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - St. Louis City starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - St. Louis City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4689188 \nCONCACAF Champions Cup
+DTEND:20250313T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250313T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Club Sport Herediano  (4-1)
+TRANSP:TRANSPARENT
+UID:4689188-6637@fotmob.com
+URL:https://www.fotmob.com/match/4689188
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Club Sport Herediano starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Club Sport Herediano starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694303 \nMLS
+DTEND:20250316T223000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250316T204500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Providence Park\, 1844 SW Morrison Street\, Portland\, Oregon\, U
+ SA
+SEQUENCE:0
+SUMMARY:⚽️ Portland Timbers - LA Galaxy  (1-1)
+TRANSP:TRANSPARENT
+UID:4694303-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694303
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Portland Timbers - LA Galaxy starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ Portland Timbers - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694306 \nMLS
+DTEND:20250322T221500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250322T203000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Allianz Field\, 400 Snelling Avenue North\, Saint Paul\, Minnesot
+ a\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Minnesota United - LA Galaxy  (2-2)
+TRANSP:TRANSPARENT
+UID:4694306-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694306
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Minnesota United - LA Galaxy starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ Minnesota United - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694329 \nMLS
+DTEND:20250330T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250330T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Orlando City  (1-2)
+TRANSP:TRANSPARENT
+UID:4694329-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694329
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Orlando City starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Orlando City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4741544 \nCONCACAF Champions Cup
+DTEND:20250402T050000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250402T031500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Tigres  (0-0)
+TRANSP:TRANSPARENT
+UID:4741544-6637@fotmob.com
+URL:https://www.fotmob.com/match/4741544
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Tigres starting in 15 minutes. Notifications ca
+ n be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Tigres starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694335 \nMLS
+DTEND:20250405T221500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250405T203000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:America First Field\, 9256 South State Street\, Sandy\, Utah\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Real Salt Lake - LA Galaxy  (2-0)
+TRANSP:TRANSPARENT
+UID:4694335-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694335
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Real Salt Lake - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Real Salt Lake - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4741548 \nCONCACAF Champions Cup
+DTEND:20250409T024500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250409T010000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Estadio Universitario\, Calle del Doctor Pedro de Alba\, Colonia 
+ Ciudad Universitaria\, San Nicolás de los Garza\, MEX
+SEQUENCE:0
+SUMMARY:⚽️ Tigres - LA Galaxy  (3-2)
+TRANSP:TRANSPARENT
+UID:4741548-6637@fotmob.com
+URL:https://www.fotmob.com/match/4741548
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Tigres - LA Galaxy starting in 15 minutes. Notifications ca
+ n be turned off in calendar settings
+SUMMARY:⚽️ Tigres - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694359 \nMLS
+DTEND:20250413T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250413T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Houston Dynamo FC  (1-1)
+TRANSP:TRANSPARENT
+UID:4694359-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694359
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Houston Dynamo FC starting in 15 minutes. Notif
+ ications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Houston Dynamo FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694364 \nMLS
+DTEND:20250419T193000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250419T174500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Q2 Stadium\, 10414 Mc Kalla Place\, Austin\, Texas\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Austin FC - LA Galaxy  (1-0)
+TRANSP:TRANSPARENT
+UID:4694364-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694364
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Austin FC - LA Galaxy starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ Austin FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694392 \nMLS
+DTEND:20250428T024500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250428T010000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Portland Timbers  (2-4)
+TRANSP:TRANSPARENT
+UID:4694392-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694392
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Portland Timbers starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Portland Timbers starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694408 \nMLS
+DTEND:20250505T004500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250504T230000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Children's Mercy Park\, One Sporting Way\, Kansas City\, Kansas\,
+  USA
+SEQUENCE:0
+SUMMARY:⚽️ Sporting Kansas City - LA Galaxy  (1-0)
+TRANSP:TRANSPARENT
+UID:4694408-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694408
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Sporting Kansas City - LA Galaxy starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ Sporting Kansas City - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694413 \nMLS
+DTEND:20250511T011500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250510T233000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Sports Illustrated Stadium\, Frank Rogers Boulevard South\, Harri
+ son\, New Jersey\, USA
+SEQUENCE:0
+SUMMARY:⚽️ New York Red Bulls - LA Galaxy  (7-0)
+TRANSP:TRANSPARENT
+UID:4694413-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694413
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ New York Red Bulls - LA Galaxy starting in 15 minutes. Noti
+ fications can be turned off in calendar settings
+SUMMARY:⚽️ New York Red Bulls - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694427 \nMLS
+DTEND:20250515T011500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250514T233000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Subaru Park\, Seaport Drive\, Chester\, Pennsylvania\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Philadelphia Union - LA Galaxy  (3-2)
+TRANSP:TRANSPARENT
+UID:4694427-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694427
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Philadelphia Union - LA Galaxy starting in 15 minutes. Noti
+ fications can be turned off in calendar settings
+SUMMARY:⚽️ Philadelphia Union - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694451 \nMLS
+DTEND:20250519T024500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250519T010000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Los Angeles FC  (2-2)
+TRANSP:TRANSPARENT
+UID:4694451-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694451
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Los Angeles FC starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Los Angeles FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694453 \nMLS
+DTEND:20250524T223000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250524T204500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Snapdragon Stadium\, 2101 Stadium Way\, San Diego\, California\, 
+ USA
+SEQUENCE:0
+SUMMARY:⚽️ San Diego FC - LA Galaxy  (2-1)
+TRANSP:TRANSPARENT
+UID:4694453-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694453
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ San Diego FC - LA Galaxy starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ San Diego FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694477 \nMLS
+DTEND:20250529T040000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250529T021500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - San Jose Earthquakes  (0-1)
+TRANSP:TRANSPARENT
+UID:4694477-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694477
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - San Jose Earthquakes starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - San Jose Earthquakes starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694492 \nMLS
+DTEND:20250601T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250601T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Real Salt Lake  (2-0)
+TRANSP:TRANSPARENT
+UID:4694492-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694492
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Real Salt Lake starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Real Salt Lake starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694503 \nMLS
+DTEND:20250614T221500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250614T203000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Energizer Park\, 2100 Market Street\, St. Louis\, Missouri\, USA
+SEQUENCE:0
+SUMMARY:⚽️ St. Louis City - LA Galaxy  (3-3)
+TRANSP:TRANSPARENT
+UID:4694503-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694503
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ St. Louis City - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ St. Louis City - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694523 \nMLS
+DTEND:20250626T052600Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250626T034100Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dick's Sporting Goods Park\, 6000 Victory Way\, Commerce City\, D
+ enver\, Colorado\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Colorado Rapids - LA Galaxy  (2-0)
+TRANSP:TRANSPARENT
+UID:4694523-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694523
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Colorado Rapids - LA Galaxy starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Colorado Rapids - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694538 \nMLS
+DTEND:20250629T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250629T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Stanford Stadium\, Arboretum Road & Galvez Street\, Palo Alto\, S
+ tanford\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ San Jose Earthquakes - LA Galaxy  (1-1)
+TRANSP:TRANSPARENT
+UID:4694538-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694538
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ San Jose Earthquakes - LA Galaxy starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ San Jose Earthquakes - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694544 \nMLS
+DTEND:20250705T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250705T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Vancouver Whitecaps  (3-0)
+TRANSP:TRANSPARENT
+UID:4694544-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694544
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Vancouver Whitecaps starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Vancouver Whitecaps starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694569 \nMLS
+DTEND:20250713T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250713T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - DC United  (2-1)
+TRANSP:TRANSPARENT
+UID:4694569-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694569
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - DC United starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - DC United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694582 \nMLS
+DTEND:20250717T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250717T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Austin FC  (1-2)
+TRANSP:TRANSPARENT
+UID:4694582-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694582
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Austin FC starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Austin FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694597 \nMLS
+DTEND:20250720T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250720T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:BMO Stadium\, 3939 S Figueroa Street\, Los Angeles\, California\,
+  USA
+SEQUENCE:0
+SUMMARY:⚽️ Los Angeles FC - LA Galaxy  (3-3)
+TRANSP:TRANSPARENT
+UID:4694597-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694597
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Los Angeles FC - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Los Angeles FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4736036 \nLeagues Cup
+DTEND:20250801T044500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250801T030000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Tijuana  (5-2)
+TRANSP:TRANSPARENT
+UID:4736036-6637@fotmob.com
+URL:https://www.fotmob.com/match/4736036
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Tijuana starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Tijuana starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4736054 \nLeagues Cup
+DTEND:20250804T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250804T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Cruz Azul  (8-9)
+TRANSP:TRANSPARENT
+UID:4736054-6637@fotmob.com
+URL:https://www.fotmob.com/match/4736054
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Cruz Azul starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Cruz Azul starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4736075 \nLeagues Cup
+DTEND:20250808T052000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250808T033500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Santos Laguna  (4-0)
+TRANSP:TRANSPARENT
+UID:4736075-6637@fotmob.com
+URL:https://www.fotmob.com/match/4736075
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Santos Laguna starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Santos Laguna starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694629 \nMLS
+DTEND:20250811T034500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250811T020000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Seattle Sounders FC  (0-4)
+TRANSP:TRANSPARENT
+UID:4694629-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694629
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Seattle Sounders FC starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Seattle Sounders FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694631 \nMLS
+DTEND:20250817T011500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250816T233000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Chase Stadium\, 1350 Northwest 55th Street\, Fort Lauderdale\, Fl
+ orida\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Inter Miami CF - LA Galaxy  (3-1)
+TRANSP:TRANSPARENT
+UID:4694631-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694631
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Inter Miami CF - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Inter Miami CF - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4917102 \nLeagues Cup
+DTEND:20250821T060000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250821T041500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Pachuca  (2-1)
+TRANSP:TRANSPARENT
+UID:4917102-6637@fotmob.com
+URL:https://www.fotmob.com/match/4917102
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Pachuca starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Pachuca starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694655 \nMLS
+DTEND:20250824T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250824T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Colorado Rapids  (3-0)
+TRANSP:TRANSPARENT
+UID:4694655-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694655
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Colorado Rapids starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Colorado Rapids starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4936818 \nLeagues Cup
+DTEND:20250828T043000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250828T024500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Seattle Sounders FC  (0-2)
+TRANSP:TRANSPARENT
+UID:4936818-6637@fotmob.com
+URL:https://www.fotmob.com/match/4936818
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Seattle Sounders FC starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Seattle Sounders FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4946467 \nLeagues Cup
+DTEND:20250831T224500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250831T210000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Orlando City  (2-1)
+TRANSP:TRANSPARENT
+UID:4946467-6637@fotmob.com
+URL:https://www.fotmob.com/match/4946467
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Orlando City starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Orlando City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694603 \nMLS
+DTEND:20250907T021500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250907T003000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Shell Energy Stadium\, 2200 Texas Avenue\, East End\, Houston\, T
+ exas\, USA
+SEQUENCE:0
+SUMMARY:⚽️ Houston Dynamo FC - LA Galaxy  (1-1)
+TRANSP:TRANSPARENT
+UID:4694603-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694603
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Houston Dynamo FC - LA Galaxy starting in 15 minutes. Notif
+ ications can be turned off in calendar settings
+SUMMARY:⚽️ Houston Dynamo FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694687 \nMLS
+DTEND:20250914T022500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250914T004000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Lumen Field\, 800 Occidental Avenue South\, Seattle\, Washington\
+ , USA
+SEQUENCE:0
+SUMMARY:⚽️ Seattle Sounders FC - LA Galaxy  (2-2)
+TRANSP:TRANSPARENT
+UID:4694687-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694687
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Seattle Sounders FC - LA Galaxy starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ Seattle Sounders FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694706 \nMLS
+DTEND:20250921T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250921T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - FC Cincinnati  (2-3)
+TRANSP:TRANSPARENT
+UID:4694706-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694706
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - FC Cincinnati starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - FC Cincinnati starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694721 \nMLS
+DTEND:20250928T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250928T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Sporting Kansas City  (4-1)
+TRANSP:TRANSPARENT
+UID:4694721-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694721
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Sporting Kansas City starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Sporting Kansas City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4981493 \nCampeones Cup
+DTEND:20251002T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251002T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Toluca  (2-3)
+TRANSP:TRANSPARENT
+UID:4981493-6637@fotmob.com
+URL:https://www.fotmob.com/match/4981493
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Toluca starting in 15 minutes. Notifications ca
+ n be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Toluca starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694726 \nMLS
+DTEND:20251004T221500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251004T203000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Toyota Stadium\, 6000 Main Street\, Frisco\, Texas\, USA
+SEQUENCE:0
+SUMMARY:⚽️ FC Dallas - LA Galaxy  (2-1)
+TRANSP:TRANSPARENT
+UID:4694726-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694726
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ FC Dallas - LA Galaxy starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ FC Dallas - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694672 \nMLS
+DTEND:20251012T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251012T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - FC Dallas  (2-1)
+TRANSP:TRANSPARENT
+UID:4694672-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694672
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - FC Dallas starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - FC Dallas starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4694750 \nMLS
+DTEND:20251019T024500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251019T010000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park\, 18400 Avalon Boulevard\, Dominguez H
+ ills\, Carson\, California\, USA
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Minnesota United  (2-1)
+TRANSP:TRANSPARENT
+UID:4694750-6637@fotmob.com
+URL:https://www.fotmob.com/match/4694750
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Minnesota United starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Minnesota United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071003 \nMLS
+DTEND:20260223T014500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260223T000000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - New York City FC
+TRANSP:TRANSPARENT
+UID:5071003-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071003
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - New York City FC starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - New York City FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071013 \nMLS
+DTEND:20260301T051500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260301T033000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Charlotte FC
+TRANSP:TRANSPARENT
+UID:5071013-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071013
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Charlotte FC starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Charlotte FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071026 \nMLS
+DTEND:20260308T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260308T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dick's Sporting Goods Park
+SEQUENCE:0
+SUMMARY:⚽️ Colorado Rapids - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071026-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071026
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Colorado Rapids - LA Galaxy starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Colorado Rapids - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071044 \nMLS
+DTEND:20260315T031500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260315T013000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Sporting Kansas City
+TRANSP:TRANSPARENT
+UID:5071044-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071044
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Sporting Kansas City starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Sporting Kansas City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071063 \nMLS
+DTEND:20260322T221500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260322T203000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Providence Park
+SEQUENCE:0
+SUMMARY:⚽️ Portland Timbers - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071063-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071063
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Portland Timbers - LA Galaxy starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ Portland Timbers - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071076 \nMLS
+DTEND:20260405T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260405T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Minnesota United
+TRANSP:TRANSPARENT
+UID:5071076-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071076
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Minnesota United starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Minnesota United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071080 \nMLS
+DTEND:20260411T201500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260411T183000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Q2 Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Austin FC - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071080-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071080
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Austin FC - LA Galaxy starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ Austin FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071105 \nMLS
+DTEND:20260419T021500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260419T003000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Toyota Stadium
+SEQUENCE:0
+SUMMARY:⚽️ FC Dallas - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071105-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071105
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ FC Dallas - LA Galaxy starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ FC Dallas - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071111 \nMLS
+DTEND:20260423T011500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260422T233000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Lower.com Field
+SEQUENCE:0
+SUMMARY:⚽️ Columbus Crew - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071111-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071111
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Columbus Crew - LA Galaxy starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ Columbus Crew - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071135 \nMLS
+DTEND:20260427T004500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260426T230000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Real Salt Lake
+TRANSP:TRANSPARENT
+UID:5071135-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071135
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Real Salt Lake starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Real Salt Lake starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071147 \nMLS
+DTEND:20260503T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260503T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Vancouver Whitecaps
+TRANSP:TRANSPARENT
+UID:5071147-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071147
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Vancouver Whitecaps starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Vancouver Whitecaps starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071151 \nMLS
+DTEND:20260510T011500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260509T233000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Mercedes-Benz Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Atlanta United - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071151-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071151
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Atlanta United - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Atlanta United - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071174 \nMLS
+DTEND:20260514T021500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260514T003000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Children's Mercy Park
+SEQUENCE:0
+SUMMARY:⚽️ Sporting Kansas City - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071174-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071174
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Sporting Kansas City - LA Galaxy starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ Sporting Kansas City - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071193 \nMLS
+DTEND:20260517T024500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260517T010000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Lumen Field
+SEQUENCE:0
+SUMMARY:⚽️ Seattle Sounders FC - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071193-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071193
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Seattle Sounders FC - LA Galaxy starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ Seattle Sounders FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071202 \nMLS
+DTEND:20260524T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260524T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Houston Dynamo FC
+TRANSP:TRANSPARENT
+UID:5071202-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071202
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Houston Dynamo FC starting in 15 minutes. Notif
+ ications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Houston Dynamo FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071214 \nMLS
+DTEND:20260718T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260718T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Los Angeles FC
+TRANSP:TRANSPARENT
+UID:5071214-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071214
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Los Angeles FC starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Los Angeles FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071226 \nMLS
+DTEND:20260723T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260723T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - St. Louis City
+TRANSP:TRANSPARENT
+UID:5071226-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071226
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - St. Louis City starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - St. Louis City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071244 \nMLS
+DTEND:20260726T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260726T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:PayPal Park
+SEQUENCE:0
+SUMMARY:⚽️ San Jose Earthquakes - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071244-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071244
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ San Jose Earthquakes - LA Galaxy starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ San Jose Earthquakes - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071257 \nMLS
+DTEND:20260802T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260802T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - FC Dallas
+TRANSP:TRANSPARENT
+UID:5071257-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071257
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - FC Dallas starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - FC Dallas starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071268 \nMLS
+DTEND:20260816T021500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260816T003000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Shell Energy Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Houston Dynamo FC - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071268-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071268
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Houston Dynamo FC - LA Galaxy starting in 15 minutes. Notif
+ ications can be turned off in calendar settings
+SUMMARY:⚽️ Houston Dynamo FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071285 \nMLS
+DTEND:20260820T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260820T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - San Jose Earthquakes
+TRANSP:TRANSPARENT
+UID:5071285-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071285
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - San Jose Earthquakes starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - San Jose Earthquakes starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071294 \nMLS
+DTEND:20260823T011500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260822T233000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Saputo Stadium
+SEQUENCE:0
+SUMMARY:⚽️ CF Montreal - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071294-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071294
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ CF Montreal - LA Galaxy starting in 15 minutes. Notificatio
+ ns can be turned off in calendar settings
+SUMMARY:⚽️ CF Montreal - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071319 \nMLS
+DTEND:20260830T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260830T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Snapdragon Stadium
+SEQUENCE:0
+SUMMARY:⚽️ San Diego FC - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071319-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071319
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ San Diego FC - LA Galaxy starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ San Diego FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071331 \nMLS
+DTEND:20260906T031500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260906T013000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - New England Revolution
+TRANSP:TRANSPARENT
+UID:5071331-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071331
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - New England Revolution starting in 15 minutes. 
+ Notifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - New England Revolution starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071350 \nMLS
+DTEND:20260910T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260910T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:BC Place
+SEQUENCE:0
+SUMMARY:⚽️ Vancouver Whitecaps - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071350-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071350
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Vancouver Whitecaps - LA Galaxy starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ Vancouver Whitecaps - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071359 \nMLS
+DTEND:20260913T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260913T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Seattle Sounders FC
+TRANSP:TRANSPARENT
+UID:5071359-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071359
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Seattle Sounders FC starting in 15 minutes. Not
+ ifications can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Seattle Sounders FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071375 \nMLS
+DTEND:20260920T021500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260920T003000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Allianz Field
+SEQUENCE:0
+SUMMARY:⚽️ Minnesota United - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071375-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071375
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Minnesota United - LA Galaxy starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ Minnesota United - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071390 \nMLS
+DTEND:20260927T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260927T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Colorado Rapids
+TRANSP:TRANSPARENT
+UID:5071390-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071390
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Colorado Rapids starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Colorado Rapids starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071410 \nMLS
+DTEND:20261012T004500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20261011T230000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Energizer Park
+SEQUENCE:0
+SUMMARY:⚽️ St. Louis City - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071410-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071410
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ St. Louis City - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ St. Louis City - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071420 \nMLS
+DTEND:20261015T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20261015T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Portland Timbers
+TRANSP:TRANSPARENT
+UID:5071420-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071420
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Portland Timbers starting in 15 minutes. Notifi
+ cations can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Portland Timbers starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071436 \nMLS
+DTEND:20261018T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20261018T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - San Diego FC
+TRANSP:TRANSPARENT
+UID:5071436-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071436
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - San Diego FC starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - San Diego FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071455 \nMLS
+DTEND:20261026T024500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20261026T010000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:BMO Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Los Angeles FC - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071455-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071455
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Los Angeles FC - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Los Angeles FC - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071477 \nMLS
+DTEND:20261101T041500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20261101T023000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Dignity Health Sports Park
+SEQUENCE:0
+SUMMARY:⚽️ LA Galaxy - Austin FC
+TRANSP:TRANSPARENT
+UID:5071477-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071477
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ LA Galaxy - Austin FC starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ LA Galaxy - Austin FC starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5071497 \nMLS
+DTEND:20261108T014500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20261108T000000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:America First Field
+SEQUENCE:0
+SUMMARY:⚽️ Real Salt Lake - LA Galaxy
+TRANSP:TRANSPARENT
+UID:5071497-6637@fotmob.com
+URL:https://www.fotmob.com/match/5071497
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Real Salt Lake - LA Galaxy starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Real Salt Lake - LA Galaxy starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,3 @@
+# Additional environment variables for audio workflow
+SUPABASE_URL=
+SUPABASE_KEY=

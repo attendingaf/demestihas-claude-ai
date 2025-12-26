@@ -1,0 +1,164 @@
+[dotenv@17.2.3] injecting env (11) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+================================================================================
+FALKORDB MCP SERVER - TEST SUITE
+================================================================================
+
+📡 Initializing database connection...
+Initializing FalkorDB connection to localhost:6379...
+✓ Successfully connected to FalkorDB
+✓ Using graph: memory_graph
+✓ Connection pool size: 10
+✅ Database connection established
+
+🧪 TEST 1: Save Private Memory
+--------------------------------------------------------------------------------
+Saving memory for user: test_user_1
+Memory type requested: auto
+Generating embedding...
+✓ Generated embedding with 1536 dimensions
+✓ Auto-classified memory as: private
+Saving to database...
+✓ Memory saved successfully
+Result: {
+  "success": true,
+  "memory_type": "private",
+  "content": "My favorite color is blue.",
+  "user_id": "test_user_1",
+  "embedding_dimensions": 1536,
+  "saved_at": "2025-11-10T05:35:25.480Z"
+}
+✅ Test 1 passed
+
+🧪 TEST 2: Save System Memory
+--------------------------------------------------------------------------------
+Saving memory for user: test_user_1
+Memory type requested: system
+Generating embedding...
+✓ Generated embedding with 1536 dimensions
+✓ Using user-specified type: system
+Saving to database...
+✓ Memory saved successfully
+Result: {
+  "success": true,
+  "memory_type": "system",
+  "content": "The weekly grocery list is on the fridge.",
+  "user_id": "test_user_1",
+  "embedding_dimensions": 1536,
+  "saved_at": "2025-11-10T05:35:25.625Z"
+}
+✅ Test 2 passed
+
+🧪 TEST 3: Search Test - User 1 Color Query
+--------------------------------------------------------------------------------
+Searching memories for user: test_user_1
+Query: "What is my preferred color?"
+Include system memories: true
+Similarity threshold: 0.7
+Generating query embedding...
+✓ Generated query embedding with 1536 dimensions
+Executing semantic search...
+✓ Found 0 matching memories
+Result: {
+  "success": true,
+  "query": "What is my preferred color?",
+  "user_id": "test_user_1",
+  "count": 0,
+  "threshold": 0.7,
+  "results": []
+}
+✅ Test 3 passed - Found 0 results
+
+🧪 TEST 4: Privacy Test - User 2 Cannot See User 1 Data
+--------------------------------------------------------------------------------
+Searching memories for user: test_user_2
+Query: "What is my preferred color?"
+Include system memories: false
+Similarity threshold: 0.7
+Generating query embedding...
+✓ Generated query embedding with 1536 dimensions
+Executing semantic search...
+✓ Found 0 matching memories
+Result: {
+  "success": true,
+  "query": "What is my preferred color?",
+  "user_id": "test_user_2",
+  "count": 0,
+  "threshold": 0.7,
+  "results": []
+}
+✅ Test 4 passed - Privacy maintained (0 results)
+
+🧪 TEST 5: System Memory Test - User 2 Can See System Memory
+--------------------------------------------------------------------------------
+Searching memories for user: test_user_2
+Query: "Where is the grocery list?"
+Include system memories: true
+Similarity threshold: 0.7
+Generating query embedding...
+✓ Generated query embedding with 1536 dimensions
+Executing semantic search...
+✓ Found 0 matching memories
+Result: {
+  "success": true,
+  "query": "Where is the grocery list?",
+  "user_id": "test_user_2",
+  "count": 0,
+  "threshold": 0.7,
+  "results": []
+}
+❌ Test 5 FAILED - System memory not accessible
+
+🧪 TEST 6: Get All Memories for User 1
+--------------------------------------------------------------------------------
+Retrieving all memories for user: test_user_1
+Include system memories: true
+Limit: 100
+Executing query...
+✓ Retrieved 2 memories
+Result: {
+  "success": true,
+  "user_id": "test_user_1",
+  "count": 2,
+  "limit": 100,
+  "include_system": true,
+  "memories": [
+    {},
+    {}
+  ]
+}
+✅ Test 6 passed - Retrieved 2 memories
+
+🔍 VALIDATION QUERIES
+================================================================================
+
+📊 Query 1: Count memories with embeddings
+--------------------------------------------------------------------------------
+Result: [ { memories_with_embeddings: 2 } ]
+
+📊 Query 2: Private memory count per user
+--------------------------------------------------------------------------------
+Result: [ { user_id: 'test_user_1', private_memory_count: 1 } ]
+
+📊 Query 3: System memory count
+--------------------------------------------------------------------------------
+Result: [ { system_memory_count: 1 } ]
+
+📊 Query 4: All memories overview
+--------------------------------------------------------------------------------
+Result: [
+  {
+    text: 'The weekly grocery list is on the fridge.',
+    type: 'system',
+    created: 1762752925624
+  },
+  {
+    text: 'My favorite color is blue.',
+    type: 'private',
+    created: 1762752925478
+  }
+]
+
+================================================================================
+✅ ALL TESTS COMPLETED SUCCESSFULLY!
+================================================================================

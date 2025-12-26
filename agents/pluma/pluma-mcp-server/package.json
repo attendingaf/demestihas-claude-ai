@@ -1,0 +1,15 @@
+{
+  "name": "pluma-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "python-shell": "^5.0.0",
+    "dotenv": "^17.2.2"
+  }
+}

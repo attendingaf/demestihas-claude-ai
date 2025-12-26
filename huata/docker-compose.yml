@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  huata:
+    build: .
+    container_name: huata-calendar-agent
+    ports:
+      - "8003:8003"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HUATA_PORT=8003
+      - HUATA_HOST=0.0.0.0
+      - ENV=production
+      - TZ=America/New_York
+    volumes:
+      - ./credentials:/app/credentials:ro
+      - ./logs:/app/logs
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - demestihas-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: huata-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    networks:
+      - demestihas-network
+
+volumes:
+  redis-data:
+
+networks:
+  demestihas-network:
+    external: true

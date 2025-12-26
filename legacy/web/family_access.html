@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DemestiChat">
+    <title>DemestiChat - Family Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #060B12 0%, #1A2233 100%);
+            color: #E0E5E9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 40px;
+        }
+
+        .logo {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            color: #FF4B4B;
+            text-shadow: 0 0 20px rgba(255, 75, 75, 0.5);
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .card {
+            background: rgba(26, 34, 51, 0.8);
+            border: 1px solid rgba(255, 75, 75, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 75, 75, 0.3);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            color: #888;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: #FF4B4B;
+            border-bottom-color: #FF4B4B;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(13, 22, 32, 0.8);
+            border: 1px solid rgba(255, 75, 75, 0.3);
+            border-radius: 8px;
+            color: #E0E5E9;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #FF4B4B;
+            box-shadow: 0 0 15px rgba(255, 75, 75, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #FF4B4B;
+            color: #060B12;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 75, 75, 0.4);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #FF6B6B;
+            box-shadow: 0 0 30px rgba(255, 75, 75, 0.6);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            background: rgba(255, 75, 75, 0.2);
+            border: 1px solid #FF4B4B;
+            color: #FF4B4B;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success {
+            background: rgba(75, 255, 75, 0.2);
+            border: 1px solid #4BFF4B;
+            color: #4BFF4B;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(26, 34, 51, 0.5);
+            border-radius: 10px;
+        }
+
+        .info p {
+            color: #888;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        #chat-interface {
+            display: none;
+        }
+
+        .redirect-link {
+            color: #FF4B4B;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .redirect-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding-top: 20px;
+                margin-bottom: 30px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🌃</div>
+            <h1>DemestiChat</h1>
+            <p class="subtitle">Family AI Assistant</p>
+        </div>
+
+        <div id="login-interface">
+            <div class="card">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('login')">Sign In</div>
+                    <div class="tab" onclick="switchTab('register')">Register</div>
+                </div>
+
+                <div id="error-message" class="error"></div>
+                <div id="success-message" class="success"></div>
+
+                <!-- Login Tab -->
+                <div id="login-tab" class="tab-content active">
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" placeholder="Enter your username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" placeholder="Enter your password" required>
+                        </div>
+
+                        <button type="submit">Sign In</button>
+                    </form>
+                </div>
+
+                <!-- Register Tab -->
+                <div id="register-tab" class="tab-content">
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="reg-username">Username</label>
+                            <input type="text" id="reg-username" placeholder="Choose a username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reg-displayname">Display Name</label>
+                            <input type="text" id="reg-displayname" placeholder="Your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reg-email">Email (Optional)</label>
+                            <input type="email" id="reg-email" placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reg-password">Password</label>
+                            <input type="password" id="reg-password" placeholder="Choose a strong password" required minlength="6">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reg-confirm">Confirm Password</label>
+                            <input type="password" id="reg-confirm" placeholder="Re-enter your password" required>
+                        </div>
+
+                        <button type="submit">Create Account</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="info">
+                <p><span class="icon">🔒</span> Secure family authentication</p>
+                <p><span class="icon">💾</span> Private conversations and memories</p>
+                <p><span class="icon">🏠</span> Family-friendly AI assistant</p>
+            </div>
+        </div>
+
+        <div id="chat-interface">
+            <div class="card">
+                <h2>Welcome, <span id="user-display-name"></span>!</h2>
+                <p style="margin: 20px 0; color: #888;">
+                    You've successfully logged in to DemestiChat.
+                </p>
+                <p style="margin: 20px 0;">
+                    <a href="http://178.156.170.161:8501" class="redirect-link">
+                        Click here to open the full chat interface
+                    </a>
+                </p>
+                <button onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://178.156.170.161:8000';
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+
+            if (tab === 'login') {
+                document.querySelector('.tab:first-child').classList.add('active');
+                document.getElementById('login-tab').classList.add('active');
+            } else {
+                document.querySelector('.tab:last-child').classList.add('active');
+                document.getElementById('register-tab').classList.add('active');
+            }
+
+            hideMessages();
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => errorDiv.style.display = 'none', 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            setTimeout(() => successDiv.style.display = 'none', 5000);
+        }
+
+        function hideMessages() {
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('success-message').style.display = 'none';
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            hideMessages();
+
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login?user_id=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store token and user info
+                    localStorage.setItem('jwt_token', data.access_token);
+                    localStorage.setItem('user_id', username);
+                    localStorage.setItem('user_info', JSON.stringify(data.user));
+
+                    // Show chat interface
+                    document.getElementById('login-interface').style.display = 'none';
+                    document.getElementById('chat-interface').style.display = 'block';
+                    document.getElementById('user-display-name').textContent = data.user.display_name;
+
+                    showSuccess('Login successful! Redirecting...');
+
+                    // Auto-redirect to Streamlit after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'http://178.156.170.161:8501';
+                    }, 2000);
+                } else {
+                    showError(data.detail || 'Login failed');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            hideMessages();
+
+            const username = document.getElementById('reg-username').value;
+            const displayname = document.getElementById('reg-displayname').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm').value;
+
+            if (password !== confirm) {
+                showError('Passwords do not match');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters');
+                return;
+            }
+
+            try {
+                const url = new URL(`${API_BASE}/auth/register`);
+                url.searchParams.append('user_id', username);
+                url.searchParams.append('password', password);
+                url.searchParams.append('display_name', displayname);
+                if (email) url.searchParams.append('email', email);
+                url.searchParams.append('role', 'family');
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess('Account created successfully! Please sign in.');
+                    setTimeout(() => switchTab('login'), 2000);
+
+                    // Clear form
+                    document.getElementById('reg-username').value = '';
+                    document.getElementById('reg-displayname').value = '';
+                    document.getElementById('reg-email').value = '';
+                    document.getElementById('reg-password').value = '';
+                    document.getElementById('reg-confirm').value = '';
+                } else {
+                    showError(data.detail || 'Registration failed');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('jwt_token');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('user_info');
+
+            document.getElementById('chat-interface').style.display = 'none';
+            document.getElementById('login-interface').style.display = 'block';
+
+            showSuccess('Logged out successfully');
+        }
+
+        // Check if already logged in on page load
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('jwt_token');
+            const userInfo = localStorage.getItem('user_info');
+
+            if (token && userInfo) {
+                const user = JSON.parse(userInfo);
+                document.getElementById('login-interface').style.display = 'none';
+                document.getElementById('chat-interface').style.display = 'block';
+                document.getElementById('user-display-name').textContent = user.display_name;
+            }
+        });
+    </script>
+</body>
+</html>

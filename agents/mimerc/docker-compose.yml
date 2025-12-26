@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  mimerc-postgres:
+    image: postgres:16-alpine
+    container_name: mimerc-postgres
+    environment:
+      POSTGRES_USER: mimerc
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mimerc_secure_password}
+      POSTGRES_DB: mimerc_db
+    volumes:
+      - mimerc_postgres_data:/var/lib/postgresql/data
+      - ./init-tables.sql:/docker-entrypoint-initdb.d/01-init-tables.sql
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mimerc -d mimerc_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - mimerc-network
+
+  mimerc-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mimerc-agent
+    env_file:
+      - .env
+    ports:
+      - "8002:8000"
+    depends_on:
+      mimerc-postgres:
+        condition: service_healthy
+    networks:
+      - mimerc-network
+    restart: unless-stopped
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mimerc-telegram:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mimerc-telegram
+    command: python telegram_bot.py
+    env_file:
+      - .env
+    environment:
+      - PG_CONNINFO=postgresql://mimerc:mimerc_secure_password@mimerc-postgres:5432/mimerc_db
+    depends_on:
+      mimerc-postgres:
+        condition: service_healthy
+    networks:
+      - mimerc-network
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  mimerc-network:
+    name: mimerc-network
+
+volumes:
+  mimerc_postgres_data:
+    name: mimerc_postgres_data

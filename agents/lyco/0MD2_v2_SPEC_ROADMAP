@@ -1,0 +1,453 @@
+Lyco 2.0: Cognitive Prosthetic for Ambient Task Intelligence
+
+Revised Product Specification & Development Roadmap September 16, 2025
+
+Executive Summary
+Lyco 2.0 is not a task manager. It is a cognitive prosthetic that externalizes the executive function of determining "what's next?" The system observes reality (email, calendar), captures signals ambiently, and surfaces single actions at optimal energy moments.
+
+Core Principle: Any feature that forces the user to think about the system rather than about the task represents a failure.
+Architecture Shift: Reality → Signals → Intelligence → Single Next Action
+
+I. System Architecture
+
+    A. Data Layer (Simplified Two-Table Schema)
+sql
+-- Signals: Raw capture from reality
+CREATE TABLE task_signals (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  source TEXT NOT NULL CHECK (source IN ('gmail', 'calendar', 'slack', 'pluma', 'huata', 'manual')),
+  raw_content TEXT NOT NULL,
+  processed BOOLEAN DEFAULT FALSE,
+  processor_version TEXT DEFAULT '2.0.0',
+  confidence_score FLOAT DEFAULT 0,
+  timestamp TIMESTAMP DEFAULT NOW(),
+  metadata JSONB DEFAULT '{}',
+  user_id TEXT DEFAULT 'mene@beltlineconsulting.co'
+);
+
+-- Tasks: Processed, actionable items
+CREATE TABLE tasks (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  signal_id UUID REFERENCES task_signals(id),
+  content TEXT NOT NULL,
+  next_action TEXT NOT NULL, -- Single concrete micro-step
+  energy_level TEXT CHECK (energy_level IN ('high', 'medium', 'low', 'any')),
+  time_estimate INTEGER DEFAULT 15,
+  context_required JSONB DEFAULT '[]',
+  deadline TIMESTAMP,
+  completed_at TIMESTAMP,
+  skipped_at TIMESTAMP,
+  skipped_reason TEXT, -- Critical for learning
+  metadata JSONB DEFAULT '{}'
+);
+
+-- Indexes for performance
+CREATE INDEX idx_tasks_pending ON tasks(completed_at, skipped_at) WHERE completed_at IS NULL AND skipped_at IS NULL;
+CREATE INDEX idx_signals_unprocessed ON task_signals(processed) WHERE processed = FALSE;
+
+    B. LLM-First Processing Pipeline
+No regex. No brittle patterns. Pure semantic understanding.
+
+python
+# Core Intelligence Engine (single function replaces all parsing logic)
+async def process_signal_with_llm(signal):
+    prompt = f"""
+    You are an executive assistant AI designed as a cognitive prosthetic.
+
+    Analyze this signal from {signal.source}: {signal.raw_content}
+
+    Context:
+    - User is mene@beltlineconsulting.co (physician executive, CMO-level)
+    - High energy: 9-11am (strategy, analysis, creation)
+    - Medium energy: 2-4pm (email, reviews, meetings)
+    - Low energy: after 4pm (reading, organizing)
+    - ADHD-optimized: tasks must be 15-minute chunks maximum
+
+    If this contains a commitment BY the user or request OF the user, return JSON:
+    {{
+      "is_task": true,
+      "content": "Human-readable task description",
+      "next_action": "Single physical micro-step to begin (e.g., 'Open Gmail and type subject line')",
+      "energy_level": "high|medium|low",
+      "time_estimate": 15,
+      "context_required": ["computer", "phone", "quiet"],
+      "confidence": 0.0-1.0
+    }}
+
+    If no actionable task found, return: {{"is_task": false}}
+    """
+
+    response = await llm_call(prompt, model="claude-3-opus")
+    return json.loads(response)
+
+C. Integration with Existing Infrastructure
+
+Leverage what's already working:
+
+yaml
+# Docker Compose Addition (not new Hetzner/n8n)
+services:
+  lyco-processor:
+    build: ./lyco-v2
+    container_name: demestihas-lyco-v2
+    networks:
+      - lyco-network
+    depends_on:
+      - lyco-redis
+      - demestihas-yanay
+    environment:
+      - REDIS_URL=redis://lyco-redis:6379
+      - SUPABASE_URL=${SUPABASE_URL}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - ./lyco-v2:/app
+    command: python processor.py
+
+  # Existing services utilized
+  # demestihas-pluma: Email intelligence (already reading Gmail)
+  # demestihas-huata: Calendar management (already parsing events)
+  # lyco-redis: Caching layer for state management
+
+Agent Collaboration Protocol:
+
+python
+# Leverage existing Pluma for email signals
+async def capture_email_signals():
+    # Don't rebuild Gmail monitoring - Pluma already does this
+    pluma_emails = redis_client.get("pluma:recent_emails")
+    for email in pluma_emails:
+        if email['from'] == 'mene@beltlineconsulting.co':
+            await create_signal(
+                source='pluma',
+                raw_content=email['body'],
+                metadata={'thread_id': email['thread_id']}
+            )
+
+# Leverage existing Huata for calendar prep
+async def capture_calendar_signals():
+    huata_events = redis_client.get("huata:upcoming_events")
+    for event in huata_events:
+        if event['prep_needed']:
+            await create_signal(
+                source='huata',
+                raw_content=f"Prepare for {event['title']}",
+                metadata={'event_id': event['id'], 'start_time': event['start']}
+            )
+
+II. Dual-Track Development Approach
+
+Track A: Backend Pipeline (CLI Testing)
+
+python
+# cli.py - For testing the data pipeline
+@click.group()
+def cli():
+    """Lyco 2.0 Pipeline Testing"""
+    pass
+
+@cli.command()
+@click.argument('text')
+def signal(text):
+    """Create a test signal"""
+    signal_id = create_signal('manual', text)
+    click.echo(f"Signal created: {signal_id}")
+
+@cli.command()
+def process():
+    """Process pending signals"""
+    results = process_all_signals()
+    click.echo(f"Processed {results['count']} signals")
+
+@cli.command()
+def next():
+    """Get next task"""
+    task = get_next_task()
+    if task:
+        click.echo(f"TASK: {task['content']}")
+        click.echo(f"NEXT: {task['next_action']}")
+    else:
+        click.echo("No tasks pending")
+
+Track B: Experience Validation (Minimal UI)
+
+html
+<!-- index.html - Living from Day 1 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lyco 2.0</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        #task-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+        #next-action {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+        button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.1s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .complete { background: #10b981; color: white; }
+        .skip { background: #f3f4f6; color: #6b7280; }
+        .celebration {
+            animation: celebrate 0.5s ease-out;
+        }
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="task-card">
+        <h2 id="content">Loading...</h2>
+        <p id="next-action"></p>
+        <div id="energy-indicator"></div>
+        <div class="actions">
+            <button class="complete" onclick="completeTask()">✓ Done</button>
+            <button class="skip" onclick="skipTask()">Skip →</button>
+        </div>
+        <div id="timer" style="margin-top: 1rem; text-align: center; color: #9ca3af;"></div>
+    </div>
+
+    <script>
+        let currentTask = null;
+        let startTime = null;
+
+        async function loadNextTask() {
+            const response = await fetch('/api/next-task');
+            currentTask = await response.json();
+
+            if (currentTask) {
+                document.getElementById('content').textContent = currentTask.content;
+                document.getElementById('next-action').textContent = `First step: ${currentTask.next_action}`;
+                document.getElementById('energy-indicator').textContent = `${currentTask.energy_level} energy • ${currentTask.time_estimate} min`;
+                startTime = Date.now();
+                updateTimer();
+            } else {
+                document.getElementById('content').textContent = 'Clear! Nothing pending.';
+                document.getElementById('next-action').textContent = '';
+            }
+        }
+
+        async function completeTask() {
+            if (!currentTask) return;
+
+            // Immediate celebration
+            document.getElementById('task-card').classList.add('celebration');
+
+            await fetch(`/api/tasks/${currentTask.id}/complete`, { method: 'POST' });
+
+            // Load next task after brief celebration
+            setTimeout(() => {
+                document.getElementById('task-card').classList.remove('celebration');
+                loadNextTask();
+            }, 500);
+        }
+
+        async function skipTask() {
+            if (!currentTask) return;
+
+            const reason = prompt('Quick - why skip? (energy/time/context/not-important)');
+            if (reason) {
+                await fetch(`/api/tasks/${currentTask.id}/skip`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({reason})
+                });
+                loadNextTask();
+            }
+        }
+
+        function updateTimer() {
+            if (!startTime) return;
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            document.getElementById('timer').textContent = `${elapsed}s`;
+            if (currentTask) requestAnimationFrame(updateTimer);
+        }
+
+        // Auto-refresh every 30 seconds if idle
+        setInterval(() => {
+            if (currentTask && Date.now() - startTime > 30000) {
+                loadNextTask();
+            }
+        }, 30000);
+
+        loadNextTask();
+    </script>
+</body>
+</html>
+
+III. Seven-Week Implementation Roadmap
+
+Phase 1: Foundation & Intelligence (Weeks 1-2)
+
+Week 1: Core Pipeline
+Day 1-2: Deploy simplified Supabase schema, configure Row Level Security
+Day 3-4: Build LLM processor with Claude/GPT, test with 50+ example signals
+Day 5: Create dual-track testing (CLI + minimal HTML)
+
+Week 2: Agent Integration
+Day 1-2: Connect to existing Pluma email intelligence via Redis
+Day 3-4: Connect to existing Huata calendar management
+Day 5: Test end-to-end: Email → Pluma → Signal → LLM → Task → UI
+
+Success Metrics:
+CLI can create, process, and retrieve tasks
+HTML shows current task within 2 seconds
+LLM correctly identifies 90% of test commitments
+
+Phase 2: Ambient Capture (Weeks 3-4)
+
+Week 3: Automated Collection
+Day 1-2: Docker container for background processing
+Day 3: Redis pub/sub for real-time agent communication
+Day 4-5: 5-minute polling cycle for Gmail/Calendar
+
+Week 4: Intelligence Refinement
+Day 1-2: Energy level classification with user config
+Day 3-4: Context detection (quiet/computer/phone)
+Day 5: Time estimation calibration
+
+Success Metrics:
+Zero manual signal creation needed
+Commitments appear within 5 minutes of email send
+Energy matching accuracy > 70%
+
+Phase 3: Flow Optimization (Weeks 5-6)
+
+Week 5: ADHD Optimizations
+Day 1-2: Micro-action generation (first physical step)
+Day 3: 15-minute chunking for all tasks
+Day 4-5: Skip reason analysis dashboard
+
+Week 6: Dopamine Engineering
+Day 1-2: Instant visual celebrations (CSS animations)
+Day 3: Streak tracking in Redis
+Day 4-5: Weekly energy insight email
+
+Success Metrics:
+Time to action < 5 seconds
+Task completion rate > 60%
+Skip reasons categorized and tracked
+
+Phase 4: Polish & Intelligence (Week 7)
+
+Week 7: Learning & Optimization
+Day 1-2: Analyze skip patterns, adjust LLM prompts
+Day 3: Performance optimization (caching, query optimization)
+Day 4: Weekly insight generator
+Day 5: Documentation and handoff
+
+Success Metrics:
+System runs autonomously for 48 hours
+Weekly insight accurately reflects patterns
+All KPIs measured and baselined
+
+IV. Success Metrics & KPIs
+
+Primary KPIs
+Time to Action: < 5 seconds from surface to start
+Capture Coverage: 90%+ of commitments captured
+Task Completion Rate: 60%+ (vs 40% traditional)
+Energy Match Rate: 70%+ tasks at right energy
+Learning Metrics
+Skip Pattern Distribution: Track reasons (energy/time/context/importance)
+Completion Time Accuracy: Within 20% of estimates
+False Positive Rate: < 10% non-tasks created
+Agent Collaboration Success: 80%+ signals from existing agents
+
+V. Technical Stack
+
+javascript
+{
+  "infrastructure": {
+    "database": "Supabase (existing)",
+    "cache": "Redis @ lyco-redis:6379 (existing)",
+    "orchestration": "Docker Compose (existing)",
+    "existing_agents": ["Pluma (email)", "Huata (calendar)", "Yanay (orchestrator)"]
+  },
+  "new_components": {
+    "processor": "Python 3.11 with async/await",
+    "llm": "Anthropic Claude 3 Opus (primary), GPT-4 (fallback)",
+    "ui": "Vanilla JS + CSS (no framework needed for single view)"
+  },
+  "dependencies": {
+    "python": ["supabase-py", "anthropic", "redis", "click"],
+    "monitoring": ["Browser DevTools", "Supabase Dashboard", "Redis Monitor"]
+  }
+}
+
+VI. Critical Success Factors
+
+What We're NOT Building
+❌ No task lists or queues
+❌ No complex categorization
+❌ No planning interfaces
+❌ No manual task entry UI
+❌ No productivity analytics dashboards
+
+What We ARE Building
+✓ Single task visibility
+✓ Ambient signal capture
+✓ LLM-powered intelligence
+✓ Skip reason learning
+✓ Weekly pattern insights
+✓ Instant dopamine rewards
+
+The North Star Principle
+"Any feature that forces the user to think about the system rather than about the task represents a failure."
+Every decision, every line of code, every UI element must pass this test.
+
+VII. Risk Mitigation
+
+Technical Risks
+LLM API failures: Implement fallback to GPT-4 if Claude fails
+Signal overload: Rate limit to 100 signals/hour maximum
+False positives: Track and tune confidence thresholds
+User Experience Risks
+Empty state anxiety: Always show something ("All clear! Next check in 5 minutes")
+Completion addiction: Limit celebrations to prevent gaming
+Skip guilt: Frame skips as valuable data, not failures
+
+VIII. Post-MVP Evolution Triggers
+Implement energy_patterns table when:
+500+ tasks completed
+User reports energy mismatches > 3x/week
+Implement completion_patterns table when:
+1000+ tasks completed
+Time estimates consistently off by > 30%
+Add mobile interface when:
+Core loop stable for 30 days
+Desktop completion rate > 70%
+Add voice capture when:
+Mobile interface live
+User requests it 3+ times

@@ -1,0 +1,21 @@
+// Add this "alwaysAllow" section to your smart-memory server config:
+
+{
+  "mcpServers": {
+    "smart-memory": {
+      "command": "node",
+      "args": ["/Users/menedemestihas/Projects/demestihas-ai/mcp-smart-memory/index.js"],
+      "alwaysAllow": [
+        "analyze_for_memory",
+        "propose_memory",
+        "confirm_and_store",
+        "detect_patterns_in_conversation",
+        "get_relevant_context",
+        "track_decision",
+        "remember_error_and_fix",
+        "session_summary",
+        "check_memory_conflicts"
+      ]
+    }
+  }
+}

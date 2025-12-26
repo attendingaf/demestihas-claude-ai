@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DispoAssist: The Attribution Engine for Hospital Discharge</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#0066cc',
+                primaryTextColor: '#1a1a1a',
+                primaryBorderColor: '#0066cc',
+                lineColor: '#666',
+                secondaryColor: '#f0f7ff',
+                tertiaryColor: '#fff'
+            }
+        });
+    </script>
+    <style>
+        /* Professional SaaS-focused styling */
+        :root {
+            --primary-blue: #0066cc;
+            --dark-text: #1a1a1a;
+            --light-bg: #f0f7ff;
+            --border-gray: #e0e0e0;
+            --accent-green: #00a86b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-text);
+            border-bottom: 4px solid var(--primary-blue);
+            padding-bottom: 16px;
+            margin: 40px 0 24px 0;
+        }
+        
+        h1.title {
+            font-size: 3em;
+            border-bottom: none;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin: 36px 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin: 28px 0 16px 0;
+        }
+        
+        h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+        }
+        
+        p {
+            margin: 12px 0;
+            font-size: 1em;
+        }
+        
+        ul, ol {
+            margin: 12px 0 12px 24px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .version-info {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 40px;
+            padding: 12px;
+            background: #f8f8f8;
+            border-left: 3px solid var(--primary-blue);
+        }
+        
+        .metric-box {
+            background: var(--light-bg);
+            padding: 24px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-blue);
+            border-radius: 4px;
+        }
+        
+        .metric-box strong {
+            color: var(--primary-blue);
+            font-size: 1.1em;
+        }
+        
+        .highlight-stat {
+            background: var(--light-bg);
+            padding: 20px;
+            margin: 16px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .highlight-stat .number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: block;
+        }
+        
+        .highlight-stat .label {
+            font-size: 0.9em;
+            color: #666;
+            display: block;
+            margin-top: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+        
+        .citation {
+            vertical-align: super;
+            font-size: 0.75em;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .citation:hover {
+            text-decoration: underline;
+        }
+        
+        .mermaid {
+            background: #fafafa;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-gray);
+        }
+        
+        .diagram-caption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        
+        .comparison-table {
+            margin: 24px 0;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: 600;
+        }
+        
+        .callout {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+            background: #f0fff8;
+        }
+        
+        .callout-title {
+            font-weight: 600;
+            color: var(--accent-green);
+            margin-bottom: 8px;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--border-gray);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-top: 2px dashed var(--border-gray);
+        }
+        
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .page-break {
+                page-break-after: always;
+                border: none;
+            }
+        }
+        
+        /* References section */
+        .references {
+            font-size: 0.85em;
+            margin-top: 60px;
+        }
+        
+        .references ol {
+            list-style-type: decimal;
+        }
+        
+        .references li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="title">DispoAssist: The Attribution Engine for Hospital Discharge</h1>
+<p class="subtitle">AI-Native Platform Transforming a $100B Coordination Failure into Auditable LOS Reduction</p>
+
+<div class="version-info">
+    <strong>Version:</strong> 5.0<br>
+    <strong>Date:</strong> November 20, 2025<br>
+    <strong>Status:</strong> INVESTOR PRESENTATION – SaaS Architecture Revision<br>
+    <strong>Classification:</strong> Confidential – Investor Distribution
+</div>
+
+<h2>1. Executive Summary: The SaaS Play Hidden in Service Delivery</h2>
+
+<p>DispoAssist is building the <strong>attribution engine</strong> for hospital discharge—an AI-native platform that transforms a $100B coordination failure into auditable, per-patient LOS reduction data. While competitors sell dashboards (Qventus) or utilization review software (Xsolis), DispoAssist deploys human expeditors as <em>data collection instruments</em> that train proprietary ML models for autonomous discharge orchestration.</p>
+
+<div class="metric-box">
+<strong>The Core Insight:</strong> Every discharge delay contains structured, attributable intervention data. By capturing this data at scale through a validated service layer, DispoAssist builds an irreplicable dataset that enables:</div>
+
+<ul>
+<li><strong>Immediate Revenue:</strong> $10K/unit/month hospital contracts and 40-50% payer shared-savings splits</li>
+<li><strong>Data Moat:</strong> Proprietary taxonomy linking 200+ barrier types to time-stamped resolution actions</li>
+<li><strong>Software Trajectory:</strong> Gross margins expanding from 59% (Year 1) to 85%+ (Year 5) as AI ratio increases</li>
+<li><strong>Network Effects:</strong> Each hospital adds training data; each expeditor call improves prediction accuracy</li>
+</ul>
+
+<h3>Problem Validation</h3>
+
+<p>Hospital length-of-stay (LOS) has increased 15% from 4.5 days (2011) to 5.2 days (2021)<a class="citation" href="#ref1">1</a>, creating 24.5 million excess bed-days annually. The root cause is operational, not clinical: post-acute placement delays (3.8-11.5 days)<a class="citation" href="#ref5">5</a>, prior authorization friction (84% delayed >2 days)<a class="citation" href="#ref6">6</a>, and internal workflow inefficiencies (213-438 minutes wasted per discharge)<a class="citation" href="#ref7">7</a>.</p>
+
+<div class="highlight-stat">
+<span class="number">$65.6B – $102.4B</span>
+<span class="label">Total Addressable Market (TAM) from excess LOS + preventable readmissions</span>
+</div>
+
+<h3>Solution Architecture</h3>
+
+<p>DispoAssist pairs remote discharge expeditors (medical assistants at $44K salary<a class="citation" href="#ref60">60</a>) with AI task orchestration to eliminate discharge barriers in real-time. The differentiation is threefold:</p>
+
+<ol>
+<li><strong>Execution Layer:</strong> Unlike Qventus (alerts only), expeditors <em>perform</em> the work—calling SNFs, scheduling transport, reconciling medications</li>
+<li><strong>Attribution Engine:</strong> Every action is timestamped and logged against risk-adjusted LOS benchmarks, quantifying days saved per intervention</li>
+<li><strong>Payer-Grade Documentation:</strong> Immutable audit trails with BRIN-indexed event logs<a class="citation" href="#ref48">48</a> enable defensible shared-savings claims</li>
+</ol>
+
+<h3>Business Model: Dual-Track Revenue</h3>
+
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Revenue Track</th>
+<th>Target Customer</th>
+<th>Pricing Model</th>
+<th>Year 1 Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Track 1: Hospital Direct</strong></td>
+<td>200+ bed hospitals</td>
+<td>$10K/unit/month</td>
+<td>$480K (3 hospitals, 8 units)</td>
+</tr>
+<tr>
+<td><strong>Track 2: Payer Shared Savings</strong></td>
+<td>MA plans, Medicaid MCOs</td>
+<td>40-50% of verified savings</td>
+<td>$0 (validation year)</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Precedent Validation:</strong> Medicare Shared Savings Program (MSSP) generated $4.1B in 2024<a class="citation" href="#ref8">8</a>, with ACOs retaining 40-75% of savings. Payers desperately need attribution infrastructure—CVS/Aetna's nurse embedding program achieves only 25% engagement<a class="citation" href="#ref32">32</a>.</p>
+
+<h3>Capital Requirements & Use</h3>
+
+<p><strong>The Ask:</strong> $250K pre-seed to execute founder-operated V1 pilot, validate attribution methodology, and secure first hospital LOI.</p>
+
+<div class="callout">
+<div class="callout-title">Strategic Decision Point</div>
+<p>This dossier presents the conservative path. Market analysis (Section 8) demonstrates that a $4M seed round targeting enterprise-grade AI infrastructure would command 8-13x revenue multiples vs. 3-5x for tech-enabled services. The $250K validates service delivery; $4M builds the data moat.</p>
+</div>
+
+<h3>Current Traction & De-Risking</h3>
+
+<ul>
+<li><strong>Technical Validation:</strong> V0 system processed 30 mock coordination calls, proving database schema sufficiency<a class="citation" href="#ref40">40</a></li>
+<li><strong>Zero PHI Risk:</strong> Development uses synthetic data; enterprise AWS infrastructure ($280-300/month) ready for deployment post-funding</li>
+<li><strong>Founder Operation:</strong> CEO and co-founder personally operate V1 system during 3-6 month hardening phase before hiring first expeditor</li>
+</ul>
+
+<h3>Exit Landscape</h3>
+
+<p>Strategic acquirers include vertical consolidators (WellSky acquired CarePort for <strong>$1.35B at 13x revenue</strong><a class="citation" href="#ref14">14</a>), payers (Optum bought naviHealth generating <strong>2.5x ROI in <2 years</strong><a class="citation" href="#ref15">15</a>), and EHR vendors seeking discharge functionality.</p>
+
+<div class="page-break"></div>
+
+<h2>2. Why Now: The Confluence of Regulatory, Technical, and Economic Catalysts</h2>
+
+<p>DispoAssist emerges at the intersection of four converging market forces that create an unprecedented window for discharge optimization platforms.</p>
+
+<h3>2.1 Regulatory Tailwinds</h3>
+
+<h4>Hospital Readmissions Reduction Program (HRRP) Intensification</h4>
+
+<p>CMS penalties under HRRP have distributed <strong>$1.9 billion since 2013</strong>, with FY 2017 alone levying <strong>$528 million</strong><a class="citation" href="#ref-research">RESEARCH NEEDED: 2025 HRRP data</a>. For FY 2026:</p>
+
+<ul>
+<li><strong>77.6% of hospitals</strong> face readmission penalties</li>
+<li>Performance period shortened from 3 years to 2 years (effective FY 2027)</li>
+<li>Medicare Advantage data now included in six readmission measures<a class="citation" href="#ref-research">RESEARCH NEEDED: CMS FY2026 Final Rule</a></li>
+</ul>
+
+<p><strong>Implication:</strong> Hospitals cannot "wait out" penalties. Persistent readmission pressure demands proactive discharge intervention.</p>
+
+<h4>TEFCA Interoperability Mandates</h4>
+
+<p>The Trusted Exchange Framework and Common Agreement (TEFCA) went operational in 2024, with six QHINs (Qualified Health Information Networks) completing onboarding. Over <strong>2,000 Epic hospitals</strong> are preparing for TEFCA integration<a class="citation" href="#ref-research">RESEARCH NEEDED: ONC TEFCA adoption data</a>.</p>
+
+<div class="metric-box">
+<strong>DispoAssist Positioning:</strong> Our AWS-native architecture is FHIR-ready from Day 1. As post-acute providers connect to QHINs, DispoAssist becomes the orchestration layer that translates ADT feeds into actionable barrier resolution.</div>
+
+<h4>Value-Based Care Acceleration</h4>
+
+<p>CMS has set a goal of <strong>100% of Medicare beneficiaries in accountable care relationships by 2030</strong>. Current adoption:</p>
+
+<ul>
+<li><strong>54% of Medicare beneficiaries</strong> enrolled in Medicare Advantage (2024)</li>
+<li><strong>45.2% participation</strong> in VBC and shared-risk arrangements among hospitals/health plans (2023)</li>
+<li><strong>$4.1B in MSSP performance payments</strong> distributed to ACOs in 2024<a class="citation" href="#ref8">8</a></li>
+</ul>
+
+<h3>2.2 Economic Pressure: The Post-Pandemic Capacity Crisis</h3>
+
+<p>COVID-19 permanently disrupted hospital operations, creating structural inefficiencies that persist into 2025:</p>
+
+<ul>
+<li><strong>72.4% of hospital leaders</strong> report staffing shortages</li>
+<li><strong>92.9% report difficulty</strong> discharging to skilled nursing facilities</li>
+<li>Case managers handling <strong>100+ patients</strong> vs. 25-35 recommended<a class="citation" href="#ref29">29,30</a></li>
+</ul>
+
+<div class="mermaid">
+graph LR
+    A[Pre-COVID Baseline<br/>4.5 days LOS] -->|Pandemic Disruption| B[Peak Surge<br/>7+ days LOS]
+    B -->|Partial Recovery| C[2024 Current<br/>5.2 days LOS]
+    C -.->|DispoAssist Target| D[Optimized State<br/>4.7 days LOS]
+    
+    style A fill:#e8f4f8
+    style B fill:#ffe8e8
+    style C fill:#fff4e8
+    style D fill:#e8f8e8
+</div>
+<p class="diagram-caption">Figure 1: Hospital LOS has not returned to pre-pandemic efficiency despite easing clinical acuity</p>
+
+<p><strong>The Insight:</strong> Hospitals cannot hire their way out of this problem. The labor market for case managers and social workers remains constrained. Remote, AI-augmented expeditors provide 10x faster deployment than on-site hiring.</p>
+
+<h3>2.3 Technical Enablers: The AI Transcription Revolution</h3>
+
+<p>Three technical breakthroughs enable DispoAssist's model in 2025 but were impossible in 2020:</p>
+
+<h4>1. Medical-Grade Speech Recognition</h4>
+<p>Amazon Transcribe Medical and Deepgram achieve <strong>>95% accuracy</strong> on healthcare conversations at <strong>$0.02-0.04/minute</strong>. This is 10x cheaper than 2020 and eliminates manual note-taking burden.</p>
+
+<h4>2. HIPAA-Compliant LLM Inference</h4>
+<p>Amazon Bedrock (Claude 3.5) provides single-BAA endpoint for structured data extraction. No multi-vendor coordination required<a class="citation" href="#ref46">46</a>.</p>
+
+<h4>3. Serverless Orchestration at Scale</h4>
+<p>AWS Step Functions with CloudTrail integration provides <strong>tamper-evident audit trails</strong> required for payer attribution claims<a class="citation" href="#ref45">45</a>.</p>
+
+<h3>2.4 Market Validation: Competitor Traction Proves Demand</h3>
+
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>2024 Fundraise</th>
+<th>Valuation Signal</th>
+<th>KLAS Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Qventus</strong></td>
+<td>$105M Series D (Jan 2024)</td>
+<td>$400M valuation<a class="citation" href="#ref56">56</a></td>
+<td>92.5% (100% retention)<a class="citation" href="#ref-research">RESEARCH NEEDED: KLAS 2024</a></td>
+</tr>
+<tr>
+<td><strong>LeanTaaS</strong></td>
+<td>~$150M ACV (Aug 2024)</td>
+<td>30% YoY growth<a class="citation" href="#ref58">58</a></td>
+<td>95/100 for iQueue<a class="citation" href="#ref-research">RESEARCH NEEDED</a></td>
+</tr>
+<tr>
+<td><strong>Xsolis</strong></td>
+<td>$75M Series C (2021)</td>
+<td>500+ hospitals<a class="citation" href="#ref57">57</a></td>
+<td>#1 Physician Advisory (4 years)<a class="citation" href="#ref-research">RESEARCH NEEDED</a></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Gap Analysis:</strong> All three competitors focus on <em>insights</em> (dashboards, predictions, alerts). None provide the <em>execution layer</em> that actually performs discharge tasks. This is DispoAssist's wedge.</p>
+
+<div class="page-break"></div>
+
+<h2>3. The Problem: Healthcare's $100B Coordination Failure</h2>
+
+<p>Discharge delays are not a "soft" operations problem—they are a quantifiable, evidence-based market failure with clear economic parameters.</p>
+
+<h3>3.1 National Burden Quantification</h3>
+
+<h4>Length of Stay Inflation</h4>
+<p>AHRQ Healthcare Cost and Utilization Project (HCUP) analysis demonstrates:</p>
+
+<ul>
+<li>Mean hospital LOS: <strong>4.5 days (2011) → 5.2 days (2021)</strong> = 15% increase<a class="citation" href="#ref1">1</a></li>
+<li>Hospital-level median LOS: <strong>8.8% increase vs. 2019 baseline</strong><a class="citation" href="#ref2">2</a></li>
+<li>Annual excess bed-days: <strong>24.5 million</strong> (0.7 days × 35M admissions<a class="citation" href="#ref10">10</a>)</li>
+</ul>
+
+<h4>Economic Impact</h4>
+<p>Validated cost methodologies converge on <strong>$2,000-$3,500 marginal cost per excess day</strong><a class="citation" href="#ref3">3</a>:</p>
+
+<ul>
+<li>Cost-function regressions from Medicare cost reports</li>
+<li>Encounter-level administrative data with charge-to-cost conversion</li>
+<li>Cost-accounting approaches with overhead allocation</li>
+</ul>
+
+<div class="highlight-stat">
+<span class="number">$49B – $85.8B</span>
+<span class="label">Annual cost of excess inpatient days (24.5M days × $2,000-$3,500)</span>
+</div>
+
+<h4>Readmission Cascade</h4>
+<p>Poor discharge coordination drives preventable readmissions:</p>
+
+<ul>
+<li>Annual readmissions: <strong>4.28 million</strong><a class="citation" href="#ref4">4</a></li>
+<li>Mean hospital cost per readmission: <strong>$14,400</strong><a class="citation" href="#ref4">4</a></li>
+<li>Preventable fraction: <strong>27%</strong> based on Health Affairs analysis<a class="citation" href="#ref13">13</a></li>
+<li><strong>Annual preventable readmission cost: $16.6 billion</strong></li>
+</ul>
+
+<h3>3.2 Root Cause Analysis: Operational Bottlenecks, Not Clinical Complexity</h3>
+
+<p>Time-and-motion studies reveal discharge delays stem from three non-clinical failure modes:</p>
+
+<h4>External Constraints: Post-Acute Placement Delays</h4>
+<p>Peer-reviewed studies quantify delays by destination<a class="citation" href="#ref5">5</a>:</p>
+
+<table>
+<thead>
+<tr>
+<th>Destination</th>
+<th>Average Delay (Days)</th>
+<th>Primary Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skilled Nursing Facility</td>
+<td>3.8-3.9</td>
+<td>Bed availability + insurance authorization</td>
+</tr>
+<tr>
+<td>Acute Rehabilitation</td>
+<td>3.8</td>
+<td>Payer pre-certification</td>
+</tr>
+<tr>
+<td>Group Home Placement</td>
+<td>Up to 30</td>
+<td>Limited supply + complex coordination</td>
+</tr>
+<tr>
+<td>Home with DME</td>
+<td>2-4</td>
+<td>Equipment delivery logistics</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Prior Authorization Friction</h4>
+<p>Analysis of post-acute authorization processes<a class="citation" href="#ref6">6</a>:</p>
+
+<ul>
+<li><strong>84% of inpatient rehabilitation facilities</strong> experience >2 day authorization delays</li>
+<li><strong>53% of initial requests denied</strong>, requiring appeals and documentation</li>
+<li><strong>94% of clinicians</strong> report care delays attributable to authorization</li>
+</ul>
+
+<div class="metric-box">
+<strong>The Payer Paradox:</strong> Health plans have financial incentive to approve discharges quickly (saves per-diem costs), yet authorization workflows introduce 72-120 hour actual wait times due to weekends and business-hour restrictions.</div>
+
+<h4>Internal Workflow Inefficiencies</h4>
+<p>Direct observation studies decompose discharge-day time waste<a class="citation" href="#ref7">7</a>:</p>
+
+<ul>
+<li>Total discharge duration: <strong>213.5-438.8 minutes baseline</strong></li>
+<li>Medication preparation: <strong>88 minutes</strong> (reducible to 30 with fast-track)</li>
+<li>Equipment delivery: <strong>10.1% of total time</strong></li>
+<li>Process reengineering achieves <strong>44% total time reduction</strong></li>
+</ul>
+
+<p>Pharmacist-specific waste: <strong>26.2 minutes per discharge</strong> on medication lists, with 4.0 minutes spent manually retyping between systems<a class="citation" href="#ref17">17</a>. Monetized waste: <strong>$39.60 per discharge</strong> in pharmacist time alone.</p>
+
+<h3>3.3 Market Sizing: Bottom-Up Methodology</h3>
+
+<div class="mermaid">
+graph TD
+    A[TAM: Total Addressable Market<br/>$65.6B - $102.4B] --> B[SAM: Serviceable Addressable Market<br/>$25B - $43.8B]
+    B --> C[SOM: Serviceable Obtainable Market<br/>$1B in 5 years]
+    
+    A1[35M annual hospitalizations<br/>0.7 excess days @ $2-3.5K/day<br/>+ 4.28M readmissions × 27% preventable] -.-> A
+    
+    B1[Focus: Hospitals >200 beds<br/>2,500 facilities<br/>10K admissions each<br/>0.5 day target reduction] -.-> B
+    
+    C1[Conservative 5-year capture:<br/>500 hospitals 20%<br/>5M admissions covered<br/>$200/admission revenue] -.-> C
+    
+    style A fill:#e8f8f8
+    style B fill:#fff8e8
+    style C fill:#e8f8e8
+    style A1 fill:#f0f0f0
+    style B1 fill:#f0f0f0
+    style C1 fill:#f0f0f0
+</div>
+<p class="diagram-caption">Figure 2: Market sizing funnel using validated cost data and conservative penetration assumptions</p>
+
+<h3>3.4 Why Software-Only Solutions Fail: The Execution Gap</h3>
+
+<p>Despite 96% EHR adoption<a class="citation" href="#ref31">31</a>, discharge delays persist because:</p>
+
+<ol>
+<li><strong>Dashboards show problems but don't solve them:</strong> Qventus provides "nudges" to clinical staff, but those staff are already overloaded (72.4% report shortages<a class="citation" href="#ref29">29</a>)</li>
+<li><strong>Clinical staff lack bandwidth for execution:</strong> Case managers handling 100+ patients vs. 25-35 recommended<a class="citation" href="#ref30">30</a></li>
+<li><strong>Coordination requires human judgment:</strong> Calling a SNF to negotiate bed availability, explaining insurance benefits to a confused family—these tasks resist full automation</li>
+<li><strong>Prior authorization requires persistent follow-up:</strong> Payers rarely respond to first request; escalation and re-documentation are manual processes</li>
+</ol>
+
+<div class="callout">
+<div class="callout-title">The DispoAssist Insight</div>
+<p>The market doesn't need better <em>insights</em>—it needs better <em>execution</em>. By pairing humans with AI, DispoAssist solves coordination problems while generating the structured data that eventually enables full automation.</p>
+</div>
+
+<div class="page-break"></div>
+
+<h2>4. The Solution: Attribution Engine as Data Platform</h2>
+
+<p>DispoAssist is not a "tech-enabled service"—it is a <strong>data collection platform</strong> that uses service delivery as the acquisition mechanism for proprietary training data. The expeditor workforce is the sensor array; the AI models are the product.</p>
+
+<h3>4.1 Core Architecture: The Three-Layer Stack</h3>
+
+<div class="mermaid">
+sequenceDiagram
+    participant H as Hospitalist
+    participant E as Expeditor (Human)
+    participant AI as AI Orchestration
+    participant A as Attribution Engine
+    participant P as Payer Dashboard
+
+    H->>E: Discharge discussion<br/>(morning rounds)
+    activate E
+    E->>AI: Audio → Transcription<br/>(Deepgram/Transcribe Medical)
+    AI->>AI: Extract barriers, tasks<br/>(Claude 3.5 Bedrock)
+    AI->>E: Structured action items
+    
+    E->>E: Execute coordination:<br/>• Call SNF<br/>• Schedule transport<br/>• Order DME
+    
+    E->>A: Log interventions with timestamps
+    A->>A: Compare to risk-adjusted benchmarks<br/>(DRG-specific LOS expectations)
+    
+    Note over A: Calculate days saved:<br/>Actual LOS vs Expected LOS
+    
+    A->>P: Real-time ROI metrics
+    P->>P: Verify savings for shared-savings contract
+    
+    deactivate E
+</div>
+<p class="diagram-caption">Figure 3: DispoAssist workflow showing data capture at every step</p>
+
+<h4>Layer 1: Remote Discharge Expeditor (Human Execution)</h4>
+
+<p>Medical assistants (median salary $44,200<a class="citation" href="#ref60">60</a>) dedicated to 20-30 patients who:</p>
+
+<ul>
+<li>Join daily rounds virtually (no hospital badge required)</li>
+<li>Own non-clinical discharge tasks (transport scheduling, equipment ordering, SNF bed confirmation)</li>
+<li>Serve as central communication hub between hospital, family, and post-acute providers</li>
+</ul>
+
+<p><strong>Economic Advantage:</strong> MA salary is 48% lower than RN case manager ($85K+), enabling positive unit economics from Day 1.</p>
+
+<h4>Layer 2: AI Task Orchestration (Technology Automation)</h4>
+
+<p>AWS-native serverless architecture provides:</p>
+
+<ul>
+<li><strong>Transcription:</strong> Amazon Transcribe Medical converts coordination calls to text ($0.02/min)</li>
+<li><strong>Extraction:</strong> Amazon Bedrock (Claude 3.5) parses barriers, tasks, medications from unstructured conversations</li>
+<li><strong>Routing:</strong> AWS Step Functions distribute work to appropriate parties with SLA tracking</li>
+<li><strong>Prediction:</strong> ML models identify likely delays 24-48 hours before they occur</li>
+</ul>
+
+<p><strong>Technical Moat:</strong> BRIN-indexed event logs with JSONB payloads provide <strong>99.82% reduction in page access</strong><a class="citation" href="#ref48">48</a> for real-time attribution queries.</p>
+
+<h4>Layer 3: Attribution Engine (Differentiation)</h4>
+
+<p>Immutable append-only audit trail captures:</p>
+
+<ul>
+<li><strong>Every expeditor action</strong> with millisecond timestamp</li>
+<li><strong>Barrier type, severity, resolution time</strong> from proprietary taxonomy (200+ categories)</li>
+<li><strong>Actual vs. expected LOS</strong> by DRG using risk-adjusted benchmarks</li>
+<li><strong>Causality scores</strong> linking specific interventions to discharge acceleration</li>
+</ul>
+
+<div class="metric-box">
+<strong>Payer Value Proposition:</strong> Unlike dashboard vendors who claim "we helped," DispoAssist provides timestamped evidence: "On 11/15 at 2:34 PM, Expeditor Sarah called Sunrise SNF and secured bed confirmation, eliminating projected 2.8-day delay for Patient MRN 12345."</div>
+
+<h3>4.2 Clinical Evidence Supporting Remote Coordination</h3>
+
+<h4>Post-Discharge Phone Programs</h4>
+<p>Large-scale analysis of 137,515 calls demonstrates <strong>7-day readmission rates of 2.91% (contacted) vs. 4.73% (non-contacted)</strong>, proving remote intervention effectiveness<a class="citation" href="#ref35">35</a>.</p>
+
+<h4>AI Discharge Prediction</h4>
+<p>Fraser Health study achieved <strong>86% accuracy</strong> predicting discharge within 24 hours, <strong>4x more accurate than clinician estimates</strong><a class="citation" href="#ref36">36</a>.</p>
+
+<h4>Dedicated Coordinator Impact</h4>
+<p>Systematic reviews demonstrate<a class="citation" href="#ref37">37</a>:</p>
+
+<ul>
+<li>LOS reduction: <strong>0.5 to 1.0 day decrease</strong></li>
+<li>Multi-disciplinary approach: <strong>41.5% reduction in delayed discharges</strong></li>
+<li><strong>No increase in readmission rates</strong> despite faster discharge</li>
+</ul>
+
+<h4>Comparator Success Metrics</h4>
+
+<table>
+<thead>
+<tr>
+<th>Organization</th>
+<th>Intervention</th>
+<th>LOS Impact</th>
+<th>Financial Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qventus</td>
+<td>AI alerts + dashboards</td>
+<td>20-35% excess day reduction<a class="citation" href="#ref38">38</a></td>
+<td>$6.6M annual savings (OhioHealth)</td>
+</tr>
+<tr>
+<td>Cleveland Clinic PATH</td>
+<td>Pre-surgical discharge planning</td>
+<td>90% successful post-acute placement<a class="citation" href="#ref39">39</a></td>
+<td>1,400 excess days eliminated annually</td>
+</tr>
+<tr>
+<td>DispoAssist (Target)</td>
+<td>Remote expeditor + AI orchestration</td>
+<td>0.5 day reduction (10-15%)</td>
+<td>$150K monthly savings per unit</td>
+</tr>
+</tbody>
+</table>
+
+<div class="page-break"></div>
+
+</body>
+</html>

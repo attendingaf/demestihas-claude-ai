@@ -1,0 +1,144 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual triggering
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ${{ github.repository_owner }}/demestihas
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for agent
+        id: meta-agent
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-agent
+          tags: |
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push agent image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./agent
+          push: true
+          tags: ${{ steps.meta-agent.outputs.tags }}
+          labels: ${{ steps.meta-agent.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Extract metadata for streamlit
+        id: meta-streamlit
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-streamlit
+          tags: |
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push streamlit image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./streamlit
+          push: true
+          tags: ${{ steps.meta-streamlit.outputs.tags }}
+          labels: ${{ steps.meta-streamlit.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /root/demestihas-ai
+
+            # Login to GitHub Container Registry
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            # Pull latest images
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-agent:latest
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-streamlit:latest
+
+            # Stop current containers
+            docker stop demestihas-agent demestihas-streamlit || true
+            docker rm demestihas-agent demestihas-streamlit || true
+
+            # Start containers with new images using docker run
+            # Agent container
+            docker run -d \
+              --name demestihas-agent \
+              --network demestihas-ai_demestihas-network \
+              -p 8000:8000 \
+              --env-file .env \
+              -e JWT_SECRET=${JWT_SECRET:-change-this-secret-in-production} \
+              -e FALKORDB_HOST=graph_db \
+              -e FALKORDB_PORT=6379 \
+              -e FALKORDB_GRAPH_NAME=demestihas_knowledge \
+              -e FALKORDB_MAX_CONNECTIONS=10 \
+              ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-agent:latest
+
+            # Streamlit container
+            docker run -d \
+              --name demestihas-streamlit \
+              --network demestihas-ai_demestihas-network \
+              -p 8501:8501 \
+              --env-file .env \
+              ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-streamlit:latest
+
+            # Wait for services to be ready
+            echo "Waiting for services to start..."
+            sleep 15
+
+            # Health check
+            if curl -f http://localhost:8000/health > /dev/null 2>&1; then
+              echo "✅ Agent service is healthy"
+            else
+              echo "❌ Agent service health check failed"
+              docker logs --tail 50 demestihas-agent
+              exit 1
+            fi
+
+            if curl -f http://localhost:8501 > /dev/null 2>&1; then
+              echo "✅ Streamlit service is healthy"
+            else
+              echo "❌ Streamlit service health check failed"
+              docker logs --tail 50 demestihas-streamlit
+              exit 1
+            fi
+
+            echo "🚀 Deployment successful!"
+
+      - name: Deployment status
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ Deployment completed successfully"
+          else
+            echo "❌ Deployment failed"
+          fi

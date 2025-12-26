@@ -1,0 +1,30 @@
+# Context Engine Dependencies
+
+# Core caching and storage
+redis==5.0.1           # L1 cache with Redis
+msgpack==1.0.5         # Efficient serialization
+lz4==4.3.2            # Fast compression
+pybloom-live==4.0.0    # Bloom filters for existence checks
+
+# Real-time sync
+websockets==11.0.3     # WebSocket support for real-time
+supabase==2.0.0        # Supabase client for cloud storage
+
+# Performance and testing
+numpy==1.24.3          # Numerical operations
+matplotlib==3.7.1      # Performance visualization
+psutil==5.9.5          # System monitoring
+
+# Testing
+pytest==7.4.0          # Test framework
+pytest-asyncio==0.21.0 # Async test support
+pytest-cov==4.1.0      # Coverage reporting
+
+# Optional optimizations
+uvloop==0.17.0         # Fast event loop (Unix only)
+orjson==3.9.1          # Fast JSON parsing
+
+# Development tools
+black==23.3.0          # Code formatting
+mypy==1.4.0           # Type checking
+pylint==2.17.4        # Code linting

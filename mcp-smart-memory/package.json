@@ -1,0 +1,28 @@
+{
+  "name": "mcp-smart-memory",
+  "version": "2.0.0",
+  "description": "Smart MCP server for Demestihas.ai memory system with active learning",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "api": "node memory-api.js",
+    "api-enhanced": "node memory-api-enhanced.js",
+    "dev": "node --watch index.js",
+    "gdrive": "node gdrive-monitor.js",
+    "test": "./test_all_phases.sh"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "@supabase/supabase-js": "^2.57.4",
+    "axios": "^1.6.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^4.18.2",
+    "googleapis": "^128.0.0",
+    "natural": "^6.10.0",
+    "openai": "^5.21.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

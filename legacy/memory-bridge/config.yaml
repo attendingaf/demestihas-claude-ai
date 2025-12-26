@@ -1,0 +1,30 @@
+extraction:
+  enabled: true
+  interval_seconds: 300  # Run every 5 minutes
+  batch_size: 20  # Process 20 messages at a time
+  lookback_hours: 24  # Only process last 24h
+
+anthropic:
+  model: "claude-sonnet-4-20250514"
+  max_tokens: 2000
+  temperature: 0.1  # Low for consistency
+
+filtering:
+  min_confidence: 0.7  # Only store facts with >70% confidence
+  min_importance: 5  # Only store importance >= 5
+  exclude_contexts: ["greeting", "acknowledgment"]
+
+storage:
+  api_url: "http://agent:8000"
+  memory_type: "system"  # Store extracted facts as system memories
+  deduplicate: true  # Check for existing facts before storing
+
+qdrant:
+  host: "qdrant"
+  port: 6333
+  collection_name: "semantic_memories"
+
+logging:
+  level: "INFO"
+  file: "/root/memory-bridge/extraction.log"
+  max_size_mb: 100

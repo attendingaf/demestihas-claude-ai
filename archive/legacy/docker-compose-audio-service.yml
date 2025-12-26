@@ -1,0 +1,25 @@
+# ADD THIS SERVICE TO /root/lyco-ai/docker-compose.yml
+# Insert this into the services section of the existing docker-compose.yml
+
+  audio_workflow:
+    build: 
+      context: .
+      dockerfile: Dockerfile.audio
+    container_name: audio_workflow
+    restart: unless-stopped
+    volumes:
+      - ./audio_workflow:/app/audio_workflow
+      - ./logs:/app/logs
+      - ./credentials:/app/credentials
+      - /tmp/audio_work:/tmp/audio_work
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/google-service-account.json
+      - GOOGLE_DRIVE_FOLDER_ID=${GOOGLE_DRIVE_FOLDER_ID}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+    depends_on:
+      - redis
+    networks:
+      - lyco-network

@@ -1,0 +1,67 @@
+WARNING:  invalid configuration parameter name "supautils.disable_program", removing it
+DETAIL:  "supautils" is now a reserved prefix.
+ call_id 
+---------
+       1
+(1 row)
+
+INSERT 0 1
+ barrier_id 
+------------
+          1
+(1 row)
+
+INSERT 0 1
+          test_name           
+------------------------------
+ Test 3: Verify records exist
+(1 row)
+
+ call_id | scenario_id 
+---------+-------------
+       1 | TEST-001
+(1 row)
+
+ barrier_id | barrier_type 
+------------+--------------
+          1 | Medical
+(1 row)
+
+DELETE 1
+                      test_name                       
+------------------------------------------------------
+ Test 5: Verify CASCADE delete worked (expect 0 rows)
+(1 row)
+
+ barrier_count 
+---------------
+             0
+(1 row)
+
+                               test_name                                
+------------------------------------------------------------------------
+ Test 6: Testing CHECK constraint for call_duration > 180 (should FAIL)
+(1 row)
+
+psql:/root/validation-tests.sql:67: ERROR:  new row for relation "calls" violates check constraint "calls_call_duration_check"
+DETAIL:  Failing row contains (2, TEST-002, 2025-11-16 02:48:01.189902+00, 200, Mene, null, Medicare, Test Diagnosis, Test Location, null, Active, null, 2025-11-16 02:48:01.189902+00).
+                              test_name                              
+---------------------------------------------------------------------
+ Test 7: Testing CHECK constraint for patient_age < 18 (should FAIL)
+(1 row)
+
+psql:/root/validation-tests.sql:87: ERROR:  new row for relation "calls" violates check constraint "calls_patient_age_check"
+DETAIL:  Failing row contains (3, TEST-003, 2025-11-16 02:48:01.193228+00, 30, Mene, 15, Private, Test Diagnosis, Test Location, null, Active, null, 2025-11-16 02:48:01.193228+00).
+                  test_name                  
+---------------------------------------------
+ Test 8: Insert valid data across all tables
+(1 row)
+
+ call_id 
+---------
+       4
+(1 row)
+
+INSERT 0 1
+psql:/root/validation-tests.sql:125: ERROR:  insert or update on table "tasks" violates foreign key constraint "tasks_call_id_fkey"
+DETAIL:  Key (call_id)=(2) is not present in table "calls".

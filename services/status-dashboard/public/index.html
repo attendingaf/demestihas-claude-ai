@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demestihas AI - Service Status Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .timestamp {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .service-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .status-healthy {
+            background-color: #4CAF50;
+            box-shadow: 0 0 10px #4CAF50;
+        }
+
+        .status-unhealthy {
+            background-color: #f44336;
+            box-shadow: 0 0 10px #f44336;
+        }
+
+        .status-error {
+            background-color: #ff9800;
+            box-shadow: 0 0 10px #ff9800;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        .port {
+            background: rgba(0,0,0,0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        .service-details {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .response-time {
+            font-family: monospace;
+        }
+
+        .error-message {
+            color: #ffcdd2;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(244, 67, 54, 0.2);
+            border-radius: 5px;
+        }
+
+        .refresh-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .refresh-progress {
+            width: 100px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .refresh-progress-bar {
+            height: 100%;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 10s linear;
+        }
+
+        .stats-summary {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .stats-summary { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Demestihas AI System</h1>
+        <p class="subtitle">Service Status Dashboard</p>
+        <p class="timestamp" id="timestamp">Loading...</p>
+
+        <div class="stats-summary" id="stats-summary">
+            <div class="stat-item">
+                <div class="stat-value" id="healthy-count">0</div>
+                <div class="stat-label">Healthy</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="total-count">0</div>
+                <div class="stat-label">Total Services</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="avg-response">0ms</div>
+                <div class="stat-label">Avg Response</div>
+            </div>
+        </div>
+
+        <div class="services-grid" id="services-grid">
+            <!-- Services will be dynamically added here -->
+        </div>
+    </div>
+
+    <div class="refresh-bar">
+        <span>Auto-refresh</span>
+        <div class="refresh-progress">
+            <div class="refresh-progress-bar" id="progress-bar"></div>
+        </div>
+        <span id="countdown">10s</span>
+    </div>
+
+    <script>
+        let refreshInterval = 10000; // 10 seconds
+        let countdownInterval;
+        let progressInterval;
+
+        async function fetchStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                updateDashboard(data);
+            } catch (error) {
+                console.error('Failed to fetch status:', error);
+                showError();
+            }
+        }
+
+        function updateDashboard(data) {
+            const grid = document.getElementById('services-grid');
+            const timestamp = document.getElementById('timestamp');
+
+            // Update timestamp
+            timestamp.textContent = `Last updated: ${new Date(data.timestamp).toLocaleString()}`;
+
+            // Clear existing services
+            grid.innerHTML = '';
+
+            // Statistics
+            let healthyCount = 0;
+            let totalCount = 0;
+            let totalResponseTime = 0;
+            let responseCount = 0;
+
+            // Add service cards
+            Object.entries(data.services).forEach(([name, service]) => {
+                totalCount++;
+                if (service.status === 'healthy') healthyCount++;
+                if (service.responseTime) {
+                    totalResponseTime += service.responseTime;
+                    responseCount++;
+                }
+
+                const card = createServiceCard(name, service);
+                grid.appendChild(card);
+            });
+
+            // Update statistics
+            document.getElementById('healthy-count').textContent = healthyCount;
+            document.getElementById('total-count').textContent = totalCount;
+            document.getElementById('avg-response').textContent =
+                responseCount > 0 ? `${Math.round(totalResponseTime / responseCount)}ms` : '0ms';
+        }
+
+        function createServiceCard(name, service) {
+            const card = document.createElement('div');
+            card.className = 'service-card';
+
+            const statusClass = `status-${service.status}`;
+            const statusIcon = service.status === 'healthy' ? '✅' :
+                              service.status === 'error' ? '⚠️' : '❌';
+
+            let detailsHtml = '';
+            if (service.responseTime !== undefined) {
+                detailsHtml += `
+                    <div class="detail-row">
+                        <span>Response Time:</span>
+                        <span class="response-time">${service.responseTime}ms</span>
+                    </div>
+                `;
+            }
+
+            if (service.details) {
+                if (service.details.uptime) {
+                    detailsHtml += `
+                        <div class="detail-row">
+                            <span>Uptime:</span>
+                            <span>${service.details.uptime}</span>
+                        </div>
+                    `;
+                }
+                if (service.details.tasks !== undefined) {
+                    detailsHtml += `
+                        <div class="detail-row">
+                            <span>Tasks:</span>
+                            <span>${service.details.tasks}</span>
+                        </div>
+                    `;
+                }
+            }
+
+            if (service.error) {
+                detailsHtml += `<div class="error-message">${service.error}</div>`;
+            }
+
+            card.innerHTML = `
+                <div class="service-header">
+                    <div class="service-name">
+                        ${statusIcon}
+                        <span>${name}</span>
+                    </div>
+                    <span class="port">:${service.port}</span>
+                </div>
+                <div class="status-indicator ${statusClass}"></div>
+                ${detailsHtml ? `<div class="service-details">${detailsHtml}</div>` : ''}
+            `;
+
+            card.onclick = () => {
+                // Could add click handler to show logs or more details
+                console.log(`Clicked on ${name}`, service);
+            };
+
+            return card;
+        }
+
+        function showError() {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '<div class="error-message" style="grid-column: 1/-1;">Failed to fetch service status. Retrying...</div>';
+        }
+
+        function startRefreshCountdown() {
+            let secondsLeft = refreshInterval / 1000;
+            const progressBar = document.getElementById('progress-bar');
+            const countdown = document.getElementById('countdown');
+
+            // Reset progress bar
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            setTimeout(() => {
+                progressBar.style.transition = 'width 10s linear';
+                progressBar.style.width = '100%';
+            }, 50);
+
+            // Update countdown
+            countdownInterval = setInterval(() => {
+                secondsLeft--;
+                countdown.textContent = `${secondsLeft}s`;
+
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    fetchStatus();
+                    startRefreshCountdown();
+                }
+            }, 1000);
+        }
+
+        // Initial fetch and start auto-refresh
+        fetchStatus();
+        startRefreshCountdown();
+
+        // Fetch immediately when page gains focus
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                fetchStatus();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+You are analyzing call plan documents for a physician executive. Extract action items into two categories:
+
+1. MENE'S ACTION ITEMS - Tasks Mene committed to or should do
+2. FOLLOW-UP ITEMS - Commitments others made that Mene should track
+
+For each item include:
+- The action
+- The person involved
+- Any deadline mentioned
+- Source document name
+
+Be specific and actionable. Ignore boilerplate template sections. Focus on the "Post-Call Reflection" section if present, as well as any explicit commitments in the document body.
+
+IMPORTANT: Return the result strictly as a valid JSON object with the following structure:
+{
+  "mene_actions": [
+    { "action": "...", "person": "...", "deadline": "...", "source": "..." }
+  ],
+  "followup_items": [
+    { "action": "...", "person": "...", "deadline": "...", "source": "..." }
+  ]
+}
+Do not include any preamble or text outside the JSON block.

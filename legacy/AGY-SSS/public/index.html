@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>⚽ Soccer Calendar</h1>
+            <button id="subscribe-btn" class="icon-btn" aria-label="Subscribe">📅</button>
+        </header>
+
+        <main>
+            <!-- Hero Section: Next Match -->
+            <section id="hero-card" class="hero-card hidden" role="button" tabindex="0"
+                aria-label="View details for next match">
+                <div class="hero-header">
+                    <span class="badge" id="hero-league-badge">UPCOMING NEXT</span>
+                    <span id="hero-timer" class="timer">Loading...</span>
+                </div>
+                <div class="match-info">
+                    <div class="team home">
+                        <img id="hero-home-logo" src="" alt="Home Team Logo"
+                            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>'">
+                        <span id="hero-home-name">Home</span>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team away">
+                        <img id="hero-away-logo" src="" alt="Away Team Logo"
+                            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>'">
+                        <span id="hero-away-name">Away</span>
+                    </div>
+                </div>
+                <div class="match-details">
+                    <div class="detail-row">
+                        <span class="icon" aria-hidden="true">📍</span>
+                        <span id="hero-venue">Venue</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="icon" aria-hidden="true">⏰</span>
+                        <span id="hero-time">Time</span>
+                    </div>
+                </div>
+                <a id="hero-watch-btn" href="#" target="_blank" class="action-btn">📺 Watch Now</a>
+            </section>
+
+            <!-- Filters -->
+            <div class="filters-scroll" role="group" aria-label="Filter events">
+                <button class="filter-chip active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-chip" data-filter="Atlanta United" style="--chip-color: #80000A"
+                    aria-pressed="false">Atlanta</button>
+                <button class="filter-chip" data-filter="Arsenal" style="--chip-color: #EF0107"
+                    aria-pressed="false">Arsenal</button>
+                <button class="filter-chip" data-filter="USMNT" style="--chip-color: #002868"
+                    aria-pressed="false">USA</button>
+                <button class="filter-chip" data-filter="Other MLS" style="--chip-color: #000000"
+                    aria-pressed="false">Other MLS</button>
+                <button class="filter-chip" data-filter="Champions League" style="--chip-color: #1A237E"
+                    aria-pressed="false">Champions League</button>
+                <button class="filter-chip" data-filter="Soccer Shows" style="--chip-color: #4CAF50"
+                    aria-pressed="false">Shows</button>
+            </div>
+
+            <!-- Calendar -->
+            <div id="calendar"></div>
+
+            <!-- Legend -->
+            <div class="legend" aria-label="Category Legend">
+                <div class="legend-item"><span class="legend-dot" style="background-color: #80000A"></span> Atlanta
+                </div>
+                <div class="legend-item"><span class="legend-dot" style="background-color: #EF0107"></span> Arsenal
+                </div>
+                <div class="legend-item"><span class="legend-dot" style="background-color: #002868"></span> USMNT</div>
+                <div class="legend-item"><span class="legend-dot" style="background-color: #4CAF50"></span> Shows</div>
+                <div class="legend-item"><span class="legend-dot" style="background-color: #1A237E"></span> UCL</div>
+            </div>
+
+            <footer class="app-footer">
+                <small id="last-updated">Last updated: ...</small>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-header" id="modal-header">
+                <span id="modal-badge" aria-hidden="true">🔴</span>
+                <h2 id="modal-title">Match Title</h2>
+            </div>
+            <div class="modal-body">
+                <p id="modal-date-time" class="modal-detail">📅 Date & Time</p>
+                <p id="modal-venue" class="modal-detail">📍 Venue</p>
+
+                <div class="streaming-section">
+                    <h3>📺 Where to Watch</h3>
+                    <div id="modal-streaming-options" class="streaming-grid">
+                        <!-- Buttons injected here -->
+                    </div>
+                </div>
+
+                <button id="add-to-cal-btn" class="secondary-btn">Add to My Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div id="subscribe-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="sub-modal-title">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2 id="sub-modal-title">Subscribe to Calendar</h2>
+            <p>Get automatic updates on your device!</p>
+            <div class="subscribe-links">
+                <a href="webcal://sss.beltlineconsulting.co/demestihas-soccer.ics" class="sub-link google">Google /
+                    Android</a>
+                <a href="webcal://sss.beltlineconsulting.co/demestihas-soccer.ics" class="sub-link apple">Apple
+                    Calendar</a>
+                <div class="copy-link-container">
+                    <input type="text" value="https://sss.beltlineconsulting.co/demestihas-soccer.ics" readonly>
+                    <button>Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: lyco-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - lyco-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  lyco:
+    build: .
+    container_name: lyco-yanay
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NOTION_API_KEY=${NOTION_API_KEY}
+      - NOTION_TASKS_DATABASE_ID=${NOTION_TASKS_DATABASE_ID}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./agents:/app/agents
+      - ./shared:/app/shared
+      - ./logs:/app/logs
+    networks:
+      - lyco-network
+    command: python agents/yanay/yanay.py
+
+volumes:
+  redis-data:
+
+networks:
+  lyco-network:
+    driver: bridge

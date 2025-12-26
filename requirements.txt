@@ -1,0 +1,14 @@
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+requests
+python-telegram-bot
+redis
+python-dotenv
+anthropic
+notion-client
+click
+openai
+supabase
+aiohttp

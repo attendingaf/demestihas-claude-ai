@@ -1,0 +1,20 @@
+  hermes_audio:
+    build:
+      context: ./hermes_audio
+      dockerfile: Dockerfile
+    container_name: hermes_audio_container
+    environment:
+      - HERMES_EMAIL_ADDRESS=hermesaudio444@gmail.com
+      - HERMES_EMAIL_PASSWORD=${HERMES_EMAIL_PASSWORD}
+      - EMAIL_IMAP_SERVER=imap.gmail.com
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LYCO_API_URL=http://bot:8000
+    volumes:
+      - ./hermes_audio:/app
+      - ./logs:/app/logs
+    networks:
+      - default
+    restart: unless-stopped
+    depends_on:
+      - bot

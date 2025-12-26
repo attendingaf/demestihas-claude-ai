@@ -1,0 +1,85 @@
+WARNING:  invalid configuration parameter name "supautils.disable_program", removing it
+DETAIL:  "supautils" is now a reserved prefix.
+DELETE 1
+psql:/root/validation-tests-fixed.sql:65: NOTICE:  Test 1: Created call with ID 5
+psql:/root/validation-tests-fixed.sql:65: NOTICE:  Test 2: Created barrier for call ID 5
+psql:/root/validation-tests-fixed.sql:65: NOTICE:  Test 3: Verifying records exist...
+psql:/root/validation-tests-fixed.sql:65: NOTICE:  Test 4: Deleted call ID 5
+psql:/root/validation-tests-fixed.sql:65: NOTICE:  Test 5: CASCADE DELETE verified - barrier successfully deleted
+DO
+psql:/root/validation-tests-fixed.sql:82: NOTICE:  Test 6: CHECK constraint for call_duration PASSED (correctly rejected 200)
+DO
+psql:/root/validation-tests-fixed.sql:99: NOTICE:  Test 7: CHECK constraint for patient_age PASSED (correctly rejected 15)
+DO
+psql:/root/validation-tests-fixed.sql:147: NOTICE:  Test 8: Created valid call with ID 8
+psql:/root/validation-tests-fixed.sql:147: NOTICE:  Test 8: Successfully inserted data across all child tables
+DO
+           section            
+------------------------------
+ === VERIFICATION RESULTS ===
+(1 row)
+
+        info        
+--------------------
+ Current Test Data:
+(1 row)
+
+ call_id |     scenario_id     | patient_age | insurance_type | tasks | meds | appts 
+---------+---------------------+-------------+----------------+-------+------+-------
+       8 | TEST-VALID-COMPLETE |          72 | Medicare       |     1 |    1 |     1
+(1 row)
+
+         info          
+-----------------------
+ RLS Status on Tables:
+(1 row)
+
+  tablename   | rls_enabled 
+--------------+-------------
+ appointments | t
+ barriers     | t
+ calls        | t
+ medications  | t
+ tasks        | t
+(5 rows)
+
+             info             
+------------------------------
+ RLS Policies Count by Table:
+(1 row)
+
+  tablename   | policy_count 
+--------------+--------------
+ appointments |            4
+ barriers     |            4
+ calls        |            4
+ medications  |            4
+ tasks        |            4
+(5 rows)
+
+           info           
+--------------------------
+ Foreign Key Constraints:
+(1 row)
+
+  table_name  | column_name | references_table | delete_rule 
+--------------+-------------+------------------+-------------
+ appointments | call_id     | calls            | CASCADE
+ barriers     | call_id     | calls            | CASCADE
+ medications  | call_id     | calls            | CASCADE
+ tasks        | call_id     | calls            | CASCADE
+(4 rows)
+
+          section           
+----------------------------
+ === VALIDATION SUMMARY ===
+(1 row)
+
+     metric      | value 
+-----------------+-------
+ Tables Created  | 5
+ Indexes Created | 11
+ RLS Policies    | 20
+ Foreign Keys    | 4
+(4 rows)
+

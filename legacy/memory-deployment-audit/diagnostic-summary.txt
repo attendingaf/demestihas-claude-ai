@@ -1,0 +1,21 @@
+Memory System Diagnostic Report
+================================
+Date: Sat Nov 15 05:14:25 PM UTC 2025
+
+Database Status:
+- Memories in /memory/list: 0
+- Direct storage test: [see above]
+- PostgreSQL tables: [see above]
+
+Key Findings:
+1. Memory API endpoint exists: YES
+2. Authentication working: YES
+3. Memories found in DB: NO (0)
+
+Next Steps:
+- Check if memories are in Mem0 instead of PostgreSQL
+- Verify API endpoint is correct
+- Test memory_service.py directly
+- Check agent backend implementation
+
+Full output saved to: diagnose-memory-issue.log

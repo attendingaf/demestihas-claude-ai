@@ -1,0 +1,152 @@
+version: "3.8"
+
+services:
+    agent:
+        image: ${AGENT_IMAGE:-demestihas-agent:local}
+        build:
+            context: ./agent
+        container_name: demestihas-agent
+        ports:
+            - "8000:8000"
+        env_file:
+            - .env
+        environment:
+            - JWT_SECRET=${JWT_SECRET:-change-this-secret-in-production}
+            - FALKORDB_HOST=graph_db
+            - FALKORDB_PORT=6379
+            - FALKORDB_GRAPH_NAME=demestihas_knowledge
+            - FALKORDB_MAX_CONNECTIONS=10
+        depends_on:
+            mem0:
+                condition: service_healthy
+            postgres:
+                condition: service_healthy
+            graph_db:
+                condition: service_healthy
+        networks:
+            demestihas-network:
+                aliases:
+                    - agent
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        restart: unless-stopped
+
+    streamlit:
+        image: ${STREAMLIT_IMAGE:-demestihas-streamlit:local}
+        build:
+            context: ./streamlit
+        container_name: demestihas-streamlit
+        ports:
+            - "127.0.0.1:8501:8501"
+        env_file:
+            - .env
+        depends_on:
+            agent:
+                condition: service_started
+        networks:
+            - demestihas-network
+        restart: unless-stopped
+
+    frontend:
+        image: demestihas-frontend:local
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        container_name: demestihas-frontend
+        ports:
+            - "127.0.0.1:3000:3000"
+        depends_on:
+            agent:
+                condition: service_started
+        networks:
+            - demestihas-network
+        restart: unless-stopped
+
+    mem0:
+        build:
+            context: ./mem0
+        container_name: demestihas-mem0
+        env_file:
+            - .env
+        environment:
+            - QDRANT_HOST=qdrant
+            - QDRANT_PORT=6333
+        depends_on:
+            - qdrant
+        # Internal service - no external port exposure needed
+        networks:
+            - demestihas-network
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:8080/health" ]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        restart: unless-stopped
+
+    qdrant:
+        image: qdrant/qdrant:latest
+        container_name: demestihas-qdrant
+        restart: always
+        volumes:
+            - qdrant_data:/qdrant/storage
+        networks:
+            - demestihas-network
+        # Internal service - no external port exposure needed
+        healthcheck:
+            test: [ "CMD-SHELL", "timeout 5 sh -c ':> /dev/tcp/127.0.0.1/6333' || exit 1" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+        environment:
+            - QDRANT__SERVICE__GRPC_PORT=6334
+
+    graph_db:
+        image: falkordb/falkordb:latest
+        container_name: demestihas-graphdb
+        restart: always
+        ports:
+            - "127.0.0.1:6379:6379" # Expose for visualization tools (tunneled only)
+        volumes:
+            - falkordb_data:/var/lib/falkordb/data
+        networks:
+            - demestihas-network
+        # Port exposed for RedisInsight/visualization
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+
+    postgres:
+        image: postgres:15-alpine
+        container_name: demestihas-postgres
+        env_file:
+            - .env
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./postgres/init-tables.sql:/docker-entrypoint-initdb.d/init-tables.sql
+        networks:
+            - demestihas-network
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+        restart: unless-stopped
+
+networks:
+    demestihas-network:
+        driver: bridge
+
+volumes:
+    postgres_data:
+    falkordb_data:
+    qdrant_data:

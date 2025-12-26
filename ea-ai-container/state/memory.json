@@ -1,0 +1,24 @@
+{
+  "test_key": {
+    "value": "test_value",
+    "metadata": {
+      "type": "test"
+    },
+    "timestamp": 1758420682812
+  },
+  "persist_test": {
+    "value": "should persist",
+    "metadata": {
+      "importance": "high"
+    },
+    "timestamp": 1758420682828
+  },
+  "search_test_1": {
+    "value": "ea-ai integration test",
+    "timestamp": 1758420682832
+  },
+  "search_test_2": {
+    "value": "ea-ai memory system",
+    "timestamp": 1758420682832
+  }
+}

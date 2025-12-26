@@ -1,0 +1,88 @@
+TASK 4: APP ANALYSIS COMPLETE
+==============================
+Date: Sat Nov 15 03:44:01 AM UTC 2025
+
+Current App:
+- File: /root/streamlit/app.py
+- Size: 27K
+- Lines: 782
+- Backup: app.py.backup.20251115_034401
+
+Key Findings:
+-------------
+1. NO FUNCTION OR CLASS DEFINITIONS
+   - The app is a linear Streamlit script
+   - No custom functions defined
+   - Uses only imported functions from login_page module
+
+2. IMPORTS (Minimal)
+   - streamlit as st
+   - requests
+   - time
+   - datetime
+   - login_page (check_authentication, show_login_page, show_user_profile)
+
+3. SIDEBAR STRUCTURE
+   - Settings header
+   - User profile (with logout)
+   - Chat Session ID display
+   - Text size adjustment (+/- buttons)
+   - Service Status section
+   - Document Upload section
+   - Clear Chat History button
+   - About section
+
+4. SESSION STATE VARIABLES
+   - font_size (default: 16)
+   - messages (chat history)
+   - chat_id (unique session identifier)
+   - feedback_submitted (RLHF tracking)
+   - user_id (from authentication)
+   - jwt_token (from authentication)
+
+5. CHAT INTEGRATION POINTS
+   - Agent endpoint: http://agent:8000/chat
+   - Status endpoint: http://agent:8000/status
+   - Sends: message, user_id, chat_id
+   - Receives: response, agent_type, metadata
+   - Metadata includes: memory_context_available (boolean)
+
+6. EXISTING MEMORY REFERENCES
+   - Mentions "Mem0" in About section
+   - Displays "memory_context_available" in metadata
+   - No actual memory UI/integration present
+
+7. REQUIREMENTS.TXT
+   - streamlit==1.31.0
+   - requests==2.31.0
+   - MISSING: anthropic package (not used yet)
+
+8. THEME
+   - Blade Runner 2049 aesthetic
+   - Dark background (#060B12)
+   - Neon red/orange accents (#FF4B4B)
+   - Cyan highlights (#00FFFF)
+   - Monospace fonts for tech feel
+
+Analysis Report: /root/streamlit/app-structure-report.txt
+
+INTEGRATION PLAN:
+-----------------
+Phase 1: Import memory_service module
+Phase 2: Initialize with st.cache_resource
+Phase 3: Add Memory section to sidebar (after Service Status, before Document Upload)
+Phase 4: Create memory search widget
+Phase 5: Create memory save widget
+Phase 6: Display memory statistics
+Phase 7: Show recent memories list
+
+Insertion Point for Sidebar:
+- After "Service Status" divider (around line ~350)
+- Before "Document Upload" section (around line ~360)
+
+Safe Integration Strategy:
+- Linear insertion (no function refactoring needed)
+- Preserve all existing session state
+- Match Blade Runner theme colors
+- Use same button/input styles
+- Add new dividers to separate sections

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  redis-eisenhower:
+    image: redis:7-alpine
+    container_name: redis-eisenhower
+    restart: unless-stopped
+    ports:
+      - "6380:6379"  # Different external port
+    volumes:
+      - redis-eisenhower-data:/data
+    networks:
+      - eisenhower-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  yanay-eisenhower:
+    build: .
+    container_name: yanay-eisenhower
+    restart: unless-stopped
+    depends_on:
+      redis-eisenhower:
+        condition: service_healthy
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NOTION_API_KEY=${NOTION_API_KEY}
+      - NOTION_TASKS_DATABASE_ID=${NOTION_TASKS_DATABASE_ID}
+      - REDIS_HOST=redis-eisenhower
+      - REDIS_PORT=6379
+    volumes:
+      - ./agents:/app/agents
+      - ./shared:/app/shared
+      - ./logs:/app/logs
+    networks:
+      - eisenhower-network
+    command: python agents/yanay/yanay.py
+
+volumes:
+  redis-eisenhower-data:
+
+networks:
+  eisenhower-network:
+    driver: bridge

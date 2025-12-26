@@ -1,0 +1,579 @@
+{
+  "database_info": {
+    "id": "245413ec-f376-80f6-ac4b-c0e3bdd449c6",
+    "title": "Master Tasks"
+  },
+  "properties": {
+    "Notes": {
+      "id": "%3BBvK",
+      "name": "Notes",
+      "description": null,
+      "type": "rich_text",
+      "rich_text": {}
+    },
+    "Source": {
+      "id": "%40y%5EL",
+      "name": "Source",
+      "description": null,
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "72e75815-a192-4bb9-a12b-2a322b552dd3",
+            "name": "Telegram",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "d59f05ea-ec6f-44e4-bee5-c462d6b1a34d",
+            "name": "Manual",
+            "color": "gray",
+            "description": null
+          },
+          {
+            "id": "15f7ca70-0bca-48b7-85be-3576a756fe39",
+            "name": "Email",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "200863ec-8670-45dd-8156-2bccae6f2a10",
+            "name": "Meeting",
+            "color": "purple",
+            "description": null
+          }
+        ]
+      }
+    },
+    "GroceryCategory": {
+      "id": "B_%3Ed",
+      "name": "GroceryCategory",
+      "description": null,
+      "type": "multi_select",
+      "multi_select": {
+        "options": [
+          {
+            "id": "405fb928-1acd-4c25-a0be-949e4d0d04da",
+            "name": "Produce",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "047d2636-8cc3-49d0-8f3a-e3a2497b9836",
+            "name": "Dairy",
+            "color": "yellow",
+            "description": null
+          },
+          {
+            "id": "951932cd-8c96-47d9-af87-ca667b81af97",
+            "name": "Meat & Seafood",
+            "color": "red",
+            "description": null
+          },
+          {
+            "id": "4fd47985-dcf0-414d-983b-5d575bd03833",
+            "name": "Pantry",
+            "color": "brown",
+            "description": null
+          },
+          {
+            "id": "a3887b0b-5de4-4f8a-98d9-a8a15f877061",
+            "name": "Frozen",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "b711c0eb-285f-4b07-a90a-12afc415fba6",
+            "name": "Beverages",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "bd6a1107-e035-4187-b398-73c9ee02891b",
+            "name": "Snacks",
+            "color": "orange",
+            "description": null
+          },
+          {
+            "id": "3f2696dd-85f3-4e6e-9259-0dfcf1ef9220",
+            "name": "Personal Care",
+            "color": "pink",
+            "description": null
+          },
+          {
+            "id": "58ba6eb6-f5ce-45d6-a1cf-49342113da80",
+            "name": "Household",
+            "color": "gray",
+            "description": null
+          },
+          {
+            "id": "b7bc3f4c-1483-4d3e-a460-9ae44318b161",
+            "name": "Condiments",
+            "color": "brown",
+            "description": null
+          }
+        ]
+      }
+    },
+    "Store": {
+      "id": "H%3CJO",
+      "name": "Store",
+      "description": null,
+      "type": "multi_select",
+      "multi_select": {
+        "options": [
+          {
+            "id": "hsDz",
+            "name": "Online",
+            "color": "gray",
+            "description": null
+          },
+          {
+            "id": "69bf8c04-a5de-4611-95bb-3097d8832833",
+            "name": "Groceries",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "f8c9de4a-ae98-49ba-932d-c22bbc287b15",
+            "name": "Target",
+            "color": "red",
+            "description": null
+          },
+          {
+            "id": "01e105e6-298c-449f-9c06-f9e7790a6d86",
+            "name": "Costco",
+            "color": "purple",
+            "description": null
+          }
+        ]
+      }
+    },
+    "Quantity": {
+      "id": "JcsQ",
+      "name": "Quantity",
+      "description": null,
+      "type": "rich_text",
+      "rich_text": {}
+    },
+    "Assigned To": {
+      "id": "Jm%5Eq",
+      "name": "Assigned To",
+      "description": null,
+      "type": "people",
+      "people": {}
+    },
+    "Due Date": {
+      "id": "LVzB",
+      "name": "Due Date",
+      "description": null,
+      "type": "date",
+      "date": {}
+    },
+    "Last Touched": {
+      "id": "PXWh",
+      "name": "Last Touched",
+      "description": null,
+      "type": "last_edited_time",
+      "last_edited_time": {}
+    },
+    "Eisenhower": {
+      "id": "R_%5BP",
+      "name": "Eisenhower",
+      "description": null,
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "c762721b-d522-4496-a0aa-f8596eb7cf0a",
+            "name": "\ud83d\udd25 Do Now",
+            "color": "red",
+            "description": null
+          },
+          {
+            "id": "09b518a6-ff06-4656-ba1a-5ee1349fbaf3",
+            "name": "\ud83d\udcc5 Schedule",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "ac8e6da8-8e4c-4e8d-8ad7-f68599eeb500",
+            "name": "\ud83d\udc65 Delegate",
+            "color": "yellow",
+            "description": null
+          },
+          {
+            "id": "e60b7934-6c0f-408b-a27f-d947ea7be878",
+            "name": "\ud83d\uddc4\ufe0f Someday/Maybe",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "1c1adb23-af5f-4890-8a2b-bf2e30e9e62e",
+            "name": "\ud83e\udde0 Brain Dump",
+            "color": "default",
+            "description": null
+          },
+          {
+            "id": "3c83b60d-adb6-444b-96b5-1ddebe6442bb",
+            "name": "\ud83d\udfea Delegate",
+            "color": "gray",
+            "description": null
+          }
+        ]
+      }
+    },
+    "Project/Parent Task": {
+      "id": "URH_",
+      "name": "Project/Parent Task",
+      "description": null,
+      "type": "relation",
+      "relation": {
+        "database_id": "245413ec-f376-80f6-ac4b-c0e3bdd449c6",
+        "data_source_id": "245413ec-f376-8021-8ddc-000b4ab96ae2",
+        "type": "single_property",
+        "single_property": {}
+      }
+    },
+    "Time Estimate": {
+      "id": "V%3A%5ED",
+      "name": "Time Estimate",
+      "description": null,
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "85e37ee6-b911-483e-a0d7-1f8117698fbe",
+            "name": "\u26a1 Quick (<15m)",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "bd0eb6ac-853c-49ac-b3f8-d24501e83907",
+            "name": "\ud83d\udcdd Short (15-30m)",
+            "color": "yellow",
+            "description": null
+          },
+          {
+            "id": "1148d58c-92e9-4b1e-b3b3-dcd42f987421",
+            "name": "\ud83c\udfaf Deep (>30m)",
+            "color": "red",
+            "description": null
+          },
+          {
+            "id": "ebf1e801-3898-47e3-8f7c-addf5da93fd1",
+            "name": "\ud83d\udcc5 Multi-hour",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "b462cd91-f838-4c03-a210-869f4f4ffdd0",
+            "name": "\u26a1 Quick (5-15m)",
+            "color": "orange",
+            "description": null
+          },
+          {
+            "id": "bcc5bb21-cbd7-44b0-b0a7-3a11bbd1238e",
+            "name": "\ud83d\udcdd Short",
+            "color": "default",
+            "description": null
+          },
+          {
+            "id": "a8ad6412-f952-4208-900c-a6762e78b529",
+            "name": "\ud83d\udd50 Medium (30-60m)",
+            "color": "brown",
+            "description": null
+          }
+        ]
+      }
+    },
+    "Energy Level Required": {
+      "id": "Y~vx",
+      "name": "Energy Level Required",
+      "description": null,
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "44ac09ee-3ceb-48d6-bed8-d6ed2cd4de4b",
+            "name": "Low",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "5d18daeb-c4de-420b-82c1-e1751a2e19eb",
+            "name": "Medium",
+            "color": "yellow",
+            "description": null
+          },
+          {
+            "id": "1bd0b634-da4b-4728-ad09-6ddcb1c416de",
+            "name": "High",
+            "color": "red",
+            "description": null
+          }
+        ]
+      }
+    },
+    "RecordType": {
+      "id": "%5DdBo",
+      "name": "RecordType",
+      "description": null,
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "7a53de32-8c1b-45c3-a683-dcf7c4988b16",
+            "name": "Task",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "40d5b86c-646c-4a40-b839-9b26d6d4b14b",
+            "name": "Shopping",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "3777f225-e8b9-415f-942f-e6716d363367",
+            "name": "Note",
+            "color": "gray",
+            "description": null
+          },
+          {
+            "id": "3f09cd17-d3d6-4370-828e-ebcd61ef87c6",
+            "name": "Reminder",
+            "color": "yellow",
+            "description": null
+          }
+        ]
+      }
+    },
+    "Complete": {
+      "id": "cC_%7C",
+      "name": "Complete",
+      "description": null,
+      "type": "checkbox",
+      "checkbox": {}
+    },
+    "Done": {
+      "id": "nT%3E%5B",
+      "name": "Done",
+      "description": null,
+      "type": "button",
+      "button": {}
+    },
+    "Context/Tags": {
+      "id": "tmWu",
+      "name": "Context/Tags",
+      "description": null,
+      "type": "multi_select",
+      "multi_select": {
+        "options": [
+          {
+            "id": "183d50c5-46b2-4c80-a2a8-ea7e68524232",
+            "name": "Quick Win",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "b0dd4cae-bc44-44d9-84bb-96b917a51692",
+            "name": "Deep Work",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "902a4bf6-facd-4c15-baf4-25b02a402341",
+            "name": "Errand",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "7a27aef4-2416-4d0c-86ae-ce473138bf6d",
+            "name": "Call",
+            "color": "yellow",
+            "description": null
+          },
+          {
+            "id": "e2b00695-3872-4aad-a92b-6bb438e9d85f",
+            "name": "Email",
+            "color": "orange",
+            "description": null
+          },
+          {
+            "id": "0e55267d-1da5-41fe-bcba-382a165f4d3c",
+            "name": "Meeting",
+            "color": "pink",
+            "description": null
+          },
+          {
+            "id": "96d48582-c79a-466d-96ff-6a4a358d6402",
+            "name": "Research",
+            "color": "brown",
+            "description": null
+          },
+          {
+            "id": "cc0a8c29-d9c6-498e-ab62-1afadd8f52a9",
+            "name": "Admin",
+            "color": "gray",
+            "description": null
+          },
+          {
+            "id": "9c84164f-a48d-4f9b-90fb-a01cfde9984b",
+            "name": "Creative",
+            "color": "red",
+            "description": null
+          },
+          {
+            "id": "8dd1e0b0-b8c3-4d32-bc87-ae5f4eb3970c",
+            "name": "Physical",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "b4fbe959-ae3c-4875-b806-f45d3079b590",
+            "name": "Household",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "fdb78171-75ef-4e05-8abe-1b5506dd0858",
+            "name": "Appointment",
+            "color": "default",
+            "description": null
+          },
+          {
+            "id": "9664cf49-7e1e-4e4c-8b4e-1f9256de29c6",
+            "name": "Family",
+            "color": "orange",
+            "description": null
+          },
+          {
+            "id": "7fbb45cd-61d3-4942-9b37-daeb338503db",
+            "name": "Sutton",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "c88ef640-8f84-4145-9bc9-e0d3587649f5",
+            "name": "Finances",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "01066bba-1564-4d00-b380-016cd4ad89f2",
+            "name": "Grocery Shopping",
+            "color": "green",
+            "description": null
+          },
+          {
+            "id": "3e8fdeaa-1938-4650-97d4-fcfcdba9be57",
+            "name": "Meal Planning",
+            "color": "yellow",
+            "description": null
+          },
+          {
+            "id": "e093e051-bfd2-4b8d-8e2d-112ea0566bde",
+            "name": "Food Prep",
+            "color": "orange",
+            "description": null
+          },
+          {
+            "id": "99213905-6d6c-43e3-8a17-3631b4d69f57",
+            "name": "Shopping List",
+            "color": "blue",
+            "description": null
+          },
+          {
+            "id": "1d8a050f-5c08-45bd-bccf-09d010827c18",
+            "name": "Weekly Grocery",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "b4ba2223-dff3-4353-9176-1b99768f5815",
+            "name": "Grocery",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "5e6cf714-c2ce-485c-abfd-1dcb95d31606",
+            "name": "Work",
+            "color": "purple",
+            "description": null
+          },
+          {
+            "id": "5b4f2208-5332-4457-9255-eb251434cd1b",
+            "name": "Shopping",
+            "color": "brown",
+            "description": null
+          },
+          {
+            "id": "662b7ff0-16c8-472b-97e9-64f4006b59b1",
+            "name": "Personal",
+            "color": "gray",
+            "description": null
+          },
+          {
+            "id": "a8632af1-683a-4369-8342-0ad51a41d3a6",
+            "name": "Health",
+            "color": "red",
+            "description": null
+          },
+          {
+            "id": "e24dac4b-9db6-498f-9dee-0643611a8aa4",
+            "name": "Urgent",
+            "color": "orange",
+            "description": null
+          },
+          {
+            "id": "d365740e-ee5e-49be-ad26-1f75bcd099e6",
+            "name": "General",
+            "color": "brown",
+            "description": null
+          }
+        ]
+      }
+    },
+    "Completed Date": {
+      "id": "v%3AfV",
+      "name": "Completed Date",
+      "description": null,
+      "type": "date",
+      "date": {}
+    },
+    "Name": {
+      "id": "title",
+      "name": "Name",
+      "description": null,
+      "type": "title",
+      "title": {}
+    }
+  },
+  "suggested_mappings": {
+    "title": {
+      "actual_name": "Name",
+      "type": "title"
+    },
+    "assigned_to": {
+      "actual_name": "Assigned To",
+      "type": "people"
+    },
+    "quadrant": {
+      "actual_name": "Eisenhower",
+      "type": "select"
+    },
+    "tags": {
+      "actual_name": "Context/Tags",
+      "type": "multi_select"
+    },
+    "description": {
+      "actual_name": "Notes",
+      "type": "rich_text"
+    },
+    "due_date": {
+      "actual_name": "Due Date",
+      "type": "date"
+    }
+  }
+}

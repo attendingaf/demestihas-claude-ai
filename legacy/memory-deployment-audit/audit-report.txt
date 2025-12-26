@@ -1,0 +1,45 @@
+=== DOCKER CONTAINERS ===
+NAMES                  IMAGE                           PORTS                                                                                            STATUS
+demestihas-postgres    postgres:15-alpine              5432/tcp                                                                                         Up 4 hours (healthy)
+demestihas-agent       root_agent                      0.0.0.0:8000->8000/tcp, :::8000->8000/tcp                                                        Up 5 hours
+demestihas-streamlit   root_streamlit                  0.0.0.0:8501->8501/tcp, :::8501->8501/tcp                                                        Up 4 days
+demestihas-mem0        root_mem0                       8080/tcp                                                                                         Up 4 days (healthy)
+demestihas-graphdb     falkordb/falkordb:latest        0.0.0.0:6379->6379/tcp, :::6379->6379/tcp                                                        Up 4 days (healthy)
+demestihas-qdrant      qdrant/qdrant:latest            6333-6334/tcp                                                                                    Up 4 days (unhealthy)
+mimerc-telegram        mimerc_telegram                                                                                                                  Up 6 weeks (healthy)
+mimerc-postgres        postgres:15-alpine              0.0.0.0:5432->5432/tcp, :::5432->5432/tcp                                                        Up 6 weeks (healthy)
+portainer              portainer/portainer-ce:latest   0.0.0.0:9000->9000/tcp, :::9000->9000/tcp, 8000/tcp, 0.0.0.0:9443->9443/tcp, :::9443->9443/tcp   Up 6 weeks
+
+=== STREAMLIT APP STRUCTURE ===
+/root/streamlit
+/root/streamlit/.streamlit
+
+=== STREAMLIT APP FILES ===
+total 44
+drwxr-xr-x 1 root root  4096 Oct 28 23:50 .
+drwxr-xr-x 1 root root  4096 Nov 10 18:51 ..
+drwxr-xr-x 2 root root  4096 Oct 28 23:50 .streamlit
+-rw-r--r-- 1 root root 28091 Oct 28 23:49 app.py
+-rw-r--r-- 1 root root    35 Sep 30 15:08 requirements.txt
+
+=== MEMORY API STATUS ===
+{"status":"ok","service":"agent","timestamp":"2025-11-15T03:13:31.054199","arcade_status":"live","falkordb_status":"connected"}
+=== FALKORDB STATUS ===
+PONG
+count(n)
+0
+Cached execution: 0
+Query internal execution time: 0.431533 milliseconds
+
+=== STREAMLIT PYTHON PACKAGES ===
+requests                  2.31.0
+streamlit                 1.31.0
+
+=== DOCKER NETWORK ===
+
+=== JWT TOKEN STATUS ===
+Token file exists
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZW5lIiwiZXhwIjoxNzYzMTc2Mzg4LCJpYXQiOjE3NjMxNzI3ODh9.PR_eipTyrBIV9J9EIBIsUKgHVwMVDh-QYZWclzeVCpY
+
+=== CURRENT MEMORY STATISTICS ===
+{"detail":"Not authenticated"}

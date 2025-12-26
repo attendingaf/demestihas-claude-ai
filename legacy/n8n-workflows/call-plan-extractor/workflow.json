@@ -1,0 +1,271 @@
+{
+    "name": "Call Plan Action Item Extractor",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "cronExpression",
+                            "expression": "0 16 * * *"
+                        }
+                    ]
+                }
+            },
+            "id": "schedule-trigger",
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                220,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const sevenDaysAgo = new Date();\nsevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);\nreturn [{ json: { dateFilter: sevenDaysAgo.toISOString().split('T')[0] } }];"
+            },
+            "id": "calculate-date",
+            "name": "Calculate Date Filter",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                440,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "authentication": "googleDriveOAuth2",
+                "operation": "search",
+                "queryString": "={{ 'name contains \\'Call Plan\\' and mimeType = \\'application/vnd.google-apps.document\\' and modifiedTime > \\'' + $json.dateFilter + '\\'' }}",
+                "options": {
+                    "fields": [
+                        "id",
+                        "name",
+                        "mimeType",
+                        "modifiedTime"
+                    ]
+                }
+            },
+            "id": "search-drive",
+            "name": "Search Google Drive",
+            "type": "n8n-nodes-base.googleDrive",
+            "typeVersion": 3,
+            "position": [
+                660,
+                300
+            ],
+            "credentials": {
+                "googleDriveOAuth2": {
+                    "id": "GOOGLE_DRIVE_CREDENTIAL_ID_PLACEHOLDER",
+                    "name": "Google Drive Account"
+                }
+            }
+        },
+        {
+            "parameters": {},
+            "id": "loop-items",
+            "name": "Loop Over Documents",
+            "type": "n8n-nodes-base.splitInBatches",
+            "typeVersion": 3,
+            "position": [
+                880,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "authentication": "googleDocsOAuth2",
+                "operation": "get",
+                "documentId": "={{ $json.id }}",
+                "options": {}
+            },
+            "id": "get-doc-content",
+            "name": "Get Document Content",
+            "type": "n8n-nodes-base.googleDocs",
+            "typeVersion": 2,
+            "position": [
+                1100,
+                300
+            ],
+            "credentials": {
+                "googleDocsOAuth2": {
+                    "id": "GOOGLE_DOCS_CREDENTIAL_ID_PLACEHOLDER",
+                    "name": "Google Docs Account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://api.anthropic.com/v1/messages",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "headerAuth",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "anthropic-version",
+                            "value": "2023-06-01"
+                        },
+                        {
+                            "name": "content-type",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "model",
+                            "value": "claude-3-5-sonnet-20240620"
+                        },
+                        {
+                            "name": "max_tokens",
+                            "value": "4000"
+                        },
+                        {
+                            "name": "system",
+                            "value": "You are analyzing call plan documents for a physician executive. Extract action items into two categories:\\n\\n1. MENE'S ACTION ITEMS - Tasks Mene committed to or should do\\n2. FOLLOW-UP ITEMS - Commitments others made that Mene should track\\n\\nFor each item include:\\n- The action\\n- The person involved\\n- Any deadline mentioned\\n- Source document name\\n\\nBe specific and actionable. Ignore boilerplate template sections. Focus on the \"Post-Call Reflection\" section if present, as well as any explicit commitments in the document body.\\n\\nIMPORTANT: Return the result strictly as a valid JSON object with the following structure:\\n{\\n  \"mene_actions\": [\\n    { \"action\": \"...\", \"person\": \"...\", \"deadline\": \"...\", \"source\": \"...\" }\\n  ],\\n  \"followup_items\": [\\n    { \"action\": \"...\", \"person\": \"...\", \"deadline\": \"...\", \"source\": \"...\" }\\n  ]\\n}\\nDo not include any preamble or text outside the JSON block."
+                        },
+                        {
+                            "name": "messages",
+                            "value": "={{ [\n  { \"role\": \"user\", \"content\": \"Document: \" + $json.name + \"\\n\\nContent:\\n\" + $json.content }\n] }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "anthropic-api",
+            "name": "AI Agent (Claude)",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                1320,
+                300
+            ],
+            "credentials": {
+                "headerAuth": {
+                    "id": "ANTHROPIC_API_KEY_ID_PLACEHOLDER",
+                    "name": "Anthropic API Key"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "// Initialize result structure\nconst result = {\n  mene_actions: [],\n  followup_items: [],\n  documents_processed: [],\n  run_timestamp: new Date().toISOString()\n};\n\n// Loop over all input items\nfor (const item of $input.all()) {\n  try {\n    // The HTTP Request node returns the body in json, and Claude response is in content\n    let contentRaw = item.json.content && item.json.content[0] ? item.json.content[0].text : \"\";\n    \n    if (!contentRaw) continue;\n\n    // If the AI returned code blocks, strip them\n    if (typeof contentRaw === 'string') {\n        contentRaw = contentRaw.replace(/```json/g, '').replace(/```/g, '').trim();\n    }\n\n    // Parse JSON\n    let parsedOutput = JSON.parse(contentRaw);\n\n    // Aggregate actions\n    if (parsedOutput.mene_actions && Array.isArray(parsedOutput.mene_actions)) {\n      result.mene_actions.push(...parsedOutput.mene_actions);\n    }\n    \n    if (parsedOutput.followup_items && Array.isArray(parsedOutput.followup_items)) {\n      result.followup_items.push(...parsedOutput.followup_items);\n    }\n\n    result.documents_processed.push(\"Processed Document\");\n\n  } catch (error) {\n    console.log(\"Error processing item:\", error);\n  }\n}\n\nreturn [{ json: result }];"
+            },
+            "id": "aggregate-results",
+            "name": "Aggregate Results",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1540,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "sendTo": "menelaos4@gmail.com",
+                "subject": "={{ \"Call Plan Action Items - \" + $json.run_timestamp }}",
+                "emailType": "text",
+                "message": "={{ \"Here are your action items:\\n\\nMENE'S ACTIONS:\\n\" + $json.mene_actions.map(a => `- ${a.action} (Deadline: ${a.deadline})`).join('\\n') + \"\\n\\nFOLLOW-UP ITEMS:\\n\" + $json.followup_items.map(a => `- ${a.action} (${a.person})`).join('\\n') }}"
+            },
+            "id": "send-email",
+            "name": "Send Email",
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 2,
+            "position": [
+                1760,
+                300
+            ],
+            "credentials": {
+                "smtp": {
+                    "id": "SMTP_CREDENTIAL_ID_PLACEHOLDER",
+                    "name": "SMTP Account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Calculate Date Filter",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Calculate Date Filter": {
+            "main": [
+                [
+                    {
+                        "node": "Search Google Drive",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Search Google Drive": {
+            "main": [
+                [
+                    {
+                        "node": "Loop Over Documents",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Loop Over Documents": {
+            "main": [
+                [
+                    {
+                        "node": "Get Document Content",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Document Content": {
+            "main": [
+                [
+                    {
+                        "node": "AI Agent (Claude)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Agent (Claude)": {
+            "main": [
+                [
+                    {
+                        "node": "Loop Over Documents",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Aggregate Results": {
+            "main": [
+                [
+                    {
+                        "node": "Send Email",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

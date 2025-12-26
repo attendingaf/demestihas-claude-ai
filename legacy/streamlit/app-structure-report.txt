@@ -1,0 +1,211 @@
+=== ANALYZING CURRENT STREAMLIT APP ===
+
+File: /root/streamlit/app.py
+Size: 27K
+Lines: 782
+
+=== FUNCTION/CLASS DEFINITIONS ===
+
+=== CURRENT IMPORTS ===
+import streamlit as st
+import requests
+import time
+from datetime import datetime
+from login_page import check_authentication, show_login_page, show_user_profile
+
+=== STREAMLIT LAYOUT STRUCTURE ===
+with st.sidebar:
+    col1, col2, col3 = st.columns([1, 2, 1])
+                            with st.expander("Preview first chunk"):
+                with st.expander("🔎 Orchestrator Reasoning Trace"):
+            with st.expander("Message Details"):
+                    with st.expander("🔎 Orchestrator Reasoning Trace"):
+                with st.expander("Message Details"):
+
+=== SESSION STATE USAGE ===
+if "font_size" not in st.session_state:
+    st.session_state.font_size = 16
+    font-size: {st.session_state.font_size}px;
+    font-size: {st.session_state.font_size}px;
+    font-size: {st.session_state.font_size}px;
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "chat_id" not in st.session_state:
+    st.session_state.chat_id = f"chat_{int(time.time())}"
+if "feedback_submitted" not in st.session_state:
+    st.session_state.feedback_submitted = (
+        value=st.session_state.chat_id,
+    if "font_size" not in st.session_state:
+        st.session_state.font_size = 16
+            if st.session_state.font_size > 10:
+
+=== CHAT/LLM INTEGRATION POINTS ===
+/* Chat messages - High contrast containers */
+/* Success/Info/Warning messages - Neon themed */
+/* Dynamic font sizing for chat messages */
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+        status_response = requests.get(AGENT_STATUS_URL, timeout=2)
+        if status_response.status_code == 200:
+            status_data = status_response.json()
+                    upload_response = requests.post(
+                    if upload_response.status_code == 200:
+                        result = upload_response.json()
+                        st.error(f"❌ Upload failed: {upload_response.text}")
+        st.session_state.messages = []
+# Display chat messages from history
+for idx, message in enumerate(st.session_state.messages):
+
+=== APP INITIALIZATION (First 100 Lines) ===
+import streamlit as st
+import requests
+import time
+from datetime import datetime
+
+# Import login functionality
+from login_page import check_authentication, show_login_page, show_user_profile
+
+# Configure page
+st.set_page_config(
+    page_title="DemestiChat",
+    page_icon="🌃",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# Blade Runner 2049 Theme - Custom CSS Injection
+blade_runner_css = """
+<style>
+/* Global Background - Deep Night Setting */
+.stApp {
+    background-color: #060B12;
+    color: #E0E5E9;
+}
+
+/* Main content area */
+.main .block-container {
+    background-color: #060B12;
+    padding-top: 2rem;
+}
+
+/* Sidebar styling */
+section[data-testid="stSidebar"] {
+    background-color: #1A2233;
+    border-right: 1px solid #FF4B4B33;
+}
+
+section[data-testid="stSidebar"] .block-container {
+    background-color: #1A2233;
+}
+
+/* Headers and titles - Clear and crisp */
+h1, h2, h3 {
+    color: #E0E5E9;
+}
+
+/* Primary buttons - Neon Orange/Red with glow */
+.stButton>button {
+    background-color: #FF4B4B;
+    color: #060B12;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(255, 75, 75, 0.6);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton>button:hover {
+    background-color: #FF6B6B;
+    box-shadow: 0 0 25px rgba(255, 75, 75, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Text inputs - Dark with neon accents */
+.stTextInput>div>div>input {
+    background-color: #0D1620;
+    color: #E0E5E9;
+    border: 1px solid #FF4B4B55;
+    border-radius: 5px;
+}
+
+.stTextInput>div>div>input:focus {
+    border-color: #FF4B4B;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.4);
+}
+
+/* Chat input - Atmospheric styling */
+.stChatInputContainer>div {
+    background-color: #0D1620;
+    border: 1px solid #FF4B4B55;
+    border-radius: 8px;
+}
+
+.stChatInputContainer input {
+    background-color: #0D1620;
+    color: #E0E5E9;
+    font-family: 'Courier New', monospace;
+}
+
+/* Chat messages - High contrast containers */
+.stChatMessage {
+    background-color: #1A2233;
+    border-left: 3px solid #FF4B4B;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* User message accent */
+.stChatMessage[data-testid="user-message"] {
+
+=== APP MAIN EXECUTION (Last 50 Lines) ===
+
+        except requests.exceptions.Timeout:
+            error_message = "⏱️ Request timed out. The agent service is taking too long to respond. Please try again."
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+        except requests.exceptions.ConnectionError:
+            error_message = "❌ Unable to connect to the agent service. Please ensure the service is running and try again."
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+        except requests.exceptions.RequestException as e:
+            error_message = f"❌ Network error: {str(e)}"
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+        except Exception as e:
+            error_message = f"❌ Unexpected error: {str(e)}"
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+# Footer
+st.divider()
+st.caption(
+    "DemestiChat Multi-Agent Orchestration System | Powered by FastAPI, Streamlit, Mem0, Graphiti & PostgreSQL"
+)

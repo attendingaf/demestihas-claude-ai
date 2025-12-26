@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  lyco-bot:
+    build: .
+    container_name: lyco-telegram-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    networks:
+      - lyco-network
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    container_name: lyco-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - lyco-network
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  huata:
+    build: ./huata
+    container_name: huata-calendar-agent
+    restart: unless-stopped
+    ports:
+      - "8003:8003"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HUATA_PORT=8003
+      - HUATA_HOST=0.0.0.0
+      - TZ=America/New_York
+    volumes:
+      - ./huata/credentials:/app/credentials:ro
+      - ./huata/logs:/app/logs
+    networks:
+      - lyco-network
+    depends_on:
+      - redis
+
+volumes:
+  redis_data:
+
+networks:
+  lyco-network:
+    external: true

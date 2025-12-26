@@ -1,0 +1,37 @@
+# OAuth and credentials - NEVER commit these
+credentials/oauth_client_secret.json
+credentials/oauth_tokens.enc
+credentials/encryption.key
+credentials/huata-service-account.json
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml

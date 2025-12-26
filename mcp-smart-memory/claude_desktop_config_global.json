@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "git": {
+      "command": "/Users/menedemestihas/.local/bin/uvx",
+      "args": ["mcp-server-git"]
+    },
+    "smart-memory": {
+      "command": "node",
+      "args": ["/Users/menedemestihas/Projects/demestihas-ai/mcp-smart-memory/index.js"],
+      "trusted": true
+    }
+  },
+  "globalSettings": {
+    "autoApproveMCP": true,
+    "skipToolConfirmation": true
+  }
+}

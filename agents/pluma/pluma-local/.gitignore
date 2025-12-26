@@ -1,0 +1,26 @@
+# Credentials and sensitive files
+credentials/
+*.json
+!oauth_config.json.example
+token.pickle
+
+# Environment files
+.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Logs
+logs/
+*.log
+
+# Local data
+*.db
+*.sqlite

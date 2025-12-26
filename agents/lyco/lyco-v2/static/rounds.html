@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyco Rounds Mode - Medical-Style Task Review</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .rounds-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .rounds-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .rounds-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .rounds-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .start-section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .rounds-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .rounds-type-card {
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rounds-type-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .rounds-type-card.selected {
+            background: #f3f4f6;
+            border-color: #667eea;
+        }
+
+        .type-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .type-description {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .category-section {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 30px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .energy-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        .energy-high { background: #fee2e2; color: #dc2626; }
+        .energy-medium { background: #fef3c7; color: #d97706; }
+        .energy-low { background: #dbeafe; color: #2563eb; }
+
+        .task-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .task-card.active {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .task-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .task-metadata {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .warning {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .decision-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .decision-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-do-now {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-delegate {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-defer {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .decision-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .progress-section {
+            padding: 20px 30px;
+            background: #f9fafb;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .timer.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .summary-section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .summary-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .rounds-type-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decision-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .rounds-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rounds-container">
+        <div class="rounds-header">
+            <div class="rounds-title">Lyco Rounds Mode</div>
+            <div class="rounds-meta">
+                <span id="current-time"></span>
+                <span id="energy-level"></span>
+                <span id="session-info"></span>
+            </div>
+        </div>
+
+        <!-- Start Section -->
+        <div id="start-section" class="start-section">
+            <h2 style="margin-bottom: 20px; color: #1f2937;">Select Rounds Type</h2>
+            <div class="rounds-type-grid">
+                <div class="rounds-type-card" data-type="morning">
+                    <div class="type-name">Morning Rounds</div>
+                    <div class="type-description">High-energy and urgent tasks (20 tasks)</div>
+                </div>
+                <div class="rounds-type-card" data-type="evening">
+                    <div class="type-name">Evening Rounds</div>
+                    <div class="type-description">Admin and cleanup tasks (15 tasks)</div>
+                </div>
+                <div class="rounds-type-card" data-type="weekly">
+                    <div class="type-name">Weekly Review</div>
+                    <div class="type-description">All parked tasks (50 tasks)</div>
+                </div>
+                <div class="rounds-type-card" data-type="emergency">
+                    <div class="type-name">Emergency Rounds</div>
+                    <div class="type-description">Critical tasks only (10 tasks)</div>
+                </div>
+            </div>
+            <button id="start-btn" class="start-btn" disabled>Start Rounds</button>
+        </div>
+
+        <!-- Task Review Section -->
+        <div id="review-section" class="hidden">
+            <div class="category-section">
+                <div id="current-task"></div>
+            </div>
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progress-current">0 of 0 tasks</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div id="summary-section" class="summary-section hidden">
+            <div class="summary-title">Rounds Complete!</div>
+            <div class="summary-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="tasks-reviewed">0</div>
+                    <div class="stat-label">Tasks Reviewed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="decisions-made">0</div>
+                    <div class="stat-label">Decisions Made</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="duration-minutes">0</div>
+                    <div class="stat-label">Minutes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avg-decision-time">0</div>
+                    <div class="stat-label">Avg Decision (s)</div>
+                </div>
+            </div>
+            <button class="start-btn" onclick="location.reload()">Start New Rounds</button>
+        </div>
+    </div>
+
+    <!-- Timer -->
+    <div id="timer" class="timer hidden">
+        <span id="timer-value">30</span>s
+    </div>
+
+    <script>
+        // State management
+        let currentSession = null;
+        let currentTask = null;
+        let selectedType = null;
+        let taskTimer = null;
+        let taskStartTime = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateClock();
+            setInterval(updateClock, 1000);
+            updateEnergyLevel();
+
+            // Bind event listeners
+            document.querySelectorAll('.rounds-type-card').forEach(card => {
+                card.addEventListener('click', selectRoundsType);
+            });
+
+            document.getElementById('start-btn').addEventListener('click', startRounds);
+        });
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('current-time').textContent =
+                now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function updateEnergyLevel() {
+            const hour = new Date().getHours();
+            let energy = 'low';
+            if (hour >= 9 && hour < 11) energy = 'high';
+            else if (hour >= 14 && hour < 16) energy = 'medium';
+
+            document.getElementById('energy-level').textContent = `Energy: ${energy.toUpperCase()}`;
+        }
+
+        function selectRoundsType(e) {
+            // Remove previous selection
+            document.querySelectorAll('.rounds-type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Add selection
+            e.currentTarget.classList.add('selected');
+            selectedType = e.currentTarget.dataset.type;
+
+            // Enable start button
+            document.getElementById('start-btn').disabled = false;
+        }
+
+        async function startRounds() {
+            if (!selectedType) return;
+
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('start-btn').textContent = 'Starting...';
+
+            try {
+                const response = await fetch('/api/rounds/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        rounds_type: selectedType
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'no_tasks') {
+                    alert('No tasks require review at this time.');
+                    document.getElementById('start-btn').disabled = false;
+                    document.getElementById('start-btn').textContent = 'Start Rounds';
+                    return;
+                }
+
+                currentSession = data;
+                document.getElementById('session-info').textContent =
+                    `${data.tasks_count} tasks | Est. ${data.estimated_time}`;
+
+                // Hide start section, show review section
+                document.getElementById('start-section').classList.add('hidden');
+                document.getElementById('review-section').classList.remove('hidden');
+
+                // Display first task
+                if (data.first_task) {
+                    displayTask(data.first_task);
+                }
+
+            } catch (error) {
+                console.error('Error starting rounds:', error);
+                alert('Failed to start rounds. Please try again.');
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('start-btn').textContent = 'Start Rounds';
+            }
+        }
+
+        function displayTask(task) {
+            currentTask = task;
+            taskStartTime = Date.now();
+
+            let taskHtml = '<div class="task-card active">';
+
+            // Task content
+            taskHtml += `<div class="task-content">${task.content}</div>`;
+
+            // Metadata
+            taskHtml += '<div class="task-metadata">';
+            if (task.energy_level) {
+                taskHtml += `<div class="metadata-item">
+                    <span class="energy-badge energy-${task.energy_level}">${task.energy_level}</span>
+                </div>`;
+            }
+            if (task.context) {
+                taskHtml += `<div class="metadata-item">Context: ${task.context}</div>`;
+            }
+            if (task.deadline) {
+                const deadline = new Date(task.deadline);
+                const daysUntil = Math.ceil((deadline - new Date()) / (1000 * 60 * 60 * 24));
+                taskHtml += `<div class="metadata-item">Deadline: ${daysUntil} days</div>`;
+            }
+            if (task.skip_count > 0) {
+                taskHtml += `<div class="metadata-item">Skipped: ${task.skip_count} times</div>`;
+            }
+            taskHtml += '</div>';
+
+            // Warning if exists
+            if (task.pattern_warning) {
+                taskHtml += `<div class="warning">⚠️ ${task.pattern_warning}</div>`;
+            }
+
+            // Suggested decision
+            if (task.suggested_decision) {
+                taskHtml += `<div style="margin-bottom: 15px; color: #6b7280; font-size: 14px;">
+                    Suggested: <strong>${formatDecision(task.suggested_decision)}</strong>
+                </div>`;
+            }
+
+            // Decision buttons
+            taskHtml += '<div class="decision-buttons">';
+            taskHtml += '<button class="decision-btn btn-do-now" onclick="makeDecision(\'do_now\')">Do Now</button>';
+            taskHtml += '<button class="decision-btn btn-delegate" onclick="makeDecision(\'delegate\')">Delegate</button>';
+            taskHtml += '<button class="decision-btn btn-defer" onclick="makeDecision(\'defer\')">Defer</button>';
+            taskHtml += '<button class="decision-btn btn-delete" onclick="makeDecision(\'delete\')">Delete</button>';
+            taskHtml += '</div>';
+
+            taskHtml += '</div>';
+
+            document.getElementById('current-task').innerHTML = taskHtml;
+
+            // Start timer
+            startTaskTimer();
+        }
+
+        function startTaskTimer() {
+            let seconds = 30;
+            const timerEl = document.getElementById('timer');
+            const timerValue = document.getElementById('timer-value');
+
+            timerEl.classList.remove('hidden');
+            timerEl.classList.remove('warning');
+
+            if (taskTimer) clearInterval(taskTimer);
+
+            taskTimer = setInterval(() => {
+                seconds--;
+                timerValue.textContent = seconds;
+
+                if (seconds <= 10) {
+                    timerEl.classList.add('warning');
+                }
+
+                if (seconds <= 0) {
+                    clearInterval(taskTimer);
+                    // Auto-defer if no decision made
+                    makeDecision('defer');
+                }
+            }, 1000);
+        }
+
+        async function makeDecision(decision) {
+            if (!currentTask) return;
+
+            // Stop timer
+            if (taskTimer) {
+                clearInterval(taskTimer);
+                taskTimer = null;
+            }
+
+            // Calculate decision time
+            const decisionTime = Date.now() - taskStartTime;
+
+            // Disable buttons
+            document.querySelectorAll('.decision-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            try {
+                const response = await fetch(`/api/rounds/task/${currentTask.id}/decision`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        decision: decision,
+                        decision_time: decisionTime
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'completed') {
+                    // Show summary
+                    showSummary(data.summary);
+                } else if (data.next_task) {
+                    // Update progress
+                    updateProgress(data.progress);
+                    // Display next task
+                    displayTask(data.next_task);
+                }
+
+            } catch (error) {
+                console.error('Error processing decision:', error);
+                alert('Failed to process decision. Please try again.');
+                // Re-enable buttons
+                document.querySelectorAll('.decision-btn').forEach(btn => {
+                    btn.disabled = false;
+                });
+            }
+        }
+
+        function updateProgress(progress) {
+            document.getElementById('progress-fill').style.width = `${progress.percentage}%`;
+            document.getElementById('progress-current').textContent =
+                `${progress.current} of ${progress.total} tasks`;
+            document.getElementById('progress-percentage').textContent =
+                `${Math.round(progress.percentage)}%`;
+        }
+
+        function showSummary(summary) {
+            // Hide review section
+            document.getElementById('review-section').classList.add('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            // Show summary section
+            document.getElementById('summary-section').classList.remove('hidden');
+
+            // Populate summary
+            document.getElementById('tasks-reviewed').textContent = summary.tasks_reviewed;
+            document.getElementById('decisions-made').textContent = summary.tasks_reviewed;
+            document.getElementById('duration-minutes').textContent =
+                Math.round(summary.duration_minutes);
+            document.getElementById('avg-decision-time').textContent =
+                Math.round(summary.avg_decision_seconds);
+        }
+
+        function formatDecision(decision) {
+            const formats = {
+                'do_now': 'Do Now',
+                'delegate': 'Delegate',
+                'defer': 'Defer',
+                'delete': 'Delete'
+            };
+            return formats[decision] || decision;
+        }
+    </script>
+</body>
+</html>

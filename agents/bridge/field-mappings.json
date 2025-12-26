@@ -1,0 +1,43 @@
+{
+  "lyco_to_notion": {
+    "title": "Name",
+    "energy_level": "Energy Level Required",
+    "estimated_duration": "Time Estimate",
+    "skip_reason": "Notes",
+    "completed": "Complete",
+    "completed_at": "date:Completed Date:start",
+    "context": "Context/Tags",
+    "priority": "Priority",
+    "skip_count": "_skip_count"
+  },
+  "notion_to_lyco": {
+    "Name": "title",
+    "Energy Level Required": "energy_level",
+    "Time Estimate": "estimated_duration",
+    "Complete": "completed",
+    "date:Completed Date:start": "completed_at",
+    "Context/Tags": "context",
+    "Priority": "priority",
+    "Notes": "skip_reason",
+    "Eisenhower": "_eisenhower_quadrant"
+  },
+  "eisenhower_mappings": {
+    "critical_high": "🔥 Do Now",
+    "high_energy": "📅 Schedule",
+    "high_skip": "🗄️ Someday/Maybe",
+    "default": "🧠 Brain Dump",
+    "delegated": "👥 Delegate"
+  },
+  "energy_levels": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "variable": "Variable"
+  },
+  "priority_levels": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
+  }
+}

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Lyco Insights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .metric-value {
+            font-size: 3em;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .achievement h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievement p {
+            font-size: 1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievement-impact {
+            font-size: 0.85em;
+            margin-top: 10px;
+            opacity: 0.8;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .recommendation {
+            background: white;
+            border: 2px solid #e3f2fd;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .recommendation:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .recommendation.high {
+            border-left: 6px solid #f44336;
+        }
+
+        .recommendation.medium {
+            border-left: 6px solid #ff9800;
+        }
+
+        .recommendation.low {
+            border-left: 6px solid #4caf50;
+        }
+
+        .recommendation h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .priority-badge.high {
+            background: #f44336;
+            color: white;
+        }
+
+        .priority-badge.medium {
+            background: #ff9800;
+            color: white;
+        }
+
+        .priority-badge.low {
+            background: #4caf50;
+            color: white;
+        }
+
+        .recommendation-action {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #667eea;
+        }
+
+        .recommendation-action strong {
+            color: #667eea;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .comparison-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .comparison-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .comparison-value.positive {
+            color: #4caf50;
+        }
+
+        .comparison-value.negative {
+            color: #f44336;
+        }
+
+        .ascii-chart {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer-logo {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-value {
+                font-size: 2.5em;
+            }
+
+            .recommendation h3 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Weekly Lyco Insights</h1>
+            <p class="subtitle">Week of {{week_date}} • {{read_time}} minute read</p>
+        </div>
+
+        <div class="content">
+            <!-- Metrics Section -->
+            <div class="section">
+                <h2>📊 This Week's Performance</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">{{completion_rate}}%</div>
+                        <div class="metric-label">Task Completion</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{completion_rate}}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">{{total_tasks}}</div>
+                        <div class="metric-label">Tasks Processed</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">{{energy_alignment}}%</div>
+                        <div class="metric-label">Energy Alignment</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{energy_alignment}}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">{{avg_completion_time}}</div>
+                        <div class="metric-label">Avg Completion (min)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Section -->
+            {% if comparison.available %}
+            <div class="section">
+                <h2>📈 Week-over-Week Progress</h2>
+                <div class="comparison-card">
+                    <h3>Trending {{comparison.trend_direction | title}}</h3>
+                    <div class="comparison-grid">
+                        <div class="comparison-item">
+                            <div class="comparison-value {{comparison.completion_rate_change > 0 and 'positive' or 'negative'}}">
+                                {{comparison.completion_rate_change > 0 and '+' or ''}}{{comparison.completion_rate_change}}%
+                            </div>
+                            <div>Completion Rate</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-value {{comparison.energy_alignment_change > 0 and 'positive' or 'negative'}}">
+                                {{comparison.energy_alignment_change > 0 and '+' or ''}}{{comparison.energy_alignment_change}}%
+                            </div>
+                            <div>Energy Alignment</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Achievements Section -->
+            {% if achievements %}
+            <div class="section">
+                <h2>🏆 This Week's Wins</h2>
+                {% for achievement in achievements[:3] %}
+                <div class="achievement">
+                    <h3>{{achievement.title}}</h3>
+                    <p>{{achievement.description}}</p>
+                    <div class="achievement-impact">Impact: {{achievement.impact}}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Productivity Patterns -->
+            <div class="section">
+                <h2>⏰ Your Productivity Rhythm</h2>
+                <div class="ascii-chart">
+Peak Hours This Week:
+{% for hour, count in hourly_breakdown.items() %}
+{{"%2d"|format(hour)}}:00 {{"█" * (count|int // 2 + 1)}} ({{count}} tasks)
+{% endfor %}
+
+Energy Level Performance:
+High   {{"█" * ((energy_patterns.high.completion_rate or 0)|int // 5 + 1)}} {{energy_patterns.high.completion_rate or 0}}%
+Medium {{"█" * ((energy_patterns.medium.completion_rate or 0)|int // 5 + 1)}} {{energy_patterns.medium.completion_rate or 0}}%
+Low    {{"█" * ((energy_patterns.low.completion_rate or 0)|int // 5 + 1)}} {{energy_patterns.low.completion_rate or 0}}%
+                </div>
+            </div>
+
+            <!-- Recommendations Section -->
+            {% if recommendations %}
+            <div class="section">
+                <h2>🎯 Next Week's Focus Areas</h2>
+                {% for rec in recommendations[:3] %}
+                <div class="recommendation {{rec.priority}}">
+                    <h3>
+                        {{rec.title}}
+                        <span class="priority-badge {{rec.priority}}">{{rec.priority}}</span>
+                    </h3>
+                    <p>{{rec.description}}</p>
+                    <div class="recommendation-action">
+                        <strong>Action:</strong> {{rec.specific_action}}
+                    </div>
+                    <small style="color: #6c757d;">Expected impact: {{rec.expected_impact}}</small>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Quick Actions -->
+            <div class="section" style="text-align: center;">
+                <h2>🚀 Ready to Level Up?</h2>
+                <a href="http://localhost:8000" class="cta-button">
+                    Open Lyco Dashboard
+                </a>
+                <p style="margin-top: 15px; color: #6c757d;">
+                    Your cognitive prosthetic is learning and adapting.<br>
+                    Keep using it to unlock even better insights!
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-logo">Lyco 2.0</div>
+            <p>Your AI-powered cognitive prosthetic</p>
+            <p style="font-size: 0.8em; margin-top: 10px;">
+                Generated with ❤️ using your behavioral patterns<br>
+                Designed to make you more effective, not more busy
+            </p>
+        </div>
+    </div>
+</body>
+</html>

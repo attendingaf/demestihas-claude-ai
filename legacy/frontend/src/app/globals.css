@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  html,
+  body {
+    @apply bg-lcars-black text-lcars-gold;
+  }
+}
+
+@layer components {
+
+  /* LCARS Button Styles - Compact */
+  .lcars-button {
+    @apply bg-gradient-to-r from-lcars-orange to-lcars-gold text-black font-antonio font-bold uppercase tracking-[2px] px-6 py-2 rounded-[20px] text-right transition-all duration-150 relative text-sm;
+    box-shadow: 0 3px 0 #CC7744, 0 4px 10px rgba(255, 153, 102, 0.3);
+  }
+
+  .lcars-button:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 5px 0 #CC7744, 0 6px 15px rgba(255, 153, 102, 0.5);
+  }
+
+  .lcars-button:active {
+    @apply translate-y-0.5;
+    box-shadow: 0 2px 0 #CC7744, 0 2px 5px rgba(255, 153, 102, 0.2);
+  }
+
+  /* LCARS Panel Styles - Compact */
+  .lcars-panel {
+    @apply bg-gradient-to-br from-[#0a0a0a] to-black border-2 rounded-[20px] p-5 relative;
+    box-shadow: 0 0 15px rgba(255, 153, 102, 0.15), inset 0 0 15px rgba(255, 153, 102, 0.05);
+  }
+
+  .lcars-panel-user {
+    @apply border-lcars-tan;
+    background: linear-gradient(135deg, #1a0f00 0%, #0a0a0a 100%);
+  }
+
+  .lcars-panel-assistant {
+    @apply border-lcars-pink;
+    background: linear-gradient(135deg, #1a0a1a 0%, #0a0a0a 100%);
+  }
+
+  /* LCARS Corner Accent - Smaller */
+  .lcars-panel::before {
+    content: '';
+    @apply absolute -top-0.5 -left-0.5 w-[30px] h-[30px] border-t-2 border-l-2 border-current rounded-tl-[20px];
+  }
+
+  /* LCARS Input Styles - Compact */
+  .lcars-input {
+    @apply bg-gradient-to-br from-[#1a0f00] to-[#0a0a0a] border-2 border-lcars-orange rounded-[20px] px-4 py-3 text-lcars-orange text-base font-medium tracking-wide w-full;
+    box-shadow: 0 0 20px rgba(255, 153, 102, 0.2), inset 0 0 10px rgba(255, 153, 102, 0.1);
+  }
+
+  .lcars-input::placeholder {
+    @apply text-[#CC7744] opacity-60 text-sm;
+  }
+
+  .lcars-input:focus {
+    @apply outline-none;
+    box-shadow: 0 0 30px rgba(255, 153, 102, 0.4), inset 0 0 15px rgba(255, 153, 102, 0.15);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px currentColor;
+  }
+
+  .lcars-elbow {
+    background: linear-gradient(to right, #000000 0%, #000000 calc(100% - 50px), #CC99CC calc(100% - 50px), #CC99CC 100%);
+  }
+}
+
+/* Animations */
+@keyframes lcars-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes lcars-slide-in {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-lcars-pulse {
+  animation: lcars-pulse 2s infinite;
+}
+
+.animate-lcars-slide {
+  animation: lcars-slide-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}

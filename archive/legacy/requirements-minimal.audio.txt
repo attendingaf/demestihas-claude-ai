@@ -1,0 +1,23 @@
+# Minimal requirements for audio workflow - NO CONFLICTS
+aiohttp==3.9.0
+aiofiles==23.2.1
+
+# Google APIs  
+google-api-python-client==2.88.0
+google-auth==2.19.0
+google-auth-oauthlib==1.0.0
+google-auth-httplib2==0.1.0
+
+# OpenAI
+openai==1.12.0
+
+# Anthropic  
+anthropic==0.18.1
+
+# Basic utilities
+python-dotenv==1.0.0
+tenacity==8.2.3
+
+# NO httpx specified - let openai/anthropic choose compatible version
+# NO supabase - removed completely to avoid conflicts
+# NO pydantic version specified - let other packages choose

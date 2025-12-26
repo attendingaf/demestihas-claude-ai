@@ -1,0 +1,1147 @@
+BEGIN:VCALENDAR
+METHOD:PUBLISH
+PRODID:-//FOTMOB//FOTMOB 1.0//EN
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+VERSION:2.0
+X-PUBLISHED-TTL:PT6H
+X-WR-CALDESC:Arsenal fixtures
+X-WR-CALNAME:Arsenal
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4771847 \nClub Friendlies
+DTEND:20250723T131500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250723T113000Z
+LAST-MODIFIED:20251125T132115Z
+SEQUENCE:0
+SUMMARY:⚽️ Milan - Arsenal  (6-6)
+TRANSP:TRANSPARENT
+UID:4771847-9825@fotmob.com
+URL:https://www.fotmob.com/match/4771847
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Milan - Arsenal starting in 15 minutes. Notifications can b
+ e turned off in calendar settings
+SUMMARY:⚽️ Milan - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4772687 \nClub Friendlies
+DTEND:20250727T131500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250727T113000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:National Stadium\, 1 Stadium Drive\, Kallang\, Singapore\, SIN
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Newcastle United  (3-2)
+TRANSP:TRANSPARENT
+UID:4772687-9825@fotmob.com
+URL:https://www.fotmob.com/match/4772687
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Newcastle United starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Newcastle United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4772688 \nClub Friendlies
+DTEND:20250731T131500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250731T113000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Kai Tak Sports Park\, 38-39 Shing Kai Road\, Kowloon City\, HKG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Tottenham Hotspur  (0-1)
+TRANSP:TRANSPARENT
+UID:4772688-9825@fotmob.com
+URL:https://www.fotmob.com/match/4772688
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Tottenham Hotspur starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Tottenham Hotspur starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4885157 \nClub Friendlies
+DTEND:20250806T184500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250806T170000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Villarreal  (5-7)
+TRANSP:TRANSPARENT
+UID:4885157-9825@fotmob.com
+URL:https://www.fotmob.com/match/4885157
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Villarreal starting in 15 minutes. Notifications 
+ can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Villarreal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4877487 \nClub Friendlies
+DTEND:20250809T174500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250809T160000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Athletic Club  (9-5)
+TRANSP:TRANSPARENT
+UID:4877487-9825@fotmob.com
+URL:https://www.fotmob.com/match/4877487
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Athletic Club starting in 15 minutes. Notificatio
+ ns can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Athletic Club starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813382 \nPremier League
+DTEND:20250817T171500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250817T153000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Old Trafford\, Sir Matt Busby Way\, Manchester\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Manchester United - Arsenal  (0-1)
+TRANSP:TRANSPARENT
+UID:4813382-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813382
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Manchester United - Arsenal starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Manchester United - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813386 \nPremier League
+DTEND:20250823T181500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250823T163000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Leeds United  (5-0)
+TRANSP:TRANSPARENT
+UID:4813386-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813386
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Leeds United starting in 15 minutes. Notification
+ s can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Leeds United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813399 \nPremier League
+DTEND:20250831T171500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250831T153000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Anfield\, Anfield Road\, Liverpool\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Liverpool - Arsenal  (1-0)
+TRANSP:TRANSPARENT
+UID:4813399-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813399
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Liverpool - Arsenal starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ Liverpool - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813406 \nPremier League
+DTEND:20250913T131500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250913T113000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Nottingham Forest  (3-0)
+TRANSP:TRANSPARENT
+UID:4813406-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813406
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Nottingham Forest starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Nottingham Forest starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947178 \nChampions League
+DTEND:20250916T183000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250916T164500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Estadio de San Mamés\, Rafael Moreno Pitxitxi Kalea\, Bilbao\, ESP
+SEQUENCE:0
+SUMMARY:⚽️ Athletic Club - Arsenal  (0-2)
+TRANSP:TRANSPARENT
+UID:4947178-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947178
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Athletic Club - Arsenal starting in 15 minutes. Notificatio
+ ns can be turned off in calendar settings
+SUMMARY:⚽️ Athletic Club - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813416 \nPremier League
+DTEND:20250921T171500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250921T153000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Manchester City  (1-1)
+TRANSP:TRANSPARENT
+UID:4813416-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813416
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Manchester City starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Manchester City starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4945932 \nEFL Cup
+DTEND:20250924T204500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250924T190000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Vale Park\, Hamil Road\, Burslem\, Stoke-on-Trent\, Staffordshire
+ \, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Port Vale - Arsenal  (0-2)
+TRANSP:TRANSPARENT
+UID:4945932-9825@fotmob.com
+URL:https://www.fotmob.com/match/4945932
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Port Vale - Arsenal starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ Port Vale - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813432 \nPremier League
+DTEND:20250928T171500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20250928T153000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:St. James' Park\, St. James' Street\, Newcastle upon Tyne\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Newcastle United - Arsenal  (1-2)
+TRANSP:TRANSPARENT
+UID:4813432-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813432
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Newcastle United - Arsenal starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Newcastle United - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947175 \nChampions League
+DTEND:20251001T204500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251001T190000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Olympiacos  (2-0)
+TRANSP:TRANSPARENT
+UID:4947175-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947175
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Olympiacos starting in 15 minutes. Notifications 
+ can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Olympiacos starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813436 \nPremier League
+DTEND:20251004T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251004T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - West Ham United  (2-0)
+TRANSP:TRANSPARENT
+UID:4813436-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813436
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - West Ham United starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - West Ham United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813448 \nPremier League
+DTEND:20251018T181500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251018T163000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Craven Cottage\, Stevenage Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Fulham - Arsenal  (0-1)
+TRANSP:TRANSPARENT
+UID:4813448-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813448
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Fulham - Arsenal starting in 15 minutes. Notifications can 
+ be turned off in calendar settings
+SUMMARY:⚽️ Fulham - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947173 \nChampions League
+DTEND:20251021T204500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251021T190000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Atletico Madrid  (4-0)
+TRANSP:TRANSPARENT
+UID:4947173-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947173
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Atletico Madrid starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Atletico Madrid starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813456 \nPremier League
+DTEND:20251026T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251026T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Crystal Palace  (1-0)
+TRANSP:TRANSPARENT
+UID:4813456-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813456
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Crystal Palace starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Crystal Palace starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4978144 \nEFL Cup
+DTEND:20251029T213000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251029T194500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Brighton & Hove Albion  (2-0)
+TRANSP:TRANSPARENT
+UID:4978144-9825@fotmob.com
+URL:https://www.fotmob.com/match/4978144
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Brighton & Hove Albion starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Brighton & Hove Albion starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813466 \nPremier League
+DTEND:20251101T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251101T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Turf Moor\, Harry Potts Way\, Burnley\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Burnley - Arsenal  (0-2)
+TRANSP:TRANSPARENT
+UID:4813466-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813466
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Burnley - Arsenal starting in 15 minutes. Notifications can
+  be turned off in calendar settings
+SUMMARY:⚽️ Burnley - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947176 \nChampions League
+DTEND:20251104T193000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251104T174500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Fortuna Arena\, Vladivostocká 1460/10\, Praha\, CZE
+SEQUENCE:0
+SUMMARY:⚽️ Slavia Prague - Arsenal  (0-3)
+TRANSP:TRANSPARENT
+UID:4947176-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947176
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Slavia Prague - Arsenal starting in 15 minutes. Notificatio
+ ns can be turned off in calendar settings
+SUMMARY:⚽️ Slavia Prague - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813482 \nPremier League
+DTEND:20251108T191500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251108T173000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Stadium of Light\, Millenium Way\, Sunderland\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Sunderland - Arsenal  (2-2)
+TRANSP:TRANSPARENT
+UID:4813482-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813482
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Sunderland - Arsenal starting in 15 minutes. Notifications 
+ can be turned off in calendar settings
+SUMMARY:⚽️ Sunderland - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813486 \nPremier League
+DTEND:20251123T181500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251123T163000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Tottenham Hotspur  (4-1)
+TRANSP:TRANSPARENT
+UID:4813486-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813486
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Tottenham Hotspur starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Tottenham Hotspur starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947104 \nChampions League
+DTEND:20251126T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251126T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Bayern München
+TRANSP:TRANSPARENT
+UID:4947104-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947104
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Bayern München starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Bayern München starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813497 \nPremier League
+DTEND:20251130T181500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251130T163000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Stamford Bridge\, Fulham Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Chelsea - Arsenal
+TRANSP:TRANSPARENT
+UID:4813497-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813497
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Chelsea - Arsenal starting in 15 minutes. Notifications can
+  be turned off in calendar settings
+SUMMARY:⚽️ Chelsea - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813506 \nPremier League
+DTEND:20251203T211500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251203T193000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Brentford
+TRANSP:TRANSPARENT
+UID:4813506-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813506
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Brentford starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Brentford starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813516 \nPremier League
+DTEND:20251206T141500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251206T123000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Villa Park\, Trinity Road\, Birmingham\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Aston Villa - Arsenal
+TRANSP:TRANSPARENT
+UID:4813516-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813516
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Aston Villa - Arsenal starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ Aston Villa - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947174 \nChampions League
+DTEND:20251210T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251210T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Jan Breydelstadion\, Olympialaan 74\, Brugge\, BEL
+SEQUENCE:0
+SUMMARY:⚽️ Club Brugge - Arsenal
+TRANSP:TRANSPARENT
+UID:4947174-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947174
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Club Brugge - Arsenal starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ Club Brugge - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813525 \nPremier League
+DTEND:20251213T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251213T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Wolverhampton Wanderers
+TRANSP:TRANSPARENT
+UID:4813525-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813525
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Wolverhampton Wanderers starting in 15 minutes. N
+ otifications can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Wolverhampton Wanderers starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813538 \nPremier League
+DTEND:20251220T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251220T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Hill Dickinson Stadium\, 35 Regent Road\, Bramley-Moore Dock\, Va
+ uxhall\, Liverpool\, Merseyside\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Everton - Arsenal
+TRANSP:TRANSPARENT
+UID:4813538-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813538
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Everton - Arsenal starting in 15 minutes. Notifications can
+  be turned off in calendar settings
+SUMMARY:⚽️ Everton - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/5034192 \nEFL Cup
+DTEND:20251223T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251223T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Crystal Palace
+TRANSP:TRANSPARENT
+UID:5034192-9825@fotmob.com
+URL:https://www.fotmob.com/match/5034192
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Crystal Palace starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Crystal Palace starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813545 \nPremier League
+DTEND:20251227T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251227T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Brighton & Hove Albion
+TRANSP:TRANSPARENT
+UID:4813545-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813545
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Brighton & Hove Albion starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Brighton & Hove Albion starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813555 \nPremier League
+DTEND:20251230T220000Z
+DTSTAMP:20251125T132115Z
+DTSTART:20251230T201500Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Aston Villa
+TRANSP:TRANSPARENT
+UID:4813555-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813555
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Aston Villa starting in 15 minutes. Notifications
+  can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Aston Villa starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813565 \nPremier League
+DTEND:20260103T191500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260103T173000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Vitality Stadium\, Dean Court\, Kings Park\, Bournemouth\, Dorset
+ \, ENG
+SEQUENCE:0
+SUMMARY:⚽️ AFC Bournemouth - Arsenal
+TRANSP:TRANSPARENT
+UID:4813565-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813565
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ AFC Bournemouth - Arsenal starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ AFC Bournemouth - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813576 \nPremier League
+DTEND:20260108T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260108T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium\, Hornsey Road\, London\, ENG
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Liverpool
+TRANSP:TRANSPARENT
+UID:4813576-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813576
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Liverpool starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Liverpool starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813591 \nPremier League
+DTEND:20260117T191500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260117T173000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:The City Ground\, Pavilion Road\, Nottingham\, Nottinghamshire\, 
+ ENG
+SEQUENCE:0
+SUMMARY:⚽️ Nottingham Forest - Arsenal
+TRANSP:TRANSPARENT
+UID:4813591-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813591
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Nottingham Forest - Arsenal starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Nottingham Forest - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947126 \nChampions League
+DTEND:20260120T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260120T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Stadio Giuseppe Meazza\, Via Piccolomini 5\, Milano\, ITA
+SEQUENCE:0
+SUMMARY:⚽️ Inter - Arsenal
+TRANSP:TRANSPARENT
+UID:4947126-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947126
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Inter - Arsenal starting in 15 minutes. Notifications can b
+ e turned off in calendar settings
+SUMMARY:⚽️ Inter - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813596 \nPremier League
+DTEND:20260125T181500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260125T163000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Manchester United
+TRANSP:TRANSPARENT
+UID:4813596-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813596
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Manchester United starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Manchester United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4947177 \nChampions League
+DTEND:20260128T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260128T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Kairat Almaty
+TRANSP:TRANSPARENT
+UID:4947177-9825@fotmob.com
+URL:https://www.fotmob.com/match/4947177
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Kairat Almaty starting in 15 minutes. Notificatio
+ ns can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Kairat Almaty starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813608 \nPremier League
+DTEND:20260131T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260131T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Elland Road
+SEQUENCE:0
+SUMMARY:⚽️ Leeds United - Arsenal
+TRANSP:TRANSPARENT
+UID:4813608-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813608
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Leeds United - Arsenal starting in 15 minutes. Notification
+ s can be turned off in calendar settings
+SUMMARY:⚽️ Leeds United - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813616 \nPremier League
+DTEND:20260207T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260207T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Sunderland
+TRANSP:TRANSPARENT
+UID:4813616-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813616
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Sunderland starting in 15 minutes. Notifications 
+ can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Sunderland starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813626 \nPremier League
+DTEND:20260211T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260211T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Gtech Community Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Brentford - Arsenal
+TRANSP:TRANSPARENT
+UID:4813626-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813626
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Brentford - Arsenal starting in 15 minutes. Notifications c
+ an be turned off in calendar settings
+SUMMARY:⚽️ Brentford - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813643 \nPremier League
+DTEND:20260221T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260221T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Tottenham Hotspur Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Tottenham Hotspur - Arsenal
+TRANSP:TRANSPARENT
+UID:4813643-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813643
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Tottenham Hotspur - Arsenal starting in 15 minutes. Notific
+ ations can be turned off in calendar settings
+SUMMARY:⚽️ Tottenham Hotspur - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813646 \nPremier League
+DTEND:20260228T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260228T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Chelsea
+TRANSP:TRANSPARENT
+UID:4813646-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813646
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Chelsea starting in 15 minutes. Notifications can
+  be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Chelsea starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813657 \nPremier League
+DTEND:20260304T214500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260304T200000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:The American Express Community Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Brighton & Hove Albion - Arsenal
+TRANSP:TRANSPARENT
+UID:4813657-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813657
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Brighton & Hove Albion - Arsenal starting in 15 minutes. No
+ tifications can be turned off in calendar settings
+SUMMARY:⚽️ Brighton & Hove Albion - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813665 \nPremier League
+DTEND:20260314T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260314T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Everton
+TRANSP:TRANSPARENT
+UID:4813665-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813665
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Everton starting in 15 minutes. Notifications can
+  be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Everton starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813684 \nPremier League
+DTEND:20260321T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260321T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Molineux Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Wolverhampton Wanderers - Arsenal
+TRANSP:TRANSPARENT
+UID:4813684-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813684
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Wolverhampton Wanderers - Arsenal starting in 15 minutes. N
+ otifications can be turned off in calendar settings
+SUMMARY:⚽️ Wolverhampton Wanderers - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813685 \nPremier League
+DTEND:20260411T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260411T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - AFC Bournemouth
+TRANSP:TRANSPARENT
+UID:4813685-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813685
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - AFC Bournemouth starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - AFC Bournemouth starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813701 \nPremier League
+DTEND:20260418T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260418T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Etihad Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Manchester City - Arsenal
+TRANSP:TRANSPARENT
+UID:4813701-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813701
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Manchester City - Arsenal starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ Manchester City - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813706 \nPremier League
+DTEND:20260425T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260425T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Newcastle United
+TRANSP:TRANSPARENT
+UID:4813706-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813706
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Newcastle United starting in 15 minutes. Notifica
+ tions can be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Newcastle United starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813716 \nPremier League
+DTEND:20260502T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260502T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Fulham
+TRANSP:TRANSPARENT
+UID:4813716-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813716
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Fulham starting in 15 minutes. Notifications can 
+ be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Fulham starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813734 \nPremier League
+DTEND:20260509T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260509T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:London Stadium
+SEQUENCE:0
+SUMMARY:⚽️ West Ham United - Arsenal
+TRANSP:TRANSPARENT
+UID:4813734-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813734
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ West Ham United - Arsenal starting in 15 minutes. Notificat
+ ions can be turned off in calendar settings
+SUMMARY:⚽️ West Ham United - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813736 \nPremier League
+DTEND:20260517T154500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260517T140000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Emirates Stadium
+SEQUENCE:0
+SUMMARY:⚽️ Arsenal - Burnley
+TRANSP:TRANSPARENT
+UID:4813736-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813736
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Arsenal - Burnley starting in 15 minutes. Notifications can
+  be turned off in calendar settings
+SUMMARY:⚽️ Arsenal - Burnley starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:https://www.fotmob.com/match/4813747 \nPremier League
+DTEND:20260524T164500Z
+DTSTAMP:20251125T132115Z
+DTSTART:20260524T150000Z
+LAST-MODIFIED:20251125T132115Z
+LOCATION:Selhurst Park
+SEQUENCE:0
+SUMMARY:⚽️ Crystal Palace - Arsenal
+TRANSP:TRANSPARENT
+UID:4813747-9825@fotmob.com
+URL:https://www.fotmob.com/match/4813747
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⚽️ Crystal Palace - Arsenal starting in 15 minutes. Notificati
+ ons can be turned off in calendar settings
+SUMMARY:⚽️ Crystal Palace - Arsenal starting in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

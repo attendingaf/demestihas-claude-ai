@@ -1,0 +1,30 @@
+# Docker Compose addition for Pluma Agent
+# Add this service to the existing docker-compose.yml
+
+  pluma:
+    container_name: demestihas-pluma
+    build:
+      context: .
+      dockerfile: Dockerfile.pluma
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GMAIL_API_KEY=${GMAIL_API_KEY}
+      - GOOGLE_CREDENTIALS_PATH=/app/credentials/credentials.json
+      - GOOGLE_TOKEN_PATH=/app/credentials/token.json
+      - REDIS_URL=redis://lyco-redis:6379
+      - HERMES_HOST=hermes_audio
+      - HERMES_PORT=8000
+    volumes:
+      - ./google_credentials:/app/credentials:ro
+    depends_on:
+      - lyco-redis
+      - yanay
+    networks:
+      - lyco-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import asyncio; import sys; sys.path.append('/app'); from pluma import PlumaAgent; agent = PlumaAgent(); health = asyncio.run(agent.health_check()); exit(0 if health['status'] == 'healthy' else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s

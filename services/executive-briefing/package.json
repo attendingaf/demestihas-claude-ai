@@ -1,0 +1,28 @@
+{
+    "name": "executive-briefing-service",
+    "version": "1.0.0",
+    "description": "Daily briefing service for Demestihas AI",
+    "type": "module",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "tsx src/index.ts",
+        "dev:watch": "nodemon --exec tsx src/index.ts",
+        "build": "tsc",
+        "start": "node dist/index.js"
+    },
+    "dependencies": {
+        "@anthropic-ai/sdk": "^0.71.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "googleapis": "^144.0.0"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "@types/node": "^20.19.27",
+        "nodemon": "^3.1.4",
+        "tsx": "^4.16.2",
+        "typescript": "^5.5.3"
+    }
+}

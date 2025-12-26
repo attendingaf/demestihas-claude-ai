@@ -1,0 +1,24 @@
+# Lyco 2.0 Dependencies
+supabase==2.5.1
+anthropic==0.31.2
+openai==1.37.0
+redis==5.0.7
+click==8.1.7
+python-dotenv==1.0.1
+aiohttp==3.9.5
+asyncio==3.4.3
+pydantic==2.8.2
+uvicorn==0.30.3
+fastapi==0.111.1
+
+# Google API dependencies for ambient capture
+google-auth==2.23.4
+google-auth-oauthlib==1.1.0
+google-auth-httplib2==0.1.1
+google-api-python-client==2.108.0
+
+# Phase 4 Dependencies
+redis[hiredis]==5.0.7
+psutil==5.9.8
+pytest==7.4.4
+pytest-asyncio==0.23.5

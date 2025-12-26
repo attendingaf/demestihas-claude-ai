@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Editor Configs
+.claude/
+.zed_server/
+.vscode/
+.idea/
+
+# Secrets and Environment Variables
+.env
+.env.*
+!.env.example
+!.env.template
+env-additions.txt
+vps_env
+tokens.json
+credentials.json
+client_secret.json
+*.pem
+*.key
+*_key
+*_secret
+
+# Large Files / Backups
+*.tar.gz
+*.zip
+*.bak
+*.backup
+._*
+
+# Python Pickle files
+*.pickle
+

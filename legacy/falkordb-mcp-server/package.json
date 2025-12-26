@@ -1,0 +1,45 @@
+{
+    "name": "falkordb-mcp-server",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "tsx src/index.ts",
+        "dev:watch": "nodemon --exec tsx src/index.ts",
+        "dev:sse": "tsx src/index-sse.ts",
+        "dev:sse:watch": "nodemon --exec tsx src/index-sse.ts",
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "start:sse": "node dist/index-sse.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "mcp",
+        "falkordb",
+        "graph-database",
+        "memory",
+        "embeddings"
+    ],
+    "author": "",
+    "license": "ISC",
+    "description": "MCP server for FalkorDB with semantic memory search capabilities",
+    "devDependencies": {
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.5",
+        "@types/node": "^24.10.0",
+        "nodemon": "^3.1.10",
+        "tsx": "^4.20.6",
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.21.1",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.3",
+        "express": "^4.21.2",
+        "falkordb": "^6.3.1",
+        "openai": "^6.8.1",
+        "zod": "^3.25.76",
+        "googleapis": "^144.0.0",
+        "@anthropic-ai/sdk": "^0.33.0"
+    }
+}

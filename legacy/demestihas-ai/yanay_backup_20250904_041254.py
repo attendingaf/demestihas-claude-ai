@@ -1,0 +1,428 @@
+#!/usr/bin/env python3
+"""
+Yanay Orchestrator - Conversation Memory and Intent Management
+Handles conversation context, reference resolution, and agent routing
+"""
+
+import os
+
+from huata import create_huata_agent
+import asyncio
+import logging
+import json
+import redis.asyncio as redis
+from datetime import datetime, timedelta
+from typing import List, Dict, Optional, Any
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
+import aiohttp
+from anthropic import AsyncAnthropic
+
+# Conversation Enhancement
+try:
+    from conversation_manager import ConversationStateManager
+    from token_manager import TokenBudgetManager
+    print("Enhancement modules imported")
+except ImportError:
+    ConversationStateManager = None
+    TokenBudgetManager = None
+
+# Enhanced logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+logger = logging.getLogger(__name__)
+
+# Configuration
+BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CONVERSATION_TTL = 86400  # 24 hours
+
+# Import Lyco API functions (will be created next)
+try:
+    from lyco_api import LycoTaskAPI
+    lyco_api = LycoTaskAPI()
+except ImportError:
+    logger.warning("Lyco API not found, using fallback")
+    lyco_api = None
+
+try:
+    from nina import process_schedule_command, check_coverage_gaps
+    nina_available = True
+except ImportError:
+    logger.warning("Nina scheduling agent not found")
+    nina_available = False
+
+class YanayOrchestrator:
+    """Main orchestrator for conversation management and agent routing"""
+    
+    def __init__(self):
+        self.anthropic = AsyncAnthropic(api_key=ANTHROPIC_API_KEY)
+        self.redis_client = None
+        self.conversation_ttl = CONVERSATION_TTL
+        
+    async def initialize(self):
+        """Initialize Redis connection"""
+        try:
+            self.redis_client = await redis.from_url(REDIS_URL, decode_responses=True)
+            await self.redis_client.ping()
+            logger.info("✅ Redis connection established")
+        except Exception as e:
+            logger.error(f"❌ Redis connection failed: {e}")
+            logger.info("Using in-memory fallback")
+            self.redis_client = None
+            self.memory_fallback = {}
+    
+    async def get_conversation_context(self, user_id: str, limit: int = 20) -> List[Dict]:
+        """Retrieve conversation history for a user"""
+        key = f"conv:{user_id}"
+        
+        if self.redis_client:
+            try:
+                messages = await self.redis_client.lrange(key, 0, limit - 1)
+                return [json.loads(msg) for msg in messages]
+            except Exception as e:
+                logger.error(f"Error retrieving conversation: {e}")
+                return []
+        else:
+            # Fallback to in-memory
+            return self.memory_fallback.get(user_id, [])[:limit]
+    
+    async def save_message(self, user_id: str, role: str, content: str):
+        """Store message in conversation history"""
+        key = f"conv:{user_id}"
+        message = {
+            "role": role,
+            "content": content,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        if self.redis_client:
+            try:
+                await self.redis_client.lpush(key, json.dumps(message))
+                await self.redis_client.ltrim(key, 0, 19)  # Keep last 20 messages
+                await self.redis_client.expire(key, self.conversation_ttl)
+            except Exception as e:
+                logger.error(f"Error saving message: {e}")
+        else:
+            # Fallback to in-memory
+            if user_id not in self.memory_fallback:
+                self.memory_fallback[user_id] = []
+            self.memory_fallback[user_id].insert(0, message)
+            self.memory_fallback[user_id] = self.memory_fallback[user_id][:20]
+    
+    async def classify_intent(self, message: str, context: List[Dict]) -> Dict:
+        """Classify user intent using Claude Haiku"""
+        
+        # Build context string
+        context_str = "\n".join([
+            f"{msg['role']}: {msg['content'][:100]}"
+            for msg in context[-5:]  # Last 5 messages for context
+        ])
+        
+        prompt = f"""Classify the user's intent from this message.
+        
+Previous context:
+{context_str if context_str else 'No previous context'}
+
+Current message: {message}
+
+Classify as one of:
+- create_task: User wants to create a new task
+- update_task: User wants to modify an existing task
+- query_tasks: User wants to know about their tasks
+- schedule: User wants to manage au pair/Viola schedule (days off, coverage, schedule changes)
+- general_chat: General conversation
+
+Also identify if the message contains references like 'that', 'it', 'the last one'.
+
+Respond in JSON format:
+{{
+    "intent": "<classification>",
+    "confidence": <0-1>,
+    "has_reference": <true/false>,
+    "referenced_entity": "<what 'that/it' refers to if applicable>"
+}}"""
+
+        try:
+            response = await self.anthropic.messages.create(
+                model="claude-3-haiku-20240307",
+                max_tokens=200,
+                temperature=0.3,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            
+            # Parse JSON from response
+            content = response.content[0].text
+            # Find JSON in response
+            import re
+            json_match = re.search(r'\{.*\}', content, re.DOTALL)
+            if json_match:
+                return json.loads(json_match.group())
+            else:
+                return {
+                    "intent": "create_task",
+                    "confidence": 0.5,
+                    "has_reference": False
+                }
+        except Exception as e:
+            logger.error(f"Intent classification error: {e}")
+            return {
+                "intent": "create_task",
+                "confidence": 0.5,
+                "has_reference": False
+            }
+    
+    async def resolve_reference(self, intent: Dict, context: List[Dict]) -> Optional[str]:
+        """Resolve references like 'that' or 'it' from context"""
+        if not intent.get('has_reference'):
+            return None
+        
+        # Look for the last mentioned task or entity
+        for msg in context:
+            if msg['role'] == 'user':
+                # Simple pattern matching for now
+                # Could be enhanced with semantic similarity
+                content_lower = msg['content'].lower()
+                if any(word in content_lower for word in ['task', 'review', 'buy', 'call', 'email', 'meet']):
+                    return msg['content']
+        
+        return None
+    
+    async def route_to_lyco(self, operation: str, data: Dict) -> Dict:
+        """Route requests to Lyco API"""
+        if lyco_api:
+            try:
+                if operation == 'create_task':
+                    return await lyco_api.create_task(data)
+                elif operation == 'update_task':
+                    return await lyco_api.update_task(data.get('task_id'), data)
+                elif operation == 'query_tasks':
+                    return await lyco_api.query_tasks(data)
+                else:
+                    return {"success": False, "error": "Unknown operation"}
+            except Exception as e:
+                logger.error(f"Lyco routing error: {e}")
+                return {"success": False, "error": str(e)}
+        else:
+            # Fallback - just return mock response
+            return {"success": True, "message": "Task processed (mock mode)"}
+    
+    
+    async def process_message(self, user_message: str, user_id: str, user_name: str = "User") -> str:
+        """Main message processing pipeline"""
+        
+        # Get conversation context
+        context = await self.get_conversation_context(user_id)
+        
+        # Save user message
+        await self.save_message(user_id, "user", user_message)
+        
+        # Classify intent
+        intent = await self.classify_intent(user_message, context)
+        logger.info(f"Intent classified: {intent}")
+        
+        # Resolve references if needed
+        referenced_content = None
+        if intent.get('has_reference'):
+            referenced_content = await self.resolve_reference(intent, context)
+            logger.info(f"Reference resolved: {referenced_content}")
+        
+        # Build enriched message
+        enriched_message = user_message
+        if referenced_content:
+            enriched_message = f"{user_message} [Context: {referenced_content}]"
+        
+        # Route based on intent
+        response = ""
+        if intent['intent'] == 'create_task':
+            result = await self.route_to_lyco('create_task', {
+                'text': enriched_message,
+                'user_name': user_name,
+                'original_message': user_message
+            })
+            response = "✅ Task created!" if result.get('success') else "❌ Failed to create task"
+            
+        elif intent['intent'] == 'update_task':
+            if referenced_content:
+                result = await self.route_to_lyco('update_task', {
+                    'text': enriched_message,
+                    'referenced_task': referenced_content
+                })
+                response = "✅ Task updated!" if result.get('success') else "❌ Failed to update task"
+            else:
+                response = "❓ Which task would you like to update?"
+                
+        elif intent['intent'] == 'schedule':
+            if nina_available:
+                result = await process_schedule_command(user_message, user_name)
+                response = result.get('message', '📅 Processing schedule request...')
+                
+                # Create task if coverage needed
+                if result.get('create_task'):
+                    task_result = await self.route_to_lyco('create_task', {
+                        'text': result.get('task_title', 'Coverage needed'),
+                        'user_name': user_name
+                    })
+            else:
+                response = "❌ Schedule management not available"
+                
+        elif intent['intent'] == 'query_tasks':
+            result = await self.route_to_lyco('query_tasks', {'user_name': user_name})
+            response = result.get('message', "📋 Fetching your tasks...")
+            
+        else:
+            response = "👋 I'm here to help you manage your tasks. Just tell me what you need!"
+        
+        # Save assistant response
+        await self.save_message(user_id, "assistant", response)
+        
+        return response
+
+    async def evaluate_response_mode(self, message_text: str, user_id: str) -> str:
+        # Check for emotional indicators
+        emotional_words = ["frustrated", "tired", "stressed", "excited", "sad", "angry", "happy", "worried", "anxious"]
+        if any(word in message_text.lower() for word in emotional_words):
+            return "conversational"
+        
+        # Check for direct task requests
+        task_words = ["add", "create", "schedule", "remind", "set", "book", "plan"]
+        if any(message_text.lower().startswith(word) for word in task_words):
+            return "task"
+            
+        # Check for questions
+        if message_text.strip().endswith("?") or message_text.lower().startswith(("what", "how", "when", "where", "why")):
+            return "conversational"
+            
+        return "conversational"
+
+    async def opus_conversation(self, message_text: str, user_id: str, context: list) -> str:
+        try:
+            system_prompt = "You are Yanay, a helpful family AI assistant. Provide warm, conversational responses."
+            messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": message_text}]
+            response = await self.anthropic.messages.create(model="claude-3-haiku-20240307", max_tokens=200, messages=messages)
+            return response.content[0].text
+        except Exception as e:
+            logger.error(f"Conversation response error: {e}")
+            return "I can help with tasks once my conversation system is updated."
+
+
+# Telegram bot handlers
+orchestrator = YanayOrchestrator()
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /start command"""
+    user_name = update.effective_user.first_name or "Friend"
+    welcome_message = f"""👋 Welcome {user_name}!
+
+I'm Yanay, your intelligent task assistant with conversation memory.
+
+I can now understand context like:
+• "Buy milk" → "Make that urgent" 
+• "Review the proposal" → "Set it for tomorrow"
+• "What did I ask you to do?" → Shows your tasks
+
+Just send me a message and I'll help you stay organized!"""
+    
+    await update.message.reply_text(welcome_message)
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle incoming messages"""
+    user_message = update.message.text
+    user_id = str(update.effective_user.id)
+    user_name = update.effective_user.first_name or "User"
+    
+    # Show typing indicator
+    await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
+    
+    # Process message through orchestrator
+    response = await orchestrator.process_message(user_message, user_id, user_name)
+    
+    await update.message.reply_text(response)
+
+async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show system status"""
+    user_id = str(update.effective_user.id)
+    
+    # Get conversation history count
+    context_msgs = await orchestrator.get_conversation_context(user_id)
+    
+    status_msg = f"""🤖 **Yanay Status**
+    
+✅ Orchestrator: Active
+✅ Conversation Memory: {len(context_msgs)} messages
+✅ Redis: {'Connected' if orchestrator.redis_client else 'Using fallback'}
+✅ Lyco API: {'Connected' if lyco_api else 'Mock mode'}
+
+Version: v7.0-yanay
+Response time: <3s target"""
+    
+    await update.message.reply_text(status_msg, parse_mode='Markdown')
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show help message"""
+    help_text = """📚 **How to use Yanay**
+
+**Creating tasks:**
+• "Buy groceries tomorrow"
+• "Call dentist urgent"
+• "Review proposal by Friday"
+
+**Using context:**
+• "Buy milk" → "Make that urgent"
+• "Email John" → "Actually, make it a call"
+
+**Viewing tasks:**
+• "Show my tasks"
+• "What's urgent?"
+• "What did I ask you to do?"
+
+I remember our conversation, so you can refer to previous messages naturally!"""
+    
+    await update.message.reply_text(help_text, parse_mode='Markdown')
+
+async def main():
+    """Main bot initialization"""
+    # Initialize orchestrator
+    await orchestrator.initialize()
+    
+    # Create Telegram application
+    application = Application.builder().token(BOT_TOKEN).build()
+    
+    # Register handlers
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("status", status_command))
+    application.add_handler(CommandHandler("help", help_command))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    
+    # Start bot
+    logger.info("🚀 Yanay Orchestrator starting...")
+    await application.run_polling()
+
+if __name__ == '__main__':
+    import nest_asyncio
+    nest_asyncio.apply()
+    asyncio.get_event_loop().run_until_complete(main())
+
+# Simple health check endpoint
+async def start_health_server():
+    """Start health check server on port 8080"""
+    try:
+        from aiohttp import web
+        app = web.Application()
+        app.router.add_get('/health', lambda r: web.json_response({'status': 'healthy', 'service': 'yanay'}))
+        runner = web.AppRunner(app)
+        await runner.setup()
+        site = web.TCPSite(runner, '0.0.0.0', 8080)
+        await site.start()
+        print("Health server started on port 8080")
+    except Exception as e:
+        print(f"Health server failed: {e}")
+
+# Patch main() to include health server
+original_main = main
+async def main():
+    await start_health_server()
+    await original_main()

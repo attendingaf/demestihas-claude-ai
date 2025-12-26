@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  huata:
+    build: .
+    container_name: huata-calendar-agent
+    ports:
+      - "8003:8003"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - REDIS_HOST=lyco-redis  # Use Lyco's Redis
+      - REDIS_PORT=6379
+      - HUATA_PORT=8003
+      - HUATA_HOST=0.0.0.0
+      - ENV=production
+      - TZ=America/New_York
+    volumes:
+      - ./credentials:/app/credentials:ro
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - lyco-network
+    external_links:
+      - lyco-redis:redis
+
+networks:
+  lyco-network:
+    external: true

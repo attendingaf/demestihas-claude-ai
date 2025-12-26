@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  lyco-bot:
+    build: .
+    container_name: lyco-telegram-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"  # For future web dashboard
+    networks:
+      - lyco-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis for session management
+  redis:
+    image: redis:7-alpine
+    container_name: lyco-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - lyco-network
+    command: redis-server --appendonly yes
+
+volumes:
+  redis_data:
+
+networks:
+  lyco-network:
+    external: true

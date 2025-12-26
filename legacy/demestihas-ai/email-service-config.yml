@@ -1,0 +1,26 @@
+  email-webhook:
+    build:
+      context: .
+      dockerfile: Dockerfile.email
+    container_name: demestihas-email
+    restart: unless-stopped
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NOTION_TOKEN=${NOTION_TOKEN}
+      - NOTION_DATABASE_ID=${NOTION_DATABASE_ID}
+      - SENDGRID_WEBHOOK_KEY=${SENDGRID_WEBHOOK_KEY}
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - redis
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - default

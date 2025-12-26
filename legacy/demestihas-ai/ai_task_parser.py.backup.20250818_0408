@@ -1,0 +1,452 @@
+#!/usr/bin/env python3
+"""
+Enhanced AI Task Parser for Lyco.ai
+Implements ADHD-optimized task analysis with family coordination
+"""
+
+import os
+import json
+import logging
+from typing import Dict, List, Optional, Tuple
+from datetime import datetime, timedelta
+from anthropic import AsyncAnthropic
+import re
+
+logger = logging.getLogger(__name__)
+
+class FamilyMember:
+    """Family member profiles for delegation"""
+    MENE = {
+        'name': 'Mene',
+        'id': 'mene',
+        'skills': ['medical', 'tech', 'strategic', 'emergency'],
+        'energy_pattern': 'morning_peak',
+        'adhd_type': 'hyperactive',
+        'role': 'parent'
+    }
+    
+    CINDY = {
+        'name': 'Cindy',
+        'id': 'cindy', 
+        'skills': ['medical', 'organization', 'planning', 'spanish'],
+        'energy_pattern': 'afternoon_peak',
+        'adhd_type': 'inattentive',
+        'role': 'parent'
+    }
+    
+    VIOLA = {
+        'name': 'Viola',
+        'id': 'viola',
+        'skills': ['childcare', 'transportation', 'household', 'german'],
+        'energy_pattern': 'consistent',
+        'adhd_type': None,
+        'role': 'aupair'
+    }
+    
+    PERSY = {
+        'name': 'Persy',
+        'id': 'persy',
+        'age': 11,
+        'skills': ['reading', 'weather', 'school'],
+        'role': 'child'
+    }
+    
+    STELIOS = {
+        'name': 'Stelios', 
+        'id': 'stelios',
+        'age': 8,
+        'skills': ['soccer', 'gaming'],
+        'role': 'child'
+    }
+    
+    FRANCI = {
+        'name': 'Franci',
+        'id': 'franci',
+        'age': 5,
+        'skills': ['singing', 'dancing'],
+        'role': 'child'
+    }
+
+class EnhancedTaskParser:
+    """ADHD-optimized task parser with family coordination"""
+    
+    def __init__(self, anthropic_api_key: str):
+        self.anthropic = AsyncAnthropic(api_key=anthropic_api_key)
+        
+        # Crisis keywords for Q1 detection
+        self.crisis_keywords = [
+            'emergency', 'urgent', 'asap', 'now', 'immediately',
+            'crisis', 'critical', 'deadline today', 'overdue'
+        ]
+        
+        # Family reference mappings
+        self.family_references = {
+            'wife': 'cindy',
+            'spouse': 'cindy',
+            'mom': 'cindy',
+            'au pair': 'viola',
+            'aupair': 'viola',
+            'nanny': 'viola',
+            'oldest': 'persy',
+            'oldest kid': 'persy',
+            'middle': 'stelios',
+            'middle child': 'stelios',
+            'youngest': 'franci',
+            'baby': 'franci'
+        }
+        
+        # Task type patterns for context detection
+        self.context_patterns = {
+            'Errand': ['buy', 'pick up', 'get', 'store', 'pharmacy', 'grocery'],
+            'Call': ['call', 'phone', 'contact', 'reach out'],
+        # Check for shopping items first (more specific)
+        if self.detect_shopping(text):
+            record_type = "Shopping"
+        elif self.detect_task(text):
+            record_type = "Task"
+        elif self.detect_reminder(text):
+            record_type = "Reminder"
+        elif self.detect_appointment(text):
+            record_type = "Appointment"
+            'Shopping': ['buy', 'get', 'pick up', 'need', 'out of', 'shop for']
+        }
+        
+        # Shopping detection patterns
+        self.shopping_keywords = ['buy', 'get', 'pick up', 'need', 'out of', 'shop', 'purchase']
+        
+        # Store detection patterns
+        self.store_patterns = {
+            'Groceries': ['milk', 'eggs', 'bread', 'fruit', 'vegetable', 'meat', 'chicken', 
+                         'beef', 'pork', 'fish', 'cheese', 'yogurt', 'butter', 'cereal',
+                         'pasta', 'rice', 'sauce', 'spices', 'grocery', 'groceries'],
+            'Target': ['target', 'batteries', 'shampoo', 'soap', 'toothpaste', 'detergent',
+                      'paper towels', 'toilet paper', 'cleaning', 'household'],
+            'Costco': ['costco', 'bulk', 'wholesale'],
+            'Pharmacy': ['pharmacy', 'medicine', 'prescription', 'medication', 'vitamins']
+        }
+        
+        # Grocery category patterns
+        self.grocery_categories = {
+            'Produce': ['apple', 'banana', 'orange', 'lettuce', 'tomato', 'potato', 'onion', 
+                       'carrot', 'fruit', 'vegetable', 'veggies'],
+            'Dairy': ['milk', 'cheese', 'yogurt', 'butter', 'cream', 'eggs'],
+            'Meat': ['chicken', 'beef', 'pork', 'turkey', 'fish', 'salmon', 'meat'],
+            'Bakery': ['bread', 'bagel', 'muffin', 'cake', 'cookie'],
+            'Pantry': ['pasta', 'rice', 'sauce', 'oil', 'vinegar', 'spices', 'flour', 'sugar'],
+            'Frozen': ['ice cream', 'frozen', 'pizza'],
+            'Beverages': ['water', 'juice', 'soda', 'coffee', 'tea'],
+            'Snacks': ['chips', 'crackers', 'nuts', 'popcorn', 'candy']
+        }
+    
+    def detect_family_member(self, text: str) -> Optional[str]:
+        """Detect family member references in task text"""
+        text_lower = text.lower()
+        
+        # Check direct names
+        if 'cindy' in text_lower:
+            return 'cindy'
+        if 'viola' in text_lower:
+            return 'viola'
+        if 'persy' in text_lower:
+            return 'persy'
+        if 'stelios' in text_lower:
+            return 'stelios'
+        if 'franci' in text_lower:
+            return 'franci'
+        
+        # Check references
+        for reference, member in self.family_references.items():
+            if reference in text_lower:
+                return member
+        
+        return None
+    
+    def detect_shopping(self, text: str) -> Dict[str, any]:
+        """Detect if this is a shopping item and determine store/category"""
+        text_lower = text.lower()
+        
+        # Check if this is a shopping task
+        is_shopping = any(keyword in text_lower for keyword in self.shopping_keywords)
+        
+        if not is_shopping:
+            return {'is_shopping': False}
+        
+        # Determine store
+        store = 'Any'  # Default
+        for store_name, patterns in self.store_patterns.items():
+            if any(pattern in text_lower for pattern in patterns):
+                store = store_name
+                break
+        
+        # Determine grocery category if it's groceries
+        category = None
+        if store == 'Groceries':
+            for cat_name, patterns in self.grocery_categories.items():
+                if any(pattern in text_lower for pattern in patterns):
+                    category = cat_name
+                    break
+        
+        # Extract quantity if present
+        quantity = None
+        import re
+        qty_match = re.search(r'(\d+)\s*(lb|lbs|oz|kg|g|dozen|pack|box|bottle|can)', text_lower)
+        if qty_match:
+            quantity = qty_match.group(0)
+        
+        return {
+            'is_shopping': True,
+            'store': store,
+            'category': category,
+            'quantity': quantity
+        }
+    
+    def detect_contexts(self, text: str) -> List[str]:
+        """Detect task contexts from text patterns"""
+        text_lower = text.lower()
+        contexts = []
+        
+        for context, patterns in self.context_patterns.items():
+            if any(pattern in text_lower for pattern in patterns):
+                contexts.append(context)
+        
+        # Default to Quick Win if no context detected
+        if not contexts:
+            contexts = ['Quick Win']
+        
+        return contexts[:3]  # Limit to 3 contexts
+    
+    def estimate_energy(self, text: str, contexts: List[str]) -> str:
+        """Estimate energy required based on task complexity"""
+        text_lower = text.lower()
+        
+        # High energy indicators
+        if any(word in text_lower for word in ['complex', 'analysis', 'report', 'presentation', 'research']):
+            return 'High'
+        
+        # Low energy indicators
+        if any(word in text_lower for word in ['quick', 'simple', 'buy', 'remind', 'text']):
+            return 'Low'
+        
+        # Context-based
+        if 'Deep Work' in contexts:
+            return 'High'
+        if 'Errand' in contexts or 'Call' in contexts:
+            return 'Low'
+        
+        return 'Medium'
+    
+    def estimate_time(self, energy: str, contexts: List[str]) -> str:
+        """Estimate time based on energy and context"""
+        if energy == 'High':
+            if 'Deep Work' in contexts:
+                return '📅 Multi-hour'
+            return '🎯 Deep (>30m)'
+        
+        if energy == 'Low':
+            if 'Errand' in contexts or 'Call' in contexts:
+                return '⚡ Quick (<15m)'
+            return '📝 Short (15-30m)'
+        
+        return '📝 Short (15-30m)'
+    
+    def determine_eisenhower(self, text: str, has_deadline: bool, assigned_to: Optional[str]) -> str:
+        """Determine Eisenhower quadrant with ADHD considerations"""
+        text_lower = text.lower()
+        
+        # Q1: Crisis mode - immediate action needed
+        if any(keyword in text_lower for keyword in self.crisis_keywords):
+            return '🔥 Do Now'
+        
+        # Q3: Delegate - if assigned to someone else
+        if assigned_to and assigned_to != 'mene':
+            return '👥 Delegate'
+        
+        # Q2: Important but not urgent - scheduled tasks
+        if has_deadline or any(word in text_lower for word in ['important', 'meeting', 'appointment']):
+            return '📅 Schedule'
+        
+        # Q4: Maybe later
+        if any(word in text_lower for word in ['maybe', 'someday', 'eventually', 'consider']):
+            return '🗄️ Someday/Maybe'
+        
+        # Default: Brain dump for processing
+        return '🧠 Brain Dump'
+    
+    async def parse_with_ai(self, task_text: str, user_context: Dict = None) -> Dict:
+        """Enhanced AI parsing with family awareness"""
+        
+        # Get current date for context
+        today = datetime.now()
+        tomorrow = today + timedelta(days=1)
+        
+        # Pre-process with local intelligence
+        family_member = self.detect_family_member(task_text)
+        contexts = self.detect_contexts(task_text)
+        
+        # Build enhanced prompt with family context
+        family_context = ""
+        if family_member:
+            family_context = f"""
+Family member detected: {family_member}
+- Viola: Au pair, handles childcare and transportation
+- Cindy: Wife, physician, handles medical and family planning  
+- Persy (11): Can handle age-appropriate chores
+- Stelios (8): Limited to simple tasks
+- Franci (5): Too young for most tasks
+"""
+        
+        try:
+            response = await self.anthropic.messages.create(
+                model='claude-3-haiku-20240307',
+                max_tokens=500,
+                temperature=0.3,
+                system=f'''You are an ADHD-optimized task parser for a family of 6. 
+Today is {today.strftime('%A, %B %d, %Y')}.
+User has ADHD and needs clear, actionable tasks with energy/time estimates.
+{family_context}''',
+                messages=[{
+                    'role': 'user',
+                    'content': f'''Parse this task for someone with ADHD:
+Task: "{task_text}"
+
+Current date: {today.strftime('%Y-%m-%d')}
+Tomorrow: {tomorrow.strftime('%Y-%m-%d')}
+Pre-detected contexts: {contexts}
+Family member mentioned: {family_member or 'none'}
+
+Rules:
+1. Make the task crystal clear and actionable
+2. If it mentions family, determine who should do it
+3. Detect energy needed (consider ADHD energy patterns)
+4. Be generous with time estimates (ADHD time blindness)
+5. For dates: be specific, use YYYY-MM-DD format
+
+Return ONLY valid JSON:
+{{
+  "parsed_task": "specific, clear action with verb",
+  "eisenhower": "🔥 Do Now" or "📅 Schedule" or "👥 Delegate" or "🗄️ Someday/Maybe" or "🧠 Brain Dump",
+  "energy": "Low" or "Medium" or "High",
+  "time_estimate": "⚡ Quick (<15m)" or "📝 Short (15-30m)" or "🎯 Deep (>30m)" or "📅 Multi-hour",
+  "context": ["max 3 relevant tags from: Quick Win, Errand, Call, Email, Deep Work, Admin, Household, Family, Meeting, Physical"],
+  "assigned_to": "mene" or "cindy" or "viola" or "persy" or "stelios" or "franci" or null,
+  "due_date": "YYYY-MM-DD" or null,
+  "adhd_notes": "any ADHD-specific tips for this task"
+}}'''
+                }]
+            )
+            
+            result = json.loads(response.content[0].text)
+            
+            # Validate and add defaults
+            result['parsed_task'] = result.get('parsed_task', task_text)
+            result['eisenhower'] = result.get('eisenhower', '🧠 Brain Dump')
+            result['energy'] = result.get('energy', 'Medium')
+            result['time_estimate'] = result.get('time_estimate', '📝 Short (15-30m)')
+            result['context'] = result.get('context', contexts)[:3]
+            result['assigned_to'] = result.get('assigned_to')
+            result['adhd_notes'] = result.get('adhd_notes', '')
+            
+            # Add shopping detection
+            shopping_info = self.detect_shopping(task_text)
+            if shopping_info['is_shopping']:
+                result['record_type'] = 'Shopping'
+                result['store'] = shopping_info['store']
+                result['grocery_category'] = shopping_info.get('category')
+                result['quantity'] = shopping_info.get('quantity')
+                # Shopping items don't need Eisenhower categorization
+                result['eisenhower'] = None
+            else:
+                result['record_type'] = 'Task'
+            
+            logger.info(f"AI parsed task: {result}")
+            return result
+            
+        except Exception as e:
+            logger.error(f'AI parsing error: {e}')
+            
+            # Fallback to local parsing
+            energy = self.estimate_energy(task_text, contexts)
+            time = self.estimate_time(energy, contexts)
+            has_deadline = 'tomorrow' in task_text.lower() or 'today' in task_text.lower()
+            
+            return {
+                'parsed_task': task_text,
+                'eisenhower': self.determine_eisenhower(task_text, has_deadline, family_member),
+                'energy': energy,
+                'time_estimate': time,
+                'context': contexts,
+                'assigned_to': family_member,
+                'due_date': None,
+                'adhd_notes': 'Start with the easiest part first'
+            }
+            
+            # Add shopping detection for fallback
+            shopping_info = self.detect_shopping(task_text)
+            if shopping_info['is_shopping']:
+                result['record_type'] = 'Shopping'
+                result['store'] = shopping_info['store']
+                result['grocery_category'] = shopping_info.get('category')
+                result['quantity'] = shopping_info.get('quantity')
+                result['eisenhower'] = None
+            else:
+                result['record_type'] = 'Task'
+            
+            return result
+    
+    async def break_down_task(self, task: str, max_steps: int = 5) -> List[str]:
+        """Break down overwhelming tasks into ADHD-friendly steps"""
+        try:
+            response = await self.anthropic.messages.create(
+                model='claude-3-haiku-20240307',
+                max_tokens=300,
+                temperature=0.5,
+                system='You help people with ADHD break down tasks into tiny, specific steps.',
+                messages=[{
+                    'role': 'user',
+                    'content': f'''Break this task into {max_steps} tiny, specific steps for someone with ADHD:
+Task: "{task}"
+
+Return a JSON array of strings, each step starting with an action verb:
+["Step 1", "Step 2", ...]'''
+                }]
+            )
+            
+            steps = json.loads(response.content[0].text)
+            return steps[:max_steps]
+            
+        except Exception as e:
+            logger.error(f'Task breakdown error: {e}')
+            return [task]  # Return original if breakdown fails
+
+
+# Example usage function
+async def test_parser():
+    """Test the enhanced parser"""
+    parser = EnhancedTaskParser(os.environ.get('ANTHROPIC_API_KEY', ''))
+    
+    test_tasks = [
+        "Buy milk and eggs",
+        "Emergency: Pick up Stelios from soccer NOW",
+        "Have Viola take Franci to dance class tomorrow at 4pm",
+        "Review Q3 budget report when I have energy",
+        "Ask wife to schedule dentist for kids",
+        "Maybe look into new project management tools someday"
+    ]
+    
+    for task in test_tasks:
+        result = await parser.parse_with_ai(task)
+        print(f"\nTask: {task}")
+        print(f"Parsed: {result['parsed_task']}")
+        print(f"Priority: {result['eisenhower']}")
+        print(f"Assigned to: {result.get('assigned_to', 'mene')}")
+        print(f"Energy: {result['energy']}, Time: {result['time_estimate']}")
+        print(f"ADHD tip: {result.get('adhd_notes', '')}")
+        
+        # Test breakdown for complex tasks
+        if result['energy'] == 'High':
+            steps = await parser.break_down_task(result['parsed_task'])
+            print(f"Breakdown: {steps}")
+
+if __name__ == '__main__':
+    import asyncio
+    asyncio.run(test_parser())

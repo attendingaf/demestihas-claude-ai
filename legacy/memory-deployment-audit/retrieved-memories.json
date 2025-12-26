@@ -1,0 +1,32 @@
+{
+    "user_id": "mene",
+    "total": 2,
+    "memories": [
+        {
+            "subject": "Personal",
+            "predicate": "note",
+            "object": "- favorite restaurant is Luigi's on Main Street",
+            "content": "Personal note - favorite restaurant is Luigi's on Main Street",
+            "timestamp": "2025-11-15T17:14:46.697270",
+            "confidence": 0.9,
+            "source": "private",
+            "added_by": "mene",
+            "metadata": {
+                "source": "api_explicit"
+            }
+        },
+        {
+            "subject": "Medical",
+            "predicate": "reminder",
+            "object": "- check blood pressure daily at 8am",
+            "content": "Medical reminder - check blood pressure daily at 8am",
+            "timestamp": "2025-11-15T17:14:46.573920",
+            "confidence": 0.9,
+            "source": "private",
+            "added_by": "mene",
+            "metadata": {
+                "source": "api_explicit"
+            }
+        }
+    ]
+}

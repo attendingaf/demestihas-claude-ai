@@ -1,0 +1,28 @@
+# Add this to docker-compose.yml for Hermes Audio Processing
+
+  hermes_audio:
+    build: 
+      context: .
+      dockerfile: Dockerfile.audio
+    container_name: hermes_audio
+    volumes:
+      - ./hermes_audio:/app
+      - ./audio_workflow:/app/shared  # Share processors with existing system
+      - ./credentials:/app/credentials
+      - /tmp/hermes_audio_work:/tmp/hermes_audio_work
+    environment:
+      - HERMES_EMAIL_ADDRESS=${HERMES_EMAIL_ADDRESS}
+      - HERMES_EMAIL_PASSWORD=${HERMES_EMAIL_PASSWORD}
+      - EMAIL_IMAP_SERVER=${EMAIL_IMAP_SERVER}
+      - LYCO_API_URL=${LYCO_API_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/service-account.json
+      - GOOGLE_DRIVE_FOLDER_ID=${GOOGLE_DRIVE_FOLDER_ID}
+    working_dir: /app
+    command: python hermes_audio_processor.py
+    restart: unless-stopped
+    networks:
+      - lyco-network
+    depends_on:
+      - redis

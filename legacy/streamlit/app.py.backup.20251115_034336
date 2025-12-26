@@ -1,0 +1,782 @@
+import streamlit as st
+import requests
+import time
+from datetime import datetime
+
+# Import login functionality
+from login_page import check_authentication, show_login_page, show_user_profile
+
+# Configure page
+st.set_page_config(
+    page_title="DemestiChat",
+    page_icon="🌃",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# Blade Runner 2049 Theme - Custom CSS Injection
+blade_runner_css = """
+<style>
+/* Global Background - Deep Night Setting */
+.stApp {
+    background-color: #060B12;
+    color: #E0E5E9;
+}
+
+/* Main content area */
+.main .block-container {
+    background-color: #060B12;
+    padding-top: 2rem;
+}
+
+/* Sidebar styling */
+section[data-testid="stSidebar"] {
+    background-color: #1A2233;
+    border-right: 1px solid #FF4B4B33;
+}
+
+section[data-testid="stSidebar"] .block-container {
+    background-color: #1A2233;
+}
+
+/* Headers and titles - Clear and crisp */
+h1, h2, h3 {
+    color: #E0E5E9;
+}
+
+/* Primary buttons - Neon Orange/Red with glow */
+.stButton>button {
+    background-color: #FF4B4B;
+    color: #060B12;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(255, 75, 75, 0.6);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton>button:hover {
+    background-color: #FF6B6B;
+    box-shadow: 0 0 25px rgba(255, 75, 75, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Text inputs - Dark with neon accents */
+.stTextInput>div>div>input {
+    background-color: #0D1620;
+    color: #E0E5E9;
+    border: 1px solid #FF4B4B55;
+    border-radius: 5px;
+}
+
+.stTextInput>div>div>input:focus {
+    border-color: #FF4B4B;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.4);
+}
+
+/* Chat input - Atmospheric styling */
+.stChatInputContainer>div {
+    background-color: #0D1620;
+    border: 1px solid #FF4B4B55;
+    border-radius: 8px;
+}
+
+.stChatInputContainer input {
+    background-color: #0D1620;
+    color: #E0E5E9;
+    font-family: 'Courier New', monospace;
+}
+
+/* Chat messages - High contrast containers */
+.stChatMessage {
+    background-color: #1A2233;
+    border-left: 3px solid #FF4B4B;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* User message accent */
+.stChatMessage[data-testid="user-message"] {
+    border-left-color: #00FFFF;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+/* Assistant message accent */
+.stChatMessage[data-testid="assistant-message"] {
+    border-left-color: #FF4B4B;
+    box-shadow: 0 0 5px rgba(255, 75, 75, 0.2);
+}
+
+/* Code blocks and monospace text - Tech aesthetic */
+code, pre, .stCodeBlock {
+    font-family: 'Courier New', monospace;
+    background-color: #0D1620;
+    color: #00FFFF;
+    border: 1px solid #FF4B4B33;
+}
+
+/* Expanders - Atmospheric containers */
+.streamlit-expanderHeader {
+    background-color: #1A2233;
+    color: #E0E5E9;
+    border-radius: 5px;
+}
+
+/* Success/Info/Warning messages - Neon themed */
+.stSuccess {
+    background-color: #0D1620;
+    color: #00FFFF;
+    border-left: 3px solid #00FFFF;
+}
+
+.stWarning {
+    background-color: #0D1620;
+    color: #FFA500;
+    border-left: 3px solid #FFA500;
+}
+
+.stError {
+    background-color: #0D1620;
+    color: #FF4B4B;
+    border-left: 3px solid #FF4B4B;
+}
+
+/* Dividers - Subtle neon lines */
+hr {
+    border-color: #FF4B4B33;
+}
+
+/* Links - Electric blue accent */
+a {
+    color: #00FFFF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FF4B4B;
+    text-shadow: 0 0 5px rgba(255, 75, 75, 0.5);
+}
+
+/* Captions and small text */
+.caption, small {
+    color: #A0A5A9;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+/* Markdown content */
+.stMarkdown {
+    color: #E0E5E9;
+}
+
+/* Scrollbar - Dark theme */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #0D1620;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FF4B4B;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #FF6B6B;
+}
+
+/* Input labels */
+label {
+    color: #E0E5E9;
+    font-weight: 500;
+}
+
+/* Disabled inputs */
+input:disabled {
+    background-color: #0D1620;
+    color: #6A6F79;
+    border-color: #3A3F49;
+}
+
+/* Title - crisp and visible */
+h1 {
+    color: #FF4B4B;
+    font-size: 3rem;
+    font-weight: 700;
+}
+</style>
+"""
+
+# Inject the custom CSS
+st.markdown(blade_runner_css, unsafe_allow_html=True)
+
+# Initialize font size in session state if not exists
+if "font_size" not in st.session_state:
+    st.session_state.font_size = 16
+
+# Inject dynamic font size CSS
+dynamic_font_css = f"""
+<style>
+/* Dynamic font sizing for chat messages */
+.stChatMessage {{
+    font-size: {st.session_state.font_size}px;
+}}
+
+.stChatMessage p {{
+    font-size: {st.session_state.font_size}px;
+}}
+
+.stMarkdown {{
+    font-size: {st.session_state.font_size}px;
+}}
+</style>
+"""
+st.markdown(dynamic_font_css, unsafe_allow_html=True)
+
+# Agent service configuration
+AGENT_SERVICE_URL = "http://agent:8000/chat"
+AGENT_STATUS_URL = "http://agent:8000/status"
+
+# Check authentication status
+if not check_authentication():
+    # Show login page if not authenticated
+    show_login_page()
+    st.stop()  # Stop execution here until user logs in
+
+# Initialize session state for chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+if "chat_id" not in st.session_state:
+    st.session_state.chat_id = f"chat_{int(time.time())}"
+
+if "feedback_submitted" not in st.session_state:
+    st.session_state.feedback_submitted = (
+        set()
+    )  # Track which message indices have feedback
+
+# Main title with Blade Runner aesthetic
+st.title("🌃 DemestiChat")
+
+# Sidebar
+with st.sidebar:
+    st.header("Settings")
+
+    # Show user profile (includes logout button)
+    show_user_profile()
+
+    # Chat ID display
+    st.text_input(
+        "Chat Session ID",
+        value=st.session_state.chat_id,
+        disabled=True,
+        help="Current chat session identifier",
+    )
+
+    st.divider()
+
+    # Text Size Adjustment
+    st.subheader("Text Size")
+
+    # Initialize font size in session state
+    if "font_size" not in st.session_state:
+        st.session_state.font_size = 16
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col1:
+        if st.button("➖", use_container_width=True, help="Decrease text size"):
+            if st.session_state.font_size > 10:
+                st.session_state.font_size -= 2
+                st.rerun()
+
+    with col2:
+        st.caption(f"Size: {st.session_state.font_size}px")
+
+    with col3:
+        if st.button("➕", use_container_width=True, help="Increase text size"):
+            if st.session_state.font_size < 32:
+                st.session_state.font_size += 2
+                st.rerun()
+
+    st.divider()
+
+    # Agent service status
+    st.subheader("Service Status")
+
+    # Check agent service status
+    try:
+        status_response = requests.get(AGENT_STATUS_URL, timeout=2)
+        if status_response.status_code == 200:
+            status_data = status_response.json()
+            st.success("✅ Agent Service: Online")
+
+            # Display component status
+            if "components" in status_data:
+                components = status_data["components"]
+                for component, is_healthy in components.items():
+                    if is_healthy:
+                        st.success(f"✅ {component.title()}: Connected")
+                    else:
+                        st.warning(f"⚠️ {component.title()}: Disconnected")
+        else:
+            st.error("❌ Agent Service: Error")
+    except requests.exceptions.RequestException:
+        st.error("❌ Agent Service: Offline")
+
+    st.divider()
+
+    # Document Upload Section
+    st.subheader("📄 Document Upload")
+    st.caption("Upload documents for RAG-enhanced conversations")
+
+    uploaded_file = st.file_uploader(
+        "Choose a file",
+        type=["pdf", "docx", "txt"],
+        help="Upload PDF, DOCX, or TXT files for AI to reference in conversations",
+        label_visibility="collapsed",
+    )
+
+    if uploaded_file is not None:
+        if st.button("📤 Upload & Process", use_container_width=True):
+            with st.spinner(f"Processing {uploaded_file.name}..."):
+                try:
+                    # Prepare file for upload
+                    files = {
+                        "file": (
+                            uploaded_file.name,
+                            uploaded_file.getvalue(),
+                            uploaded_file.type,
+                        )
+                    }
+                    data = {"user_id": st.session_state.user_id}
+
+                    # Upload to agent service
+                    upload_response = requests.post(
+                        "http://agent:8000/api/documents/upload",
+                        files=files,
+                        data=data,
+                        timeout=60,
+                    )
+
+                    if upload_response.status_code == 200:
+                        result = upload_response.json()
+
+                        # Build success message
+                        success_msg = (
+                            f"✅ {uploaded_file.name} uploaded!\n\n"
+                            f"📊 {result['chunks_processed']} chunks processed\n"
+                            f"📝 {result['total_characters']:,} characters"
+                        )
+
+                        # Add knowledge extraction info if available
+                        if result.get("knowledge_extracted"):
+                            success_msg += f"\n🧠 {result.get('knowledge_triples', 0)} knowledge triples extracted to FalkorDB"
+
+                        st.success(success_msg)
+
+                        # Show preview
+                        if result.get("preview"):
+                            with st.expander("Preview first chunk"):
+                                st.text(result["preview"][0][:300] + "...")
+
+                        # Show knowledge extraction details
+                        if (
+                            result.get("knowledge_extracted")
+                            and result.get("knowledge_triples", 0) > 0
+                        ):
+                            st.info(
+                                f"🕸️ **Knowledge Graph Updated:** "
+                                f"{result['knowledge_triples']} facts from this document "
+                                f"are now available in the knowledge graph for future queries!"
+                            )
+                    else:
+                        st.error(f"❌ Upload failed: {upload_response.text}")
+
+                except Exception as e:
+                    st.error(f"❌ Error uploading document: {str(e)}")
+
+    st.divider()
+
+    # Clear chat button
+    if st.button("🗑️ Clear Chat History", use_container_width=True):
+        st.session_state.messages = []
+        st.session_state.chat_id = f"chat_{int(time.time())}"
+        st.rerun()
+
+    st.divider()
+
+    # About section
+    st.subheader("About")
+    st.markdown("""
+    **DemestiChat** is a multi-agent orchestration system that combines:
+
+    - 🧠 **Mem0**: Conversational memory
+    - 🕸️ **Graphiti**: Knowledge graphs
+    - 🗄️ **PostgreSQL**: Data persistence
+    - 🤖 **Specialized Agents**: Code, research, creative, planning
+
+    Ask questions and the orchestrator will route your request to the most appropriate agent.
+    """)
+
+# Display chat messages from history
+for idx, message in enumerate(st.session_state.messages):
+    with st.chat_message(message["role"]):
+        # For assistant messages, separate reasoning trace from final answer
+        if message["role"] == "assistant":
+            full_content = message["content"]
+            reasoning_trace = ""
+            final_answer = full_content
+
+            # Check if response contains the orchestrator walk-through
+            if "## 🧠 Orchestrator Decision Walk-Through" in full_content:
+                # Find all occurrences of "---" separator
+                separator_indices = [
+                    i
+                    for i, line in enumerate(full_content.split("\n"))
+                    if line.strip() == "---"
+                ]
+
+                if len(separator_indices) >= 2:
+                    # The final answer starts after the last "---" separator
+                    lines = full_content.split("\n")
+                    last_separator_idx = separator_indices[-1]
+
+                    # Everything up to and including the last separator is reasoning trace
+                    reasoning_trace = "\n".join(lines[: last_separator_idx + 1])
+
+                    # Everything after the last separator is the final answer
+                    final_answer = "\n".join(lines[last_separator_idx + 1 :]).strip()
+
+                    # If final answer is empty or too short, fall back to showing full content
+                    if not final_answer or len(final_answer) < 10:
+                        final_answer = full_content
+                        reasoning_trace = ""
+
+            # Display the final answer immediately (ALWAYS visible)
+            st.markdown(final_answer)
+
+            # Display the reasoning trace in collapsible expander (HIDDEN by default)
+            if reasoning_trace:
+                with st.expander("🔎 Orchestrator Reasoning Trace"):
+                    st.markdown(reasoning_trace, unsafe_allow_html=True)
+
+            # RLHF Rating Widget (only for assistant messages, only if feedback not yet submitted)
+            if idx not in st.session_state.feedback_submitted:
+                st.caption("**Rate this response:**")
+                rating_key = f"rating_{idx}_{st.session_state.chat_id}"
+                rating = st.radio(
+                    "Score",
+                    options=[1, 2, 3, 4, 5],
+                    horizontal=True,
+                    key=rating_key,
+                    label_visibility="collapsed",
+                )
+
+                if st.button(
+                    "Submit Feedback", key=f"submit_{idx}_{st.session_state.chat_id}"
+                ):
+                    # Submit feedback to backend
+                    try:
+                        # Find the corresponding user message (previous message)
+                        user_msg = (
+                            st.session_state.messages[idx - 1]["content"]
+                            if idx > 0
+                            and st.session_state.messages[idx - 1]["role"] == "user"
+                            else ""
+                        )
+
+                        feedback_response = requests.post(
+                            "http://agent:8000/feedback/submit",
+                            json={
+                                "user_id": st.session_state.user_id,
+                                "session_id": st.session_state.chat_id,
+                                "message_index": idx,
+                                "score": rating,
+                                "user_message": user_msg,
+                                "agent_response": full_content,
+                            },
+                            timeout=10,
+                        )
+
+                        if feedback_response.status_code == 200:
+                            st.session_state.feedback_submitted.add(idx)
+                            st.success("✅ Feedback submitted successfully!")
+                            st.rerun()
+                        else:
+                            st.error(
+                                f"⚠️ Failed to submit feedback (Status {feedback_response.status_code})"
+                            )
+                    except Exception as e:
+                        st.error(f"❌ Error submitting feedback: {str(e)}")
+            else:
+                st.caption("✅ Feedback submitted for this response")
+        else:
+            # For user messages, display as-is
+            st.markdown(message["content"])
+
+        # Display metadata if available
+        if "metadata" in message and message["metadata"]:
+            with st.expander("Message Details"):
+                if "agent_type" in message["metadata"]:
+                    st.caption(f"**Agent:** {message['metadata']['agent_type']}")
+                if "timestamp" in message["metadata"]:
+                    st.caption(f"**Time:** {message['metadata']['timestamp']}")
+
+# Chat input
+if prompt := st.chat_input("Type your message here..."):
+    # Add user message to chat history
+    st.session_state.messages.append(
+        {
+            "role": "user",
+            "content": prompt,
+            "metadata": {"timestamp": datetime.utcnow().isoformat()},
+        }
+    )
+
+    # Display user message
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    # Display assistant response with thinking indicator
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        message_placeholder.markdown("🤔 Thinking...")
+
+        try:
+            # Make POST request to agent service
+            # Ensure we have a valid JWT token
+            if not st.session_state.jwt_token:
+                st.session_state.jwt_token = get_jwt_token(st.session_state.user_id)
+
+            if not st.session_state.jwt_token:
+                message_placeholder.error(
+                    "❌ Authentication failed. Please refresh the page."
+                )
+                st.stop()
+
+            response = requests.post(
+                AGENT_SERVICE_URL,
+                headers={"Authorization": f"Bearer {st.session_state.jwt_token}"},
+                json={
+                    "message": prompt,
+                    "user_id": st.session_state.user_id,
+                    "chat_id": st.session_state.chat_id,
+                },
+                timeout=30,
+            )
+
+            # Handle successful response
+            if response.status_code == 200:
+                response_data = response.json()
+                full_response = response_data.get("response", "No response received")
+                agent_type = response_data.get("agent_type", "unknown")
+                metadata = response_data.get("metadata", {})
+
+                # Separate reasoning trace from final answer
+                # The agent response format is:
+                # ## 🧠 Orchestrator Decision Walk-Through
+                # [reasoning content]
+                # ---
+                # [final answer]
+
+                reasoning_trace = ""
+                final_answer = full_response
+
+                # Check if response contains the orchestrator walk-through
+                if "## 🧠 Orchestrator Decision Walk-Through" in full_response:
+                    # Find all occurrences of "---" separator
+                    separator_indices = [
+                        i
+                        for i, line in enumerate(full_response.split("\n"))
+                        if line.strip() == "---"
+                    ]
+
+                    if len(separator_indices) >= 2:
+                        # The final answer starts after the last "---" separator
+                        lines = full_response.split("\n")
+                        last_separator_idx = separator_indices[-1]
+
+                        # Everything up to and including the last separator is reasoning trace
+                        reasoning_trace = "\n".join(lines[: last_separator_idx + 1])
+
+                        # Everything after the last separator is the final answer
+                        final_answer = "\n".join(
+                            lines[last_separator_idx + 1 :]
+                        ).strip()
+
+                        # If final answer is empty or too short, fall back to showing full content
+                        if not final_answer or len(final_answer) < 10:
+                            final_answer = full_response
+                            reasoning_trace = ""
+
+                # Display the final answer immediately (ALWAYS visible)
+                message_placeholder.markdown(final_answer)
+
+                # Display the reasoning trace in collapsible expander (HIDDEN by default)
+                if reasoning_trace:
+                    with st.expander("🔎 Orchestrator Reasoning Trace"):
+                        st.markdown(reasoning_trace, unsafe_allow_html=True)
+
+                # Display metadata (original Message Details section)
+                with st.expander("Message Details"):
+                    st.caption(f"**Agent:** {agent_type}")
+                    if metadata:
+                        st.caption(f"**Timestamp:** {metadata.get('timestamp', 'N/A')}")
+                        st.caption(
+                            f"**Memory Context Available:** {metadata.get('memory_context_available', False)}"
+                        )
+                        st.caption(
+                            f"**Knowledge Graph Available:** {metadata.get('knowledge_graph_available', False)}"
+                        )
+                        st.caption(
+                            f"**User Data Available:** {metadata.get('user_data_available', False)}"
+                        )
+
+                # Add assistant message to chat history (store full response)
+                message_idx = len(st.session_state.messages)
+                st.session_state.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": full_response,
+                        "metadata": {
+                            "agent_type": agent_type,
+                            "timestamp": metadata.get(
+                                "timestamp", datetime.utcnow().isoformat()
+                            ),
+                        },
+                    }
+                )
+
+                # RLHF Rating Widget for new message (only if feedback not yet submitted)
+                if message_idx not in st.session_state.feedback_submitted:
+                    st.caption("**Rate this response:**")
+                    rating_key = f"rating_{message_idx}_{st.session_state.chat_id}"
+                    new_rating = st.radio(
+                        "Score",
+                        options=[1, 2, 3, 4, 5],
+                        horizontal=True,
+                        key=rating_key,
+                        label_visibility="collapsed",
+                    )
+
+                    if st.button(
+                        "Submit Feedback",
+                        key=f"submit_{message_idx}_{st.session_state.chat_id}",
+                    ):
+                        # Submit feedback to backend
+                        try:
+                            # Get the user message (it's the previous message in the list)
+                            user_msg = prompt
+
+                            feedback_response = requests.post(
+                                "http://agent:8000/feedback/submit",
+                                json={
+                                    "user_id": st.session_state.user_id,
+                                    "session_id": st.session_state.chat_id,
+                                    "message_index": message_idx,
+                                    "score": new_rating,
+                                    "user_message": user_msg,
+                                    "agent_response": full_response,
+                                },
+                                timeout=10,
+                            )
+
+                            if feedback_response.status_code == 200:
+                                st.session_state.feedback_submitted.add(message_idx)
+                                st.success("✅ Feedback submitted successfully!")
+                                st.rerun()
+                            else:
+                                st.error(
+                                    f"⚠️ Failed to submit feedback (Status {feedback_response.status_code})"
+                                )
+                        except Exception as e:
+                            st.error(f"❌ Error submitting feedback: {str(e)}")
+                else:
+                    st.caption("✅ Feedback submitted for this response")
+
+            # Handle error responses
+            elif response.status_code == 422:
+                error_message = "⚠️ Invalid request format. Please try again."
+                message_placeholder.error(error_message)
+                st.session_state.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": error_message,
+                        "metadata": {"error": True},
+                    }
+                )
+
+            elif response.status_code == 500:
+                error_message = (
+                    "⚠️ Agent service encountered an error. Please try again later."
+                )
+                message_placeholder.error(error_message)
+                st.session_state.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": error_message,
+                        "metadata": {"error": True},
+                    }
+                )
+
+            else:
+                error_message = f"⚠️ Unexpected response (Status {response.status_code}). Please try again."
+                message_placeholder.error(error_message)
+                st.session_state.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": error_message,
+                        "metadata": {"error": True},
+                    }
+                )
+
+        except requests.exceptions.Timeout:
+            error_message = "⏱️ Request timed out. The agent service is taking too long to respond. Please try again."
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+        except requests.exceptions.ConnectionError:
+            error_message = "❌ Unable to connect to the agent service. Please ensure the service is running and try again."
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+        except requests.exceptions.RequestException as e:
+            error_message = f"❌ Network error: {str(e)}"
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+        except Exception as e:
+            error_message = f"❌ Unexpected error: {str(e)}"
+            message_placeholder.error(error_message)
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": error_message,
+                    "metadata": {"error": True},
+                }
+            )
+
+# Footer
+st.divider()
+st.caption(
+    "DemestiChat Multi-Agent Orchestration System | Powered by FastAPI, Streamlit, Mem0, Graphiti & PostgreSQL"
+)

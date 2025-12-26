@@ -1,0 +1,199 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    DEMESTICHAT MEMORY SYSTEM ARCHITECTURE                     ║
+║                          Current State (Disconnected)                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              USER INTERACTIONS                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+                    │                                    │
+                    │                                    │
+         ┌──────────▼──────────┐              ┌─────────▼─────────┐
+         │   CHAT INTERFACE    │              │   MEMORY UI       │
+         │  (Streamlit Chat)   │              │ (New Memory Tab)  │
+         └──────────┬──────────┘              └─────────┬─────────┘
+                    │                                    │
+                    │ POST /chat                         │ GET /memory/list
+                    │                                    │ POST /memory/store
+                    │                                    │
+         ┌──────────▼────────────────────────────────────▼─────────┐
+         │              AGENT BACKEND (FastAPI)                    │
+         │                   Port 8000                             │
+         │                                                         │
+         │  ┌────────────────────┐      ┌────────────────────┐   │
+         │  │  /chat endpoint    │      │  /memory/* endpoints│   │
+         │  │                    │      │                    │   │
+         │  │  - Retrieves from  │      │  - Uses dual_memory│   │
+         │  │    Mem0            │      │    _manager.py     │   │
+         │  │  - Processes chat  │      │  - Direct storage  │   │
+         │  │  - Stores to Mem0  │      │                    │   │
+         │  │                    │      │                    │   │
+         │  │  ❌ NO FalkorDB    │      │  ✅ Uses FalkorDB  │   │
+         │  │     integration    │      │                    │   │
+         │  └─────────┬──────────┘      └─────────┬──────────┘   │
+         └────────────┼───────────────────────────┼──────────────┘
+                      │                           │
+         ┌────────────▼────────────┐  ┌───────────▼──────────────┐
+         │                         │  │                          │
+┌────────▼────────┐       ┌────────▼──▼──────┐       ┌──────────▼──────────┐
+│   MEM0          │       │   QDRANT         │       │   FALKORDB          │
+│   Container     │───────│   Vector DB      │       │   Graph Database    │
+│   Port 8080     │       │   Port 6333      │       │   Port 6379         │
+└─────────────────┘       └──────────────────┘       └─────────────────────┘
+│                                                     │
+│  PURPOSE:                                           │  PURPOSE:
+│  - Store full conversations                         │  - Structured facts
+│  - Semantic embeddings                              │  - S-P-O triples
+│  - RAG context retrieval                            │  - Private vs System
+│                                                     │  - Knowledge graph
+│  CONTAINS:                                          │
+│  ✅ 98 chat memories                                │  CONTAINS:
+│  ✅ Message summaries                               │  ✅ 3 manual memories
+│  ✅ OpenAI embeddings                               │  ✅ Auto-classification
+│                                                     │
+│  QUERIED BY:                                        │  QUERIED BY:
+│  ✅ Chat endpoint                                   │  ✅ Memory UI
+│  ❌ Memory UI (missing)                             │  ❌ Chat endpoint (missing)
+│                                                     │
+└─────────────────────────────────────────────────────┴─────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              THE DISCONNECT                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+USER CHATS: "Remember my doctor is Dr. Smith"
+    ↓
+Agent stores FULL conversation to Mem0 ✅
+    ↓
+Agent does NOT extract to FalkorDB ❌
+    ↓
+Memory UI queries FalkorDB
+    ↓
+Result: "No memories found" ❌
+
+
+USER MANUALLY STORES: "Dr. Smith is my doctor"
+    ↓
+Memory UI calls /memory/store
+    ↓
+Agent stores to FalkorDB ✅
+    ↓
+Agent does NOT store to Mem0 (ok - manual storage)
+    ↓
+Memory UI queries FalkorDB
+    ↓
+Result: Memory found ✅
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           PROPOSED SOLUTION                                   ║
+║                     (Add LLM Extraction Bridge)                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         /chat ENDPOINT (ENHANCED)                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                   ┌────────────────┼────────────────┐
+                   │                │                │
+        ┌──────────▼──────┐  ┌──────▼──────┐  ┌─────▼──────────┐
+        │ 1. Retrieve     │  │ 2. Process  │  │ 3. Store DUAL  │
+        │    from Mem0    │  │    with LLM │  │                │
+        │                 │  │             │  │  ┌───────────┐ │
+        │ ✅ Context      │  │ ✅ Response │  │  │ FULL msg  │ │
+        │    history      │  │             │  │  │ to Mem0   │ │
+        └─────────────────┘  │ NEW: Extract│  │  └───────────┘ │
+                              │ structured  │  │                │
+                              │ facts       │  │  ┌───────────┐ │
+                              │             │  │  │ Extracted │ │
+                              │ "doctor →   │  │  │ facts to  │ │
+                              │  is_named → │  │  │ FalkorDB  │ │
+                              │  Dr. Smith" │  │  └───────────┘ │
+                              └─────────────┘  └────────────────┘
+
+RESULT:
+- Mem0: Full conversational context for RAG ✅
+- FalkorDB: Structured facts for querying ✅
+- Memory UI: Shows extracted facts ✅
+- Chat: Uses context from Mem0 ✅
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              DATA FLOW EXAMPLE                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+INPUT: "Remember my family doctor is Dr. Smith at 555-0123, we see him yearly"
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ LLM EXTRACTION (New Component)                                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Fact 1:                                                                     │
+│   Subject: "family doctor"                                                  │
+│   Predicate: "is_named"                                                     │
+│   Object: "Dr. Smith"                                                       │
+│   Type: SYSTEM (family-wide)                                                │
+│                                                                             │
+│ Fact 2:                                                                     │
+│   Subject: "Dr. Smith"                                                      │
+│   Predicate: "phone_number"                                                 │
+│   Object: "555-0123"                                                        │
+│   Type: SYSTEM                                                              │
+│                                                                             │
+│ Fact 3:                                                                     │
+│   Subject: "family"                                                         │
+│   Predicate: "visits_doctor"                                                │
+│   Object: "yearly"                                                          │
+│   Type: SYSTEM                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+STORAGE:
+
+┌─────────────────────────────────┐  ┌─────────────────────────────────────┐
+│ MEM0 (Conversation)             │  │ FALKORDB (Structured)               │
+├─────────────────────────────────┤  ├─────────────────────────────────────┤
+│ Message: "Remember my family... │  │ (SystemMemory)                      │
+│ Response: "Got it! I'll..."     │  │ family_doctor -[is_named]-> Dr.Smith│
+│ Summary: "User shared family    │  │ Dr.Smith -[phone]-> 555-0123        │
+│          doctor information"    │  │ family -[visits_doctor]-> yearly    │
+│ Embedding: [0.234, -0.123, ...] │  │                                     │
+└─────────────────────────────────┘  └─────────────────────────────────────┘
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                            IMPLEMENTATION PLAN                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+PHASE 1: Quick Win (Show Mem0 in UI)
+├── Update memory_service.py
+├── Add Mem0 direct query
+├── Display both sources in UI
+└── Time: 30 minutes
+
+PHASE 2: Proper Integration (LLM Extraction)
+├── Add extraction function to main.py
+├── Use LLM to extract S-P-O triples
+├── Store in both Mem0 and FalkorDB
+├── Auto-classify private vs system
+└── Time: 2-4 hours
+
+PHASE 3: Enhanced Features
+├── Deduplication logic
+├── Memory consolidation
+├── Importance scoring
+├── Search across both systems
+└── Time: 1-2 days
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                             CURRENT STATISTICS                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Mem0 (Qdrant):              98 memories ✅
+FalkorDB:                    3 memories ✅
+Total:                     101 memories
+Visible in UI:               3 memories ❌ (should be 101)
+
+Status: Both systems working independently
+Issue:  No integration layer
+Impact: User confusion ("memories not saved")
+Fix:    Add LLM extraction bridge

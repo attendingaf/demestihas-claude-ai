@@ -1,0 +1,83 @@
+{
+  "name": "lyco-v2-langgraph",
+  "description": "ADHD-optimized task management system with visual workflow",
+  "version": "2.0.0",
+  "author": "Mene Demestihas",
+  "graphs": {
+    "main": {
+      "module": "./workflow/graph.py",
+      "attribute": "app",
+      "description": "Main task processing workflow"
+    },
+    "rounds": {
+      "module": "./workflow/rounds_graph.py",
+      "attribute": "rounds_app",
+      "description": "Rapid decision rounds mode"
+    },
+    "insights": {
+      "module": "./workflow/insights_graph.py",
+      "attribute": "insights_app",
+      "description": "Weekly insights generation"
+    }
+  },
+  "env": ".env",
+  "dependencies": "./requirements.txt",
+  "python": ">=3.10",
+  "server": {
+    "module": "server",
+    "host": "0.0.0.0",
+    "port": 8000,
+    "reload": true
+  },
+  "studio": {
+    "enable_tracing": true,
+    "enable_profiling": true,
+    "state_inspection": true,
+    "show_intermediate_steps": true,
+    "visualization": {
+      "node_colors": {
+        "capture": "#4CAF50",
+        "parse": "#2196F3",
+        "classify": "#FF9800",
+        "route": "#9C27B0",
+        "action": "#F44336",
+        "storage": "#607D8B"
+      },
+      "layout": "dagre",
+      "direction": "TB"
+    }
+  },
+  "features": {
+    "rounds_mode": true,
+    "skip_intelligence": true,
+    "pattern_learning": true,
+    "weekly_insights": true,
+    "multi_source_capture": true,
+    "energy_routing": true,
+    "eisenhower_matrix": true,
+    "family_delegation": true,
+    "redis_caching": true,
+    "health_monitoring": true
+  },
+  "integrations": [
+    "pluma_email",
+    "huata_calendar",
+    "notion",
+    "redis",
+    "postgresql",
+    "supabase"
+  ],
+  "monitoring": {
+    "log_level": "INFO",
+    "trace_sampling_rate": 1.0,
+    "metrics_enabled": true,
+    "health_check_endpoint": "/health"
+  },
+  "deployment": {
+    "docker": {
+      "image": "lyco-langgraph:latest",
+      "ports": ["8000:8000"],
+      "volumes": [".env:/app/.env", "logs:/app/logs"]
+    }
+  }
+}

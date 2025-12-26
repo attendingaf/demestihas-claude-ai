@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  lyco-processor:
+    build: .
+    container_name: demestihas-lyco-v2-processor
+    networks:
+      - lyco-network
+    environment:
+      - REDIS_URL=${REDIS_URL:-redis://lyco-redis:6379}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - USER_WORK_EMAIL=${USER_WORK_EMAIL}
+      - USER_HOME_EMAIL=${USER_HOME_EMAIL}
+    volumes:
+      - ./:/app
+    command: python processor.py
+    restart: unless-stopped
+    depends_on:
+      - lyco-redis
+
+  lyco-server:
+    build: .
+    container_name: demestihas-lyco-v2-server
+    networks:
+      - lyco-network
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_URL=${REDIS_URL:-redis://lyco-redis:6379}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - USER_WORK_EMAIL=${USER_WORK_EMAIL}
+      - USER_HOME_EMAIL=${USER_HOME_EMAIL}
+    volumes:
+      - ./:/app
+    command: python server.py
+    restart: unless-stopped
+    depends_on:
+      - lyco-redis
+
+  lyco-ambient-capture:
+    build: .
+    container_name: demestihas-lyco-v2-ambient
+    networks:
+      - lyco-network
+    environment:
+      - REDIS_URL=${REDIS_URL:-redis://lyco-redis:6379}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - USER_WORK_EMAIL=${USER_WORK_EMAIL}
+      - USER_HOME_EMAIL=${USER_HOME_EMAIL}
+    volumes:
+      - ./:/app
+      - ./credentials:/app/credentials
+    command: python ambient/ambient_capture.py
+    restart: unless-stopped
+    depends_on:
+      - lyco-redis
+      - lyco-processor
+
+  lyco-redis:
+    image: redis:7-alpine
+    container_name: lyco-redis
+    networks:
+      - lyco-network
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+networks:
+  lyco-network:
+    driver: bridge
+    external: true
+
+volumes:
+  redis-data:

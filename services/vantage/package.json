@@ -1,0 +1,23 @@
+{
+    "name": "vantage-service",
+    "version": "1.0.0",
+    "description": "Vantage Service: The Stateful Brain for Demestihas AI",
+    "type": "module",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node build/index.js",
+        "dev": "tsx src/index.ts"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.0.1",
+        "@supabase/supabase-js": "^2.43.4",
+        "dotenv": "^16.4.5",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "@types/node": "^20.14.2",
+        "tsx": "^4.15.1",
+        "typescript": "^5.4.5"
+    }
+}

@@ -5,7 +5,8 @@
   "main": "mcp-server-simple.js",
   "scripts": {
     "start": "node mcp-server-simple.js",
-    "test": "node test-integration.js"
+    "test": "node test-integration.js",
+    "prepare": "husky"
   },
   "keywords": [
     "mcp",
@@ -18,5 +19,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.0",
     "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }

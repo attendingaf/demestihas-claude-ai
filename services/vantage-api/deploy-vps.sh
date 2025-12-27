@@ -43,6 +43,7 @@ ssh $VPS_USER@$VPS_HOST "cd $REMOTE_ROOT && \
     export SUPABASE_URL='${SUPABASE_URL}' && \
     export SUPABASE_KEY='${SUPABASE_KEY}' && \
     export SUPABASE_ANON_KEY='${SUPABASE_ANON_KEY}' && \
+    docker rm -f vantage-api vantage-ui || true && \
     docker-compose down && \
     docker-compose up -d --build"
 

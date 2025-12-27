@@ -18,7 +18,7 @@ ssh $VPS_USER@$VPS_HOST "mkdir -p $REMOTE_ROOT/api $REMOTE_ROOT/ui"
 echo "📂 Uploading API..."
 # Navigate to API dir context
 cd "$(dirname "$0")"
-scp -r src package.json tsconfig.json Dockerfile $VPS_USER@$VPS_HOST:$REMOTE_ROOT/api/
+scp -r src package.json package-lock.json tsconfig.json Dockerfile $VPS_USER@$VPS_HOST:$REMOTE_ROOT/api/
 
 # 4. Upload UI Files
 echo "📂 Uploading UI..."
@@ -27,7 +27,7 @@ parent_dir="$(dirname "$(pwd)")"
 # But verify path:
 UI_DIR="../vantage-ui"
 if [ -d "$UI_DIR" ]; then
-    scp -r $UI_DIR/src $UI_DIR/public $UI_DIR/package.json $UI_DIR/tsconfig.json $UI_DIR/vite.config.ts $UI_DIR/index.html $UI_DIR/Dockerfile $UI_DIR/nginx.conf $VPS_USER@$VPS_HOST:$REMOTE_ROOT/ui/
+    scp -r $UI_DIR/src $UI_DIR/public $UI_DIR/package.json $UI_DIR/package-lock.json $UI_DIR/tsconfig.json $UI_DIR/tsconfig.app.json $UI_DIR/tsconfig.node.json $UI_DIR/vite.config.ts $UI_DIR/index.html $UI_DIR/Dockerfile $UI_DIR/nginx.conf $VPS_USER@$VPS_HOST:$REMOTE_ROOT/ui/
 else
     echo "❌ UI Directory not found at $UI_DIR"
     exit 1

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  vantage-api:
+    build: ./api
+    container_name: vantage-api
+    restart: always
+    ports:
+      - "3005:3005"
+    environment:
+      - PORT=3005
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+    networks:
+      - ea_network
+
+  vantage-ui:
+    build:
+      context: ./ui
+      args:
+        - VITE_API_URL=http://178.156.170.161:3005
+    container_name: vantage-ui
+    restart: always
+    ports:
+      - "8080:80" # Mapping to 8080 to avoid potential port 80 conflicts on host
+    networks:
+      - ea_network
+
+networks:
+  ea_network:
+    external: true

@@ -7,6 +7,19 @@ AUTH="Bearer foXuVEE3kQbZt7Epg8mGhfM86KwY8"
 
 echo "[$(date)] Starting briefing..." >> $LOG
 
+# 1. Sync Vantage Data (Google Tasks -> Supabase)
+echo "[$(date)] Syncing Vantage tasks..." >> $LOG
+SYNC_RES=$(curl -s -w "\n%{http_code}" -X POST "http://localhost:3005/vantage/sync" -H "Authorization: $AUTH")
+SYNC_CODE=$(echo "$SYNC_RES" | tail -1)
+
+if [ "$SYNC_CODE" -eq 200 ]; then
+    echo "[$(date)] Vantage Sync SUCCESS" >> $LOG
+else
+    echo "[$(date)] Vantage Sync WARNING: HTTP $SYNC_CODE" >> $LOG
+fi
+
+# 2. Generate Briefing (Now using Vantage Data if service updated, or legacy G-Tasks if not)
+
 RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$API_URL/briefing/email" -H "Authorization: $AUTH")
 HTTP_CODE=$(echo "$RESPONSE" | tail -1)
 BODY=$(echo "$RESPONSE" | head -n -1)

@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  vantage-api:
+    build: .
+    container_name: vantage-api
+    restart: always
+    ports:
+      - "3005:3005"
+    environment:
+      - PORT=3005
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+    networks:
+      - ea_network
+
+networks:
+  ea_network:
+    external: true

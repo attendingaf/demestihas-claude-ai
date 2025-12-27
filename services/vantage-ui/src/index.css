@@ -1,0 +1,250 @@
+:root {
+    /* PROTOTYPE GRAYSCALE PALETTE */
+    --lcars-orange: #999999;
+    --lcars-red: #666666;
+    --lcars-blue: #CCCCCC;
+    --lcars-blue-dark: #888888;
+    --lcars-teal: #AAAAAA;
+    --lcars-amber: #BBBBBB;
+    --lcars-black: #111111;
+    /* Slightly lighter than pure black for visibility */
+
+    --elbow-width: 54px;
+    --elbow-curve: 30px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--lcars-black);
+    color: #DDDDDD;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- STRUCTURE --- */
+
+.app-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Sidebar / Elbow System */
+.lcars-column-left {
+    width: var(--elbow-width);
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* The Top Corner Elbow */
+.lcars-elbow-header {
+    height: 120px;
+    background-color: var(--lcars-orange);
+    border-bottom-right-radius: var(--elbow-curve);
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+/* The Vertical Bar */
+.lcars-sidebar-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--lcars-orange) 0%, var(--lcars-red) 70%, transparent 100%);
+    width: 30px;
+    margin-left: auto;
+    margin-top: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-bottom: 20px;
+    /* Prevent it from hitting bottom edge too hard */
+}
+
+/* Main Content Area */
+.lcars-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    height: 100vh;
+    /* Ensure strictly 100vh */
+    overflow: hidden;
+}
+
+/* Top Horizontal Bar */
+.lcars-top-bar {
+    height: 60px;
+    background: linear-gradient(90deg, var(--lcars-blue) 0%, var(--lcars-blue-dark) 100%);
+    border-bottom-left-radius: 60px;
+    margin-top: 0;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 20px;
+    flex-shrink: 0;
+    /* Prevent shrinking */
+}
+
+.lcars-title-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    color: var(--lcars-black);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+
+/* Matrix Grid */
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* User wants all 4 columns across */
+    grid-template-rows: 1fr;
+    /* Single row */
+    padding: 20px 20px 20px 0;
+    gap: 15px;
+    /* Slightly tighter gap */
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Quadrant */
+.quadrant-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.03);
+    /* Subtle bg to see bounds */
+    border-radius: 12px;
+    padding: 10px;
+    overflow: hidden;
+    /* Ensure container clips children and forces scroll context */
+}
+
+.quadrant-header-pill {
+    display: inline-block;
+    padding: 6px 20px;
+    background-color: var(--q-color);
+    /* This will be overridden or we change vars? */
+    color: black;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quadrant-bg {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    /* Critical for scrolling in flex item */
+    padding-right: 5px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    /* Reduced to allow 2 columns */
+    gap: 10px;
+    align-content: start;
+}
+
+.quadrant-bg.single-col {
+    grid-template-columns: 1fr;
+    /* Force single column */
+}
+
+/* Space for scrollbar */
+
+
+/* Task Cards */
+.task-card {
+    background-color: #222222;
+    border-radius: 6px;
+    margin-bottom: 0;
+    /* Grid handles gap */
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+    cursor: grab;
+    color: #EDEDED;
+    border: 1px solid #444;
+    height: 160px;
+    /* Fixed height as requested */
+    display: flex;
+    flex-direction: column;
+}
+
+.task-card:hover {
+    transform: scale(1.01);
+    background-color: #2A2A2A;
+    border-color: #666;
+}
+
+.task-card-strip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: var(--strip-color);
+}
+
+.task-card-content {
+    padding: 10px 10px 10px 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.task-context {
+    font-size: 11px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Scrollbar Style for Quadrants */
+::-webkit-scrollbar {
+    width: 6px;
+    display: block;
+    /* Show scrollbar in muted mode for functionality check */
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

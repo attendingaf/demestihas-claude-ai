@@ -39,10 +39,15 @@ scp docker-compose-prod.yml $VPS_USER@$VPS_HOST:$REMOTE_ROOT/docker-compose.yml
 
 # 6. Deploy on VPS
 echo "🚀 Building and Starting Containers..."
+
+# Create .env file content locally and pipe to remote
+ENV_CONTENT="SUPABASE_URL=${SUPABASE_URL}
+SUPABASE_KEY=${SUPABASE_KEY:-$SUPABASE_ANON_KEY} # Fallback if key missing
+SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+PORT=3005"
+
 ssh $VPS_USER@$VPS_HOST "cd $REMOTE_ROOT && \
-    export SUPABASE_URL='${SUPABASE_URL}' && \
-    export SUPABASE_KEY='${SUPABASE_KEY}' && \
-    export SUPABASE_ANON_KEY='${SUPABASE_ANON_KEY}' && \
+    echo \"$ENV_CONTENT\" > .env && \
     docker rm -f vantage-api vantage-ui || true && \
     docker-compose down && \
     docker-compose up -d --build"

@@ -7,6 +7,23 @@ REMOTE_ROOT="/root/services/vantage"
 
 echo "🦅 Deploying Vantage System (API + UI) to VPS..."
 
+# Load local .env if variables are missing
+if [ -z "$SUPABASE_URL" ]; then
+    echo "ℹ️  Loading .env from project root..."
+    # Navigate to project root relative to script
+    SCRIPT_DIR="$(dirname "$0")"
+    PROJECT_ROOT="$SCRIPT_DIR/../.."
+    
+    if [ -f "$PROJECT_ROOT/.env" ]; then
+        # Export variables from .env
+        set -a
+        source "$PROJECT_ROOT/.env"
+        set +a
+    else
+        echo "⚠️  .env file not found at $PROJECT_ROOT/.env"
+    fi
+fi
+
 # 1. Build Local (Optional)
 # npm run build
 

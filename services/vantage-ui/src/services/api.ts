@@ -1,7 +1,7 @@
 import type { Task, TasksByQuadrant } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3005';
-const AUTH_TOKEN = 'foXuVEE3kQbZt7Epg8mGhfM86KwY8';
+const AUTH_TOKEN = import.meta.env.VITE_AUTH_TOKEN || 'MISSING_AUTH_TOKEN';
 
 const headers = {
     'Content-Type': 'application/json',

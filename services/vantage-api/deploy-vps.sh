@@ -63,9 +63,14 @@ SUPABASE_KEY=${SUPABASE_KEY:-$SUPABASE_ANON_KEY} # Fallback if key missing
 SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
 PORT=3005"
 
+# Create UI env content with the token (still using hardcoded for now in env var, but not in code)
+# In valid prod setup, this should come from a secret too
+VANTAGE_UI_TOKEN="foXuVEE3kQbZt7Epg8mGhfM86KwY8"
+
 ssh $VPS_USER@$VPS_HOST "cd $REMOTE_ROOT && \
     echo \"$ENV_CONTENT\" > .env && \
     docker rm -f vantage-api vantage-ui || true && \
+    export VANTAGE_UI_TOKEN=\"$VANTAGE_UI_TOKEN\" && \
     docker-compose down && \
     docker-compose up -d --build"
 

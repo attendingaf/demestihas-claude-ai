@@ -189,6 +189,21 @@ function App() {
       console.error("Failed to delete task", err);
     }
   };
+  // Modals
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCreateTask = async (task: Partial<Task>) => {
+    try {
+      const created = await vantageApi.createTask(task);
+      setTasks(prev => ({
+        ...prev,
+        [created.quadrant]: [created, ...prev[created.quadrant]]
+      }));
+      setIsModalOpen(false);
+    } catch (err) {
+      console.error("Failed to create task", err);
+    }
+  };
   // ... End Drag Handlers
 
   return (
@@ -208,22 +223,76 @@ function App() {
           <span className="lcars-title-text">VANTAGE LCARS</span>
 
           {/* Controls */}
-          <button style={{
-            background: 'black',
-            color: '#00BFFF',
-            border: '2px solid #00BFFF',
-            borderRadius: '20px',
-            padding: '5px 15px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '5px',
-            fontFamily: 'Oswald',
-            fontWeight: 'bold'
-          }}>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            style={{
+              background: 'black',
+              color: '#00BFFF',
+              border: '2px solid #00BFFF',
+              borderRadius: '20px',
+              padding: '5px 15px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              fontFamily: 'Oswald',
+              fontWeight: 'bold'
+            }}>
             <Plus size={18} /> NEW TASK
           </button>
         </div>
+
+        {/* New Task Modal */}
+        {isModalOpen && (
+          <div style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
+          }}>
+            <div style={{
+              backgroundColor: '#111', border: '2px solid #FF9C00', borderRadius: '20px', padding: '30px', width: '500px',
+              color: '#FF9C00', fontFamily: 'Oswald'
+            }}>
+              <h2 style={{ marginTop: 0, marginBottom: '20px', borderBottom: '1px solid #FF9C00' }}>INITIALIZE NEW TASK</h2>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const newTask = {
+                  title: formData.get('title') as string,
+                  quadrant: formData.get('quadrant') as QuadrantType,
+                  context: formData.get('context') as string,
+                  deadline: formData.get('deadline') as string
+                };
+                handleCreateTask(newTask);
+              }}>
+                <div style={{ marginBottom: '15px' }}>
+                  <label style={{ display: 'block', marginBottom: '5px' }}>TASK TITLE</label>
+                  <input name="title" required style={{ width: '100%', padding: '10px', background: '#222', border: '1px solid #444', color: 'white' }} />
+                </div>
+                <div style={{ marginBottom: '15px' }}>
+                  <label style={{ display: 'block', marginBottom: '5px' }}>QUADRANT</label>
+                  <select name="quadrant" style={{ width: '100%', padding: '10px', background: '#222', border: '1px solid #444', color: 'white' }}>
+                    <option value="do_now">DO NOW</option>
+                    <option value="schedule">SCHEDULE</option>
+                    <option value="delegate">DELEGATE</option>
+                    <option value="defer">NOT TO DO</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '15px' }}>
+                  <label style={{ display: 'block', marginBottom: '5px' }}>CONTEXT / NOTES</label>
+                  <textarea name="context" rows={3} style={{ width: '100%', padding: '10px', background: '#222', border: '1px solid #444', color: 'white' }} />
+                </div>
+                <div style={{ marginBottom: '20px' }}>
+                  <label style={{ display: 'block', marginBottom: '5px' }}>DEADLINE (OPTIONAL)</label>
+                  <input name="deadline" type="date" style={{ width: '100%', padding: '10px', background: '#222', border: '1px solid #444', color: 'white' }} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+                  <button type="button" onClick={() => setIsModalOpen(false)} style={{ padding: '10px 20px', background: 'transparent', border: '1px solid #666', color: '#666', cursor: 'pointer' }}>CANCEL</button>
+                  <button type="submit" style={{ padding: '10px 20px', background: '#FF9C00', border: 'none', color: 'black', fontWeight: 'bold', cursor: 'pointer' }}>ENGAGE</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* Matrix */}
         <DndContext
@@ -248,7 +317,7 @@ function App() {
           )}
         </DndContext>
       </div>
-    </div>
+    </div >
   );
 }
 

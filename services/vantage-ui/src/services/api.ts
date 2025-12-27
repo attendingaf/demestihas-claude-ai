@@ -23,5 +23,15 @@ export const vantageApi = {
         });
         if (!res.ok) throw new Error('Failed to update task');
         return res.json();
+    },
+
+    createTask: async (task: Partial<Task>): Promise<Task> => {
+        const res = await fetch(`${API_URL}/vantage/tasks`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(task)
+        });
+        if (!res.ok) throw new Error('Failed to create task');
+        return res.json();
     }
 };
